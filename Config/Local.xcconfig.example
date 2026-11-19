@@ -1,0 +1,5 @@
+// 本机签名配置。复制成 Config/Local.xcconfig（已被 .gitignore 忽略）再改。
+// 没有 Developer ID 证书时留空即可，日常构建走 ad-hoc 签名。
+// 把 ABCDE12345 换成你自己的 Apple Developer Team ID。
+DEVELOPMENT_TEAM = ABCDE12345
+CODE_SIGN_IDENTITY = Developer ID Application

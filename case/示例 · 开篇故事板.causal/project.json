@@ -1,0 +1,613 @@
+{
+  "assets": [],
+  "canvas": {
+    "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF": {
+      "x": 419.38671875,
+      "y": 360.3828125
+    },
+    "1DE813D7-1B99-4C6A-AB7A-A6AA1533E123": {
+      "x": 122.4921875,
+      "y": 624.97265625
+    },
+    "5489AB21-9325-43F9-A6DB-C06DCD7A2917": {
+      "x": 720,
+      "y": 120
+    },
+    "7859E8A5-2E6D-46AD-A214-C53764C0A743": {
+      "x": 421.40234375,
+      "y": 620.16015625
+    },
+    "CA00676C-0E4E-425D-A8BF-923338264254": {
+      "x": 113.52734375,
+      "y": 357.671875
+    },
+    "D4CCB87E-1782-47EF-A392-8A0D36DC33EA": {
+      "x": 120,
+      "y": 120
+    },
+    "DB53325D-FF46-4600-A706-13D59EFFB487": {
+      "x": 726.99609375,
+      "y": 365.8125
+    },
+    "E3659D47-DD71-43B6-AA09-1298C551BF25": {
+      "x": 713.78125,
+      "y": 616.4375
+    },
+    "E81E822B-D52B-4DCD-AD66-9DD4CB036BBB": {
+      "x": 420,
+      "y": 120
+    }
+  },
+  "chapters": [
+    {
+      "createdAt": "2026-01-01T00:04:00.000Z",
+      "id": "1CB84445-E558-45D6-A939-EF7D044B0F3D",
+      "isCollapsedOnCanvas": false,
+      "order": [
+        "D4CCB87E-1782-47EF-A392-8A0D36DC33EA",
+        "E81E822B-D52B-4DCD-AD66-9DD4CB036BBB"
+      ],
+      "summary": "",
+      "title": "第一幕 · 落脚"
+    },
+    {
+      "createdAt": "2026-01-01T00:07:00.000Z",
+      "id": "F6B1FD4C-8CC6-4905-A045-CEBB6F2670CA",
+      "isCollapsedOnCanvas": false,
+      "order": [
+        "5489AB21-9325-43F9-A6DB-C06DCD7A2917",
+        "DB53325D-FF46-4600-A706-13D59EFFB487",
+        "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF",
+        "CA00676C-0E4E-425D-A8BF-923338264254"
+      ],
+      "summary": "",
+      "title": "第二幕 · 学了第一门手艺"
+    },
+    {
+      "createdAt": "2026-01-01T00:12:00.000Z",
+      "id": "4E627354-00B3-464E-A1BD-E8B5779ECB49",
+      "isCollapsedOnCanvas": false,
+      "order": [
+        "1DE813D7-1B99-4C6A-AB7A-A6AA1533E123",
+        "7859E8A5-2E6D-46AD-A214-C53764C0A743",
+        "E3659D47-DD71-43B6-AA09-1298C551BF25"
+      ],
+      "summary": "",
+      "title": "第三幕 · 出远门"
+    }
+  ],
+  "characterCanvas": {},
+  "characters": [
+    {
+      "id": "D71C02CB-DA11-46FE-A169-EB2C4E30E6F8",
+      "name": "房东",
+      "notes": "",
+      "relations": [],
+      "summary": "把靠河的小房间租给主角"
+    },
+    {
+      "id": "AFC735F8-2FCD-4DFF-A0E9-BA5F471D78AC",
+      "name": "老匠人",
+      "notes": "",
+      "relations": [],
+      "summary": "住在城北山坡，教主角第一门手艺"
+    },
+    {
+      "id": "C8D2012B-7075-475B-A1C9-40EC82F60F7E",
+      "name": "第一位买主",
+      "notes": "",
+      "relations": [],
+      "summary": "跑短途的船工，也是第一个客人"
+    },
+    {
+      "id": "56E88A22-52E6-4B13-AEA7-AA42E6DA8AB8",
+      "name": "同行老手",
+      "notes": "",
+      "relations": [],
+      "summary": "在南边水边干活的同行，教了第二道工序"
+    }
+  ],
+  "createdAt": "2026-11-15T08:41:03.377Z",
+  "discussions": [],
+  "edges": [
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "D4CCB87E-1782-47EF-A392-8A0D36DC33EA",
+      "id": "5CFADA04-CE26-4C66-A5B3-8522C80C68DA",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "拿到自己的房门钥匙",
+      "to": "E81E822B-D52B-4DCD-AD66-9DD4CB036BBB"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "E81E822B-D52B-4DCD-AD66-9DD4CB036BBB",
+      "id": "1BAD7DE1-9003-40D3-AE98-1BE21B049F87",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "主角第一次看见这门手艺",
+      "to": "5489AB21-9325-43F9-A6DB-C06DCD7A2917"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "5489AB21-9325-43F9-A6DB-C06DCD7A2917",
+      "id": "F04C723D-7FA0-426C-AD35-54F65348FEE2",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "学会第一门手艺，亲笔记下整套动作",
+      "to": "DB53325D-FF46-4600-A706-13D59EFFB487"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "DB53325D-FF46-4600-A706-13D59EFFB487",
+      "id": "69CAA637-E8F7-4759-AD29-CC432E4537F9",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "头一批做成三件，标签写明日期",
+      "to": "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF",
+      "id": "07B825EB-5888-4AF2-AF11-1ADCF79BB71B",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "主角从灯芯亮起看懂了怎么收手",
+      "to": "CA00676C-0E4E-425D-A8BF-923338264254"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "CA00676C-0E4E-425D-A8BF-923338264254",
+      "id": "BD93D140-94E7-4F9A-AD46-12A707C6EDC5",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "已有第一笔收入，也有一笔明确做不成的买卖",
+      "to": "1DE813D7-1B99-4C6A-AB7A-A6AA1533E123"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "1DE813D7-1B99-4C6A-AB7A-A6AA1533E123",
+      "id": "0D841AE7-C709-4625-A650-4EA73F8B23A1",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "第一趟远门有去处、要找的人，也有回来能验证的问题",
+      "to": "7859E8A5-2E6D-46AD-A214-C53764C0A743"
+    },
+    {
+      "annotation": "",
+      "condition": "",
+      "from": "7859E8A5-2E6D-46AD-A214-C53764C0A743",
+      "id": "14EEDD41-79B8-4929-AEEB-32ECA28A1566",
+      "isMainline": false,
+      "kind": "plain",
+      "label": "学会第二道工序，做出第二件成品",
+      "to": "E3659D47-DD71-43B6-AA09-1298C551BF25"
+    }
+  ],
+  "id": "D40E94F9-EF51-4D49-92D2-B1E193E808B2",
+  "logline": "一个通用示例工程：从主角搬进新住处，写到第一次自己出远门。人物、地名、工序名都是占位，可以随便改。",
+  "modifiedAt": "2026-11-15T10:19:16.404Z",
+  "nodes": [
+    {
+      "annotation": "",
+      "body": "眼前：雨刚停，主角带着行李来投奔租房的房东。房东把靠河的小房间腾出来，正愁棚下的材料又要返潮。\n\n动手：放下行李，帮着收材料。在池边认出一种叶背能挂住水珠的叶子，带几片回去。\n\n留下：拿到自己的房门钥匙。这是主角认出的第一种材料，棚下那一把隔夜后就会蔫。",
+      "chapterID": "1CB84445-E558-45D6-A939-EF7D044B0F3D",
+      "characterIDs": [
+        "D71C02CB-DA11-46FE-A169-EB2C4E30E6F8"
+      ],
+      "createdAt": "2026-01-01T00:05:00.000Z",
+      "id": "D4CCB87E-1782-47EF-A392-8A0D36DC33EA",
+      "isEntry": true,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.380Z",
+      "placeIDs": [
+        "996B1143-BFB6-4EE5-AC65-44714288546B"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S01 入城"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：城北来的老匠人在院子里避雨。她从蔫叶旁拣起一片鲜叶，让主角托着，看一滴水沿叶脉逆流而上。\n\n动手：转动叶片。\n\n留下：主角第一次看见这门手艺，老匠人约他改日上山。",
+      "chapterID": "1CB84445-E558-45D6-A939-EF7D044B0F3D",
+      "characterIDs": [
+        "AFC735F8-2FCD-4DFF-A0E9-BA5F471D78AC"
+      ],
+      "createdAt": "2026-01-01T00:06:00.000Z",
+      "id": "E81E822B-D52B-4DCD-AD66-9DD4CB036BBB",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.380Z",
+      "placeIDs": [
+        "996B1143-BFB6-4EE5-AC65-44714288546B"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S02 看见手艺"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：从北门沿小路上山坡。作坊里有一炉将熄的火。老匠人给主角一只空盏，让他看同一片叶在灶火和炉火上有什么分别。\n\n动手：听讲，记笔记。",
+      "chapterID": "F6B1FD4C-8CC6-4905-A045-CEBB6F2670CA",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:08:00.000Z",
+      "id": "5489AB21-9325-43F9-A6DB-C06DCD7A2917",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.381Z",
+      "placeIDs": [
+        "13C62FD6-362F-46ED-A60D-68894992C3D6"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S03 拜师"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：在自己院里架起小炉。老匠人没跟来，窗边是采好的鲜叶，案上是山上写下的笔记。\n\n动手：自己定开炉的时刻，按叶色取露，等炉声变化再收。",
+      "chapterID": "F6B1FD4C-8CC6-4905-A045-CEBB6F2670CA",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:09:00.000Z",
+      "id": "DB53325D-FF46-4600-A706-13D59EFFB487",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.382Z",
+      "placeIDs": [
+        "996B1143-BFB6-4EE5-AC65-44714288546B"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S04 练习"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：炉火刚收，先前攒下的材料也见了底。桌上放着一盏冷炉灯。\n\n动手：先试着点灯，再取自己做的头一批成品来试。",
+      "chapterID": "F6B1FD4C-8CC6-4905-A045-CEBB6F2670CA",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:10:00.000Z",
+      "id": "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.382Z",
+      "placeIDs": [],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S05 试做"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：在集市街摆摊时，跑短途的船工来买一件，准备下午上工用。他还想替跑三天长线的同伴带一件。\n\n动手：报价，写标签。",
+      "chapterID": "F6B1FD4C-8CC6-4905-A045-CEBB6F2670CA",
+      "characterIDs": [
+        "C8D2012B-7075-475B-A1C9-40EC82F60F7E"
+      ],
+      "createdAt": "2026-01-01T00:11:00.000Z",
+      "id": "CA00676C-0E4E-425D-A8BF-923338264254",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.382Z",
+      "placeIDs": [
+        "AC2A3079-4BDF-4495-A2E8-B86582A06662",
+        "FDBB5288-8E0B-446F-AFA9-6FB3C4BF7D87"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S06 卖货"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：收拾行李，从东码头出发。这一趟是第一次自己备货、自己安排行程。\n\n动手：决定带什么、走几天。",
+      "chapterID": "4E627354-00B3-464E-A1BD-E8B5779ECB49",
+      "characterIDs": [
+        "D71C02CB-DA11-46FE-A169-EB2C4E30E6F8",
+        "C8D2012B-7075-475B-A1C9-40EC82F60F7E"
+      ],
+      "createdAt": "2026-01-01T00:13:00.000Z",
+      "id": "1DE813D7-1B99-4C6A-AB7A-A6AA1533E123",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.383Z",
+      "placeIDs": [
+        "0889F5E7-C748-4FC3-AC63-F2259C131E0E",
+        "C2A76701-1890-46FA-A352-9483EAFFDB90"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S07 启程"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：到了外地，先去找约好的人。对方在做同一种活，手法不太一样。\n\n动手：看，问，记。",
+      "chapterID": "4E627354-00B3-464E-A1BD-E8B5779ECB49",
+      "characterIDs": [
+        "56E88A22-52E6-4B13-AEA7-AA42E6DA8AB8"
+      ],
+      "createdAt": "2026-01-01T00:14:00.000Z",
+      "id": "7859E8A5-2E6D-46AD-A214-C53764C0A743",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.383Z",
+      "placeIDs": [],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S08 访友"
+    },
+    {
+      "annotation": "",
+      "body": "眼前：从外地回来，带回来一门新手艺，也带回一堆没解决的问题。\n\n动手：把笔记整理成册。",
+      "chapterID": "4E627354-00B3-464E-A1BD-E8B5779ECB49",
+      "characterIDs": [
+        "C8D2012B-7075-475B-A1C9-40EC82F60F7E"
+      ],
+      "createdAt": "2026-01-01T00:15:00.000Z",
+      "id": "E3659D47-DD71-43B6-AA09-1298C551BF25",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-11-15T08:41:03.384Z",
+      "placeIDs": [
+        "996B1143-BFB6-4EE5-AC65-44714288546B"
+      ],
+      "revision": 1,
+      "settingIDs": [],
+      "status": "draft",
+      "summary": "",
+      "title": "S09 归家"
+    },
+    {
+      "annotation": "",
+      "body": "北门：出城北上的必经处。老匠人从这里上山。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:16:00.000Z",
+      "id": "2EDD926A-8A60-476F-A9B1-857A6FC8C9C6",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:16:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "北门"
+    },
+    {
+      "annotation": "",
+      "body": "东门：出远门走这一边，码头在门外。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:17:00.000Z",
+      "id": "1AD39634-309A-43F6-AE0A-9E21E457C31A",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:17:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "东门"
+    },
+    {
+      "annotation": "",
+      "body": "南门：水边那一带，同行常在这里干活。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:18:00.000Z",
+      "id": "811A076E-E874-4FA2-A534-2563F2DEE966",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:18:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "南门"
+    },
+    {
+      "annotation": "",
+      "body": "西门：作坊区，材料从这里进出。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:19:00.000Z",
+      "id": "4224D91E-73D0-4CA1-ABB0-15C1FD0F0608",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:19:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "西门"
+    },
+    {
+      "annotation": "",
+      "body": "谁把谁推到这里：人物的动机与关系，写成一句话，改的时候先改这里。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:20:00.000Z",
+      "id": "9945BC31-63B7-4EE8-ABA4-CA0B115098EE",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:20:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "人物关系"
+    },
+    {
+      "annotation": "",
+      "body": "东西怎么来的、怎么没的：物品的来历和去向，和人物关系分开记。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:21:00.000Z",
+      "id": "69FD3198-A892-4DA0-AC85-3B88772ED0FB",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:21:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "物品关系"
+    },
+    {
+      "annotation": "",
+      "body": "要改这一段，先改哪张卡、再改哪张卡，按顺序记下来。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:22:00.000Z",
+      "id": "ED7648E1-E69A-4773-A74B-50E8B2EC86BD",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:22:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "修改办法"
+    },
+    {
+      "annotation": "",
+      "body": "还没定的事，先记在这一张上，等试过再决定。",
+      "characterIDs": [],
+      "createdAt": "2026-01-01T00:23:00.000Z",
+      "id": "1933DC94-64A9-4532-ADC4-D5E7DF7D8354",
+      "isEntry": false,
+      "kind": "event",
+      "modifiedAt": "2026-01-01T00:23:00.000Z",
+      "placeIDs": [],
+      "revision": 0,
+      "settingIDs": [],
+      "status": "idea",
+      "summary": "",
+      "title": "待定"
+    }
+  ],
+  "places": [
+    {
+      "id": "996B1143-BFB6-4EE5-AC65-44714288546B",
+      "name": "小院",
+      "notes": "",
+      "summary": "主角的住处，靠河，院子里搭着棚"
+    },
+    {
+      "id": "13C62FD6-362F-46ED-A60D-68894992C3D6",
+      "name": "城北山坡",
+      "notes": "",
+      "summary": "城北，小路接石阶，半山有间作坊"
+    },
+    {
+      "id": "AC2A3079-4BDF-4495-A2E8-B86582A06662",
+      "name": "集市街",
+      "notes": "",
+      "summary": "城里赶集时摆摊的那条街"
+    },
+    {
+      "id": "0889F5E7-C748-4FC3-AC63-F2259C131E0E",
+      "name": "东码头",
+      "notes": "",
+      "summary": "东门外，窄埠头下游是能停大船的宽河面"
+    },
+    {
+      "id": "C2A76701-1890-46FA-A352-9483EAFFDB90",
+      "name": "南边水边",
+      "notes": "",
+      "summary": "城南水边，同行常在这一带干活"
+    },
+    {
+      "id": "7BB797D8-5600-4BB2-ACE7-FAE91826A9A0",
+      "name": "西边作坊区",
+      "notes": "",
+      "summary": "西门外，靠坡有一排作坊"
+    },
+    {
+      "id": "FDBB5288-8E0B-446F-AFA9-6FB3C4BF7D87",
+      "name": "常跑的码头",
+      "notes": "",
+      "summary": "第一位买主常跑的码头"
+    }
+  ],
+  "revision": 20,
+  "schemaVersion": 1,
+  "settings": [
+    {
+      "attachedNodeIDs": [
+        "5489AB21-9325-43F9-A6DB-C06DCD7A2917",
+        "05C1B9C0-1C4D-4A07-A3E7-4CE21E53CEFF"
+      ],
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "id": "55763B52-187E-4803-AC3C-B05CADE3B883",
+      "isConfirmed": false,
+      "isLocked": false,
+      "modifiedAt": "2026-11-15T08:41:03.382Z",
+      "revision": 2,
+      "text": "从看材料颜色变到收手，整套动作只在这几分钟里做",
+      "title": "第一门手艺"
+    },
+    {
+      "attachedNodeIDs": [
+        "5489AB21-9325-43F9-A6DB-C06DCD7A2917"
+      ],
+      "createdAt": "2026-01-01T00:01:00.000Z",
+      "id": "7590EDCF-5DC0-472A-AECB-07ECF7D433DC",
+      "isConfirmed": false,
+      "isLocked": false,
+      "modifiedAt": "2026-11-15T08:41:03.381Z",
+      "revision": 1,
+      "text": "头一批成品，标签上写明取材日和做成日，第二天会变",
+      "title": "第一件成品"
+    },
+    {
+      "attachedNodeIDs": [
+        "7859E8A5-2E6D-46AD-A214-C53764C0A743",
+        "E3659D47-DD71-43B6-AA09-1298C551BF25"
+      ],
+      "createdAt": "2026-01-01T00:02:00.000Z",
+      "id": "53FC425B-CCDC-4BFE-AC64-EC6CF8E3AE9C",
+      "isConfirmed": false,
+      "isLocked": false,
+      "modifiedAt": "2026-11-15T08:41:03.384Z",
+      "revision": 2,
+      "text": "看水面收拢的时机，把中间那道处理做进去",
+      "title": "第二道工序"
+    },
+    {
+      "attachedNodeIDs": [
+        "7859E8A5-2E6D-46AD-A214-C53764C0A743",
+        "E3659D47-DD71-43B6-AA09-1298C551BF25"
+      ],
+      "createdAt": "2026-01-01T00:03:00.000Z",
+      "id": "2DFE07F6-E797-4F84-A293-6A223B574E5D",
+      "isConfirmed": false,
+      "isLocked": false,
+      "modifiedAt": "2026-11-15T08:41:03.384Z",
+      "revision": 2,
+      "text": "第二道工序做出来的东西，能放三天，表面还留着纹路",
+      "title": "第二件成品"
+    }
+  ],
+  "title": "示例 · 开篇故事板"
+}

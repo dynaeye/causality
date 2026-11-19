@@ -1,0 +1,345 @@
+{
+  "assets" : [
+
+  ],
+  "canvas" : {
+    "11B54B42-A7C6-47C9-A790-86A6E25A19D7" : {
+      "x" : 0,
+      "y" : 0
+    },
+    "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2" : {
+      "x" : 260,
+      "y" : 0
+    },
+    "264EAF9B-C2FA-4A89-A761-E460DDF461AF" : {
+      "x" : 520,
+      "y" : -120
+    },
+    "3FE157CA-470B-40D8-A534-9D01B06FE3EF" : {
+      "x" : 520,
+      "y" : 120
+    },
+    "A30E04CE-B279-4057-AFCB-09EF31B8C2DF" : {
+      "x" : 1080,
+      "y" : 200
+    },
+    "E9619DF3-2F66-41E3-A3FC-97B68052752E" : {
+      "x" : 1080,
+      "y" : 0
+    },
+    "F08F04A3-99AF-4977-A118-AB8873140694" : {
+      "x" : 800,
+      "y" : 0
+    }
+  },
+  "chapters" : [
+    {
+      "createdAt" : "2026-01-01T00:00:00.000Z",
+      "id" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "isCollapsedOnCanvas" : false,
+      "order" : [
+        "11B54B42-A7C6-47C9-A790-86A6E25A19D7",
+        "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2",
+        "264EAF9B-C2FA-4A89-A761-E460DDF461AF",
+        "3FE157CA-470B-40D8-A534-9D01B06FE3EF",
+        "F08F04A3-99AF-4977-A118-AB8873140694"
+      ],
+      "summary" : "",
+      "title" : "第一章"
+    },
+    {
+      "createdAt" : "2026-11-15T07:12:24.853Z",
+      "id" : "E3456FC0-C0EA-4179-A68A-A3EE43D99632",
+      "isCollapsedOnCanvas" : false,
+      "order" : [
+        "E9619DF3-2F66-41E3-A3FC-97B68052752E",
+        "A30E04CE-B279-4057-AFCB-09EF31B8C2DF"
+      ],
+      "summary" : "",
+      "title" : "第二章"
+    }
+  ],
+  "characterCanvas" : {
+
+  },
+  "characters" : [
+    {
+      "id" : "54432783-6331-4ECA-ABE5-73DD42EB3907",
+      "name" : "阿禾",
+      "notes" : "",
+      "relations" : [
+
+      ],
+      "summary" : "替人捎信的姑娘。"
+    },
+    {
+      "id" : "0CDECE4E-1DD6-4583-A6D7-CA0F6FA5DACA",
+      "name" : "梁婆婆",
+      "notes" : "",
+      "relations" : [
+
+      ],
+      "summary" : "旧渡口最后一位船娘。"
+    }
+  ],
+  "createdAt" : "2026-01-01T00:00:00.000Z",
+  "discussions" : [
+
+  ],
+  "edges" : [
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "11B54B42-A7C6-47C9-A790-86A6E25A19D7",
+      "id" : "39233A02-C9A1-4F88-A8E9-F6EF28C366E9",
+      "isMainline" : false,
+      "kind" : "cause",
+      "label" : "旧渡口只有梁婆婆替人捎过家书",
+      "to" : "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2"
+    },
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2",
+      "id" : "F9DECEBC-DE52-4451-AA77-77AD2CB59FEE",
+      "isMainline" : false,
+      "kind" : "choice",
+      "label" : "阿禾答应替寄信人守密",
+      "to" : "264EAF9B-C2FA-4A89-A761-E460DDF461AF"
+    },
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2",
+      "id" : "C09873F2-BEA0-45B5-A4F7-C1C0DFDD2FEE",
+      "isMainline" : false,
+      "kind" : "choice",
+      "label" : "阿禾拿河灯去问镇民",
+      "to" : "3FE157CA-470B-40D8-A534-9D01B06FE3EF"
+    },
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "264EAF9B-C2FA-4A89-A761-E460DDF461AF",
+      "id" : "8E4F460C-5371-4623-AF3E-739A323AFE24",
+      "isMainline" : false,
+      "kind" : "cause",
+      "label" : "梁婆婆交出半封旧信，阿禾独自去渡口",
+      "to" : "F08F04A3-99AF-4977-A118-AB8873140694"
+    },
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "3FE157CA-470B-40D8-A534-9D01B06FE3EF",
+      "id" : "B710B383-05CC-4A03-A602-E5C439B23FC0",
+      "isMainline" : false,
+      "kind" : "plain",
+      "label" : "赶集的人认出纸张来自旧渡口，众人一同前往",
+      "to" : "F08F04A3-99AF-4977-A118-AB8873140694"
+    },
+    {
+      "annotation" : "",
+      "condition" : "",
+      "from" : "F08F04A3-99AF-4977-A118-AB8873140694",
+      "id" : "960AC0B6-1D1B-47EA-AF82-6B1E9BFC4EAA",
+      "isMainline" : false,
+      "kind" : "cause",
+      "label" : "信送出去之后，她回到渡口",
+      "to" : "E9619DF3-2F66-41E3-A3FC-97B68052752E"
+    }
+  ],
+  "id" : "00000000-0000-4000-A000-000000000000",
+  "logline" : "一盏逆水漂来的河灯，灯底是母亲的字。",
+  "modifiedAt" : "2026-01-01T00:00:00.000Z",
+  "nodes" : [
+    {
+      "annotation" : "",
+      "body" : "夜河上漂来一盏河灯。阿禾伸手把它捞起，翻过来，灯底是母亲的字。",
+      "chapterID" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "characterIDs" : [
+        "54432783-6331-4ECA-ABE5-73DD42EB3907"
+      ],
+      "createdAt" : "2026-01-01T00:02:00.000Z",
+      "id" : "11B54B42-A7C6-47C9-A790-86A6E25A19D7",
+      "isEntry" : true,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:02:00.000Z",
+      "placeIDs" : [
+        "884F1AFE-4ABA-4DC6-A19E-651C333D454B"
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "draft",
+      "summary" : "一盏河灯逆水漂来，灯底写着母亲的字。",
+      "title" : "阿禾捞起河灯"
+    },
+    {
+      "annotation" : "",
+      "body" : "梁婆婆接过灯，指腹在灯骨上摩了一下。她说这灯是她扎的。",
+      "chapterID" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "characterIDs" : [
+        "54432783-6331-4ECA-ABE5-73DD42EB3907",
+        "0CDECE4E-1DD6-4583-A6D7-CA0F6FA5DACA"
+      ],
+      "createdAt" : "2026-01-01T00:03:00.000Z",
+      "id" : "135E868B-3FCE-4FFE-ACB2-F79839F6F8C2",
+      "isEntry" : false,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:03:00.000Z",
+      "placeIDs" : [
+        "884F1AFE-4ABA-4DC6-A19E-651C333D454B"
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "draft",
+      "summary" : "旧渡口只有梁婆婆替人捎过家书。",
+      "title" : "梁婆婆认出河灯"
+    },
+    {
+      "annotation" : "",
+      "body" : "梁婆婆从船篷底下摸出一封信，撕掉的那半在她自己手里。",
+      "chapterID" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "characterIDs" : [
+
+      ],
+      "createdAt" : "2026-01-01T00:04:00.000Z",
+      "id" : "264EAF9B-C2FA-4A89-A761-E460DDF461AF",
+      "isEntry" : false,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:04:00.000Z",
+      "placeIDs" : [
+
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "draft",
+      "summary" : "阿禾答应守密，梁婆婆交出半封旧信。",
+      "title" : "梁婆婆交出半封旧信"
+    },
+    {
+      "annotation" : "",
+      "body" : "赶集的人围着河灯看。卖纸的老人伸手摸了摸，说这纸他送过。",
+      "chapterID" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "characterIDs" : [
+
+      ],
+      "createdAt" : "2026-01-01T00:05:00.000Z",
+      "id" : "3FE157CA-470B-40D8-A534-9D01B06FE3EF",
+      "isEntry" : false,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:05:00.000Z",
+      "placeIDs" : [
+
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "draft",
+      "summary" : "卖纸老人认出纸张来自旧渡口。",
+      "title" : "赶集的人认出纸张"
+    },
+    {
+      "annotation" : "",
+      "body" : "旧渡口只剩半截石阶。阿禾把两半信对起来，母亲的字终于读得通。\n她没有把信带走，交给了梁婆婆。",
+      "chapterID" : "80E83938-47A1-4EA0-A6B2-DFE8BA8C396A",
+      "characterIDs" : [
+        "54432783-6331-4ECA-ABE5-73DD42EB3907",
+        "0CDECE4E-1DD6-4583-A6D7-CA0F6FA5DACA"
+      ],
+      "createdAt" : "2026-01-01T00:06:00.000Z",
+      "id" : "F08F04A3-99AF-4977-A118-AB8873140694",
+      "isEntry" : false,
+      "kind" : "ending",
+      "modifiedAt" : "2026-01-01T00:06:00.000Z",
+      "placeIDs" : [
+        "884F1AFE-4ABA-4DC6-A19E-651C333D454B"
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+        "12FCE96E-26B4-4E83-A72C-684C39E9866D"
+      ],
+      "status" : "draft",
+      "summary" : "阿禾读懂母亲当年离镇的缘由，把回信交给梁婆婆。",
+      "title" : "旧渡口的信"
+    },
+    {
+      "annotation" : "",
+      "body" : "梁婆婆把灯推回水上。灯顺流走了，她在岸上站了很久。",
+      "chapterID" : "E3456FC0-C0EA-4179-A68A-A3EE43D99632",
+      "characterIDs" : [
+        "0CDECE4E-1DD6-4583-A6D7-CA0F6FA5DACA"
+      ],
+      "createdAt" : "2026-01-01T00:07:00.000Z",
+      "id" : "E9619DF3-2F66-41E3-A3FC-97B68052752E",
+      "isEntry" : false,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:07:00.000Z",
+      "placeIDs" : [
+        "884F1AFE-4ABA-4DC6-A19E-651C333D454B"
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "draft",
+      "summary" : "她把灯推回水上，没有说再见。",
+      "title" : "梁婆婆把灯放回河里"
+    },
+    {
+      "annotation" : "",
+      "body" : "",
+      "chapterID" : "E3456FC0-C0EA-4179-A68A-A3EE43D99632",
+      "characterIDs" : [
+
+      ],
+      "createdAt" : "2026-01-01T00:08:00.000Z",
+      "id" : "A30E04CE-B279-4057-AFCB-09EF31B8C2DF",
+      "isEntry" : false,
+      "kind" : "event",
+      "modifiedAt" : "2026-01-01T00:08:00.000Z",
+      "placeIDs" : [
+
+      ],
+      "revision" : 0,
+      "settingIDs" : [
+
+      ],
+      "status" : "idea",
+      "summary" : "父亲这条线一直没落地，先留一张卡。",
+      "title" : "要不要写她父亲？"
+    }
+  ],
+  "places" : [
+    {
+      "id" : "884F1AFE-4ABA-4DC6-A19E-651C333D454B",
+      "name" : "旧渡口",
+      "notes" : "",
+      "summary" : "只剩半截石阶。"
+    }
+  ],
+  "revision" : 0,
+  "schemaVersion" : 1,
+  "settings" : [
+    {
+      "attachedNodeIDs" : [
+        "F08F04A3-99AF-4977-A118-AB8873140694"
+      ],
+      "createdAt" : "2026-01-01T00:01:00.000Z",
+      "id" : "12FCE96E-26B4-4E83-A72C-684C39E9866D",
+      "isConfirmed" : true,
+      "isLocked" : true,
+      "modifiedAt" : "2026-11-15T07:12:24.853Z",
+      "revision" : 1,
+      "text" : "母亲当年替人捎信，欠了人情才离镇。",
+      "title" : "母亲离镇是因为欠信"
+    }
+  ],
+  "title" : "河灯里的字"
+}

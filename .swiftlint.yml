@@ -1,0 +1,26 @@
+# Causality 的 lint 口径：规则保持开启，只声明本项目认可的例外。
+included:
+  - Sources
+  - Packages/CausalityCore/Sources
+  - Packages/CausalityCore/Tests
+
+line_length:
+  warning: 130
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+
+identifier_name:
+  min_length: 2
+  # 故事模型里的 to/from 是领域词汇，坐标用 x/y。
+  excluded:
+    - id
+    - to
+    - from
+    - x
+    - y
+
+type_name:
+  # ID 是模型里的基础类型名，与 SwiftUI 的 ID 同名是刻意的。
+  allowed_symbols:
+    - ID

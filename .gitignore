@@ -1,0 +1,15 @@
+.DS_Store
+.build/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.swiftpm/
+.ruff_cache/
+__pycache__/
+Config/Local.xcconfig
+case/**/project.previous.json
+case/**/.DS_Store
+
+# 跨进程写锁：工程包里的临时文件
+.write.lock
