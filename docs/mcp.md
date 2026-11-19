@@ -6,7 +6,7 @@ The main steps — installing the command line, writing the config, having an AI
 
 ## 1. Where the command line comes from
 
-The release app ships it under `Causality.app/Contents/Resources/cli/`: `causal` together with the `CausalityCore_CausalityCore.bundle` it depends on. The **一键安装 MCP** button (install MCP in one click) on the Settings (⌘,) › **MCP** page, or the same entry in the **Tools** menu, copies both into `.local/bin` under the current user's home directory. The path is worked out from the home directory at runtime.
+The release app ships it under `Causality.app/Contents/Resources/cli/`: `causal` together with the `CausalityCore_CausalityCore.bundle` it depends on. The **一键安装 MCP** button (install MCP in one click) on the Settings (⌘,) › **MCP** page copies both into `.local/bin` under the current user's home directory; so does 工具 › 安装命令行工具 (Tools › Install Command Line Tool), which only installs the files. The path is worked out from the home directory at runtime.
 
 That one button also registers the CLI with the Codex / Hermes / Pi found on this machine, by calling each client's own `mcp add` rather than editing config files by hand, and then shows a per-line verdict — 已接入 (connected, N tools available), 还没接入 (not connected yet), or 没连通：reason (failed, with the reason) — each line recheckable on its own.
 

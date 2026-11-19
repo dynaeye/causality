@@ -339,7 +339,7 @@ Available as soon as the app is installed, with no terminal involved.
 
 Open **Settings (⌘,) › MCP** and click **一键安装 MCP** (install MCP in one click). That single button does three things: it installs the bundled `causal` — which is also the MCP server — into `.local/bin` under your home directory; it registers it with the Codex (GPT), Hermes, and Pi found on this machine; and it tests each connection in turn. No terminal, no config file to open.
 
-Paths are worked out from your home directory at that moment, so nothing is tied to one machine. The whole setup runs once; after an app update, click again to pick up the new version. The **Tools** menu carries the same entry.
+Paths are worked out from your home directory at that moment, so nothing is tied to one machine. The whole setup runs once; after an app update, click again to pick up the new version. The **Tools** menu offers the install on its own (安装命令行工具, install command line tool), for the command line without the client registration and testing.
 
 ### 9.2 Checking the connection
 
