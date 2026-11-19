@@ -407,6 +407,6 @@ flowchart LR
 
 ## 十一、许可与反馈
 
-MIT 授权，完整条款见 `LICENSE`。想一起改代码，看 `CONTRIBUTING.md`；发现安全问题，按 `SECURITY.zh-Hans.md` 里写的地址报，不要发在公开 issue 里。
+MIT 授权，完整条款见 `LICENSE`。想一起改代码，看 `CONTRIBUTING.zh-Hans.md`；发现安全问题，按 `SECURITY.zh-Hans.md` 里写的地址报，不要发在公开 issue 里。
 
 用下来发现问题，或者觉得哪句话写得不对，欢迎在仓库里开个 issue 说一声。

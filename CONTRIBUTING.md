@@ -1,39 +1,41 @@
-# 参与开发
+**English** · [简体中文](CONTRIBUTING.zh-Hans.md)
 
-因果是 macOS 上的 SwiftUI App + 一个独立的模型层 Swift Package。改动尽量按「模型层 → 命令行 → 界面」的顺序落，模型层的测试是唯一的硬门槛。
+# Contributing
 
-## 环境
+Causality is a SwiftUI app for macOS plus a separate model-layer Swift Package. Changes usually go in the order model layer → command line → interface, and the model-layer tests are the only hard gate.
 
-- macOS 15+、Xcode 16+
-- `xcodegen`（`brew install xcodegen`）
-- 不需要开发者证书：Debug 默认 ad-hoc 签名
+## Setup
 
-## 跑一遍
+- macOS 15+, Xcode 16+
+- `xcodegen` (`brew install xcodegen`)
+- No developer certificate needed: Debug builds are ad-hoc signed by default
+
+## Running the checks
 
 ```bash
-./scripts/check.sh            # swift test + CLI 自检 + xcodegen + 构建 + App 测试
+./scripts/check.sh            # swift test + CLI self-check + xcodegen + build + app tests
 cd Packages/CausalityCore && swift test
 cd Packages/CausalityCore && swift run causal bench
 ```
 
-改了 `project.yml` 或新增了 `Sources/Causality/**` 下的文件，先 `xcodegen generate` 再构建；`check.sh` 会代跑。
+After editing `project.yml` or adding files under `Sources/Causality/**`, run `xcodegen generate` before building. `check.sh` does that for you.
 
-## 写法
+## How to write code
 
-- 注释用中文，解释「为什么」；命名与现有代码保持一致。
-- 模型层保持 Foundation + Observation，不引入 SwiftUI。
-- 所有工程改动走 `EditOperation`，一笔撤销；不要把数组直接改掉。
-- 新的 schema 字段一律可选、解码缺省，旧包要能打开；写盘统一写当前 `schemaVersion`。
-- 新规则先写模型层测试，再写 CLI 断言（`scripts/check.sh`），最后接界面。
-- 保存、切换工程这类跨 `await` 的顺序，写到 `Tests/CausalityAppTests`：用 `SaveQueue.setBeforeSave` 的写盘闸门控制时序，不靠 sleep。
-- 不把 API key、证书、个人路径写进仓库；`Config/Local.xcconfig` 已被忽略。
+- Write comments in Chinese, saying why rather than what; keep names in line with the code around them.
+- The model layer stays on Foundation + Observation, with no SwiftUI.
+- Every project change goes through `EditOperation`, so a single undo reverses it; don't mutate the arrays directly.
+- New schema fields are optional and default when decoding, so older packages still open; write the current `schemaVersion` to disk.
+- A new rule gets a model-layer test first, then a CLI assertion in `scripts/check.sh`, then the interface.
+- Ordering that crosses `await` — saving, switching projects — belongs in `Tests/CausalityAppTests`: control the timing with the `SaveQueue.setBeforeSave` write gate, not with sleep.
+- Keep API keys, certificates and personal paths out of the repository; `Config/Local.xcconfig` is already ignored.
 
-## 提交
+## Commits
 
-一条提交只做一件事，信息写清「改了什么、为什么」。测试与 CLI 自检通过后再提交。
+One commit does one thing, and the message says what changed and why. Run the tests and the CLI self-check before you commit.
 
-## 凭据与网络
+## Credentials and network
 
-- AI key 走环境变量（`CAUSAL_*_KEY`）、Release 钥匙串或 Debug 的 0600 `credentials.plist`。
-- 模型层测试不联网。
-- 公证时先关系统代理，否则 `codesign` 取时间戳可能 502；`scripts/release.sh` 会预检。
+- AI keys come from environment variables (`CAUSAL_*_KEY`), the Release keychain, or a 0600 `credentials.plist` in Debug.
+- The model-layer tests do not touch the network.
+- Turn off the system proxy before notarising, or `codesign` can get a 502 when it fetches a timestamp; `scripts/release.sh` checks for this ahead of time.
