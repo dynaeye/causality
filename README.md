@@ -310,9 +310,7 @@ Exported from the playtest panel: one route's bodies top to bottom, marked with 
 
 ### 7.6 Command line and AI-facing interface
 
-There is also a command-line tool, `causal`. If you live in a terminal, put it in scripts to check, export, and edit projects in bulk; the complete commands and arguments are in `docs/cli.md`. To let AI clients such as Codex, Hermes, and Pi read and write a project directly, work through section 9.
-
-The same tooling ships an interface for AI clients, letting them read and write your project directly. Changes are written to the file only on save; when two people edit the same package at once it stops and asks you to choose rather than overwriting quietly.
+There is also a command-line tool, `causal`, for checking, exporting, and editing projects in bulk — it drops into scripts; the commands and arguments are in `docs/cli.md`. The same tooling ships an MCP interface that lets AI clients such as Codex, Hermes, and Pi read and write a project directly; section 9 covers installing it. Changes are written to the file only on save; when two programs edit the same package at once it stops and asks you to choose rather than overwriting quietly.
 
 ---
 

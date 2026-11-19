@@ -2,12 +2,12 @@
 
 # 连接 MCP 的细节与排查
 
-主线步骤（装命令行、复制配置、让 AI 建故事板）写在 `README.md` 第九节。这里放细节。
+主线步骤（装命令行、复制配置、让 AI 建故事板）见 `README.md` 第九节，细节在这里。
 
 ## 一、命令行从哪来
 
 发布版 App 自带它，位置在 `Causality.app/Contents/Resources/cli/`：`causal` 加上它依赖的
-`CausalityCore_CausalityCore.bundle`。设置（⌘,）› **MCP** 页里的「一键安装 MCP」（或菜单 **工具** 里的同名入口）会把这两样复制到当前用户主目录的 `.local/bin`——路径是运行时读主目录算的，不写死。
+`CausalityCore_CausalityCore.bundle`。设置（⌘,）› **MCP** 页里的「一键安装 MCP」（或菜单 **工具** 里的同名入口）会把这两个文件复制到当前用户主目录的 `.local/bin`——路径是运行时读主目录算的，不写死。
 
 这一个按钮同时把它写进这台机器上检测到的 Codex / Hermes / Pi——调用各客户端自己的 `mcp add`，不手改配置——并按行显示自检结果（「已接入，N 个工具可用」／「还没接入」／「没连通：原因」），每行可单独「重新检查」。
 

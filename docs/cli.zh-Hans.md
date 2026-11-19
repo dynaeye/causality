@@ -2,7 +2,7 @@
 
 # 命令行接口（causal）
 
-给脚本、CI 和 MCP 服务器用的稳定入口。所有读写都走模型层同一套代码，跟 App 里看到的完全一致。
+给脚本、CI 和 MCP 服务器用的稳定入口。读写都走模型层的同一套代码，和 App 里看到的完全一致。
 
 ```bash
 cd Packages/CausalityCore
@@ -32,7 +32,7 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 | `causal branch <工程包.causal> [--to 结局] [--mode segments\|per-path]` | 分支梗概 |
 | `causal reach <工程包.causal> --from <卡片>` | 从一张卡往后能到哪些结局与步数 |
 | `causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md]` | 单路径试玩与试读稿 |
-| `causal thread <工程包.causal>` | 列出线索与脊柱上的点 |
+| `causal thread <工程包.causal>` | 列出线索，以及跨章脊柱上的点 |
 | `causal mcp [--package 工程包] [--transport stdio\|http]` | 起 MCP 服务器；默认 stdio，HTTP 需 token |
 
 除 `export` 与 `mcp` 外都接受 `--json`，此时 stdout 只有一个 JSON 对象。
