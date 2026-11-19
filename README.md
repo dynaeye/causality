@@ -4,7 +4,7 @@
 
 A writing tool for long-form branching stories. Causality puts scene, decision, and consequence on one surface, so the shape of the book stays visible while you draft, and the manuscript and its diagram come out when you finish.
 
-Requires macOS 15.0 or later, on Apple Silicon or Intel. Download the DMG and drag Causality into Applications.
+Requires macOS 15.0 or later, on Apple Silicon or Intel. [Download the DMG](https://github.com/dynaeye/causality/releases/download/v1.0.0/Causality-1.0.0.dmg) and drag Causality into Applications.
 
 ![Start page: new project, open project](docs/images/00-startpage.png)
 
@@ -308,11 +308,9 @@ File › Export Outline as PDF… produces A4 two-column pages, paginated by cha
 
 Exported from the Play Through panel: one route's scenes top to bottom, marked with each choice taken. Good for internal reads and for testers.
 
-### 7.6 Command line and the AI-facing interface
+### 7.6 Command line and AI-facing interface
 
-There is also a command-line tool, `causal`. If you live in a terminal, put it in scripts to check, export, and edit projects in bulk; the full commands and arguments are in `docs/cli.md`. To let AI clients such as Codex, Hermes, and Pi read and write a project directly, work through section 9.
-
-The same tooling ships an interface for AI clients, letting them read and write your project directly. Changes reach the file on save; when two people edit the same package at once it stops and asks you to choose rather than overwriting quietly.
+There is also a command-line tool, `causal`, for checking, exporting, and editing projects in bulk; it drops into scripts, and the commands and arguments are in `docs/cli.md`. The same tooling ships an MCP interface that lets AI clients such as Codex, Hermes, and Pi read and write a project directly, and section 9 covers installing it. Changes reach the file on save; when two programs edit the same package at once it stops and asks you to choose rather than overwriting quietly.
 
 ---
 
