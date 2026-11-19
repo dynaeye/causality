@@ -2,14 +2,14 @@
 
 # Command-line interface (causal)
 
-A stable entry point for scripts, CI, and the MCP server. Every read and write goes through the same model-layer code the app uses, so what you get here matches what you see there.
+A stable entry point for scripts, CI, and the MCP server. Every read and write goes through the same model-layer code the app runs, so results here match what you see there.
 
 ```bash
 cd Packages/CausalityCore
-swift build -c release          # output in .build/release/causal
+swift build -c release          # the binary lands in .build/release/causal
 ```
 
-Install it onto PATH by symlink or a direct copy:
+Put it on PATH by symlink or by copying it:
 
 ```bash
 ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
@@ -19,34 +19,34 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 
 | Command | Purpose |
 | --- | --- |
-| `causal import <storyboard.md> [output.causal] [--title title] [--lang en\|ja\|zh-Hant]` | Convert a text storyboard into a project package; `--lang` chooses the language of phrasing (English/Japanese table headers, three-part card labels, CLI messages) |
+| `causal import <storyboard.md> [output.causal] [--title title] [--lang en\|ja\|zh-Hant]` | Turn a text storyboard into a project package; `--lang` picks the phrasing language (English/Japanese table headers, three-part card labels, CLI messages) |
 | `causal info <package.causal>` | Print chapters, cards, causality, idea cards |
-| `causal validate <package.causal>` | Run model-layer validation, exit 1 on problems |
+| `causal validate <package.causal>` | Run model-layer validation; exit 1 when something is wrong |
 | `causal outline <package.causal>` | Print the derived outline (Markdown) |
-| `causal apply <package.causal> --ops ops.json` | Edit a project from a script, writing back to the package |
-| `causal undo <package.causal> [--steps N]` | Revert through history snapshots |
-| `causal redo <package.causal> [--steps N]` | Reapply what was just reverted |
-| `causal export <package.causal> [--out file]` | Export the full project.json; contract-checked first |
-| `causal contract <export.json>` | Validate required fields against schemaVersion |
-| `causal audit <package.causal> [--all]` | Run the N01–N21 checkup; exit 1 on errors |
-| `causal branch <package.causal> [--to ending] [--mode segments\|per-path]` | Branch summary |
-| `causal reach <package.causal> --from <card>` | Which endings are reachable from a card, and how many steps away |
-| `causal play <package.causal> [--choices 1,1] [--out read-through.md]` | Single-path playtest and read-through draft |
-| `causal thread <package.causal>` | List threads and the points on each spine |
-| `causal mcp [--package package] [--transport stdio\|http]` | Start the MCP server; stdio by default, HTTP requires a token |
+| `causal apply <package.causal> --ops ops.json` | Edit a project from a script and write the package back |
+| `causal undo <package.causal> [--steps N]` | Step back through history snapshots |
+| `causal redo <package.causal> [--steps N]` | Reapply what was just stepped back |
+| `causal export <package.causal> [--out file]` | Export the full project.json, after the contract check |
+| `causal contract <export.json>` | Check required fields against schemaVersion |
+| `causal audit <package.causal> [--all]` | Run the N01–N21 Story Check; exit 1 on errors |
+| `causal branch <package.causal> [--to ending] [--mode segments\|per-path]` | Branch synopsis |
+| `causal reach <package.causal> --from <card>` | Which endings a card can reach, and how many steps away |
+| `causal play <package.causal> [--choices 1,1] [--out reading-copy.md]` | Single-path play through, plus a reading copy |
+| `causal thread <package.causal>` | List threads and the points on each one |
+| `causal mcp [--package package] [--transport stdio\|http]` | Start the MCP server; stdio by default, HTTP needs a token |
 
-Everything except `export` and `mcp` accepts `--json`, in which case stdout carries a single JSON object.
+Everything except `export` and `mcp` takes `--json`, which puts a single JSON object on stdout.
 
 Exit codes: `0` success, `1` failure (file unreadable, package unopenable, validation failed), `2` usage error.
 
 ## Language (`--lang`)
 
-CLI messages, reports, the three-part card labels, and MCP server text all share one string table in `CausalityCore`, and `--lang` selects the language.
+CLI messages, reports, the three-part card labels, and MCP server text all come from one string table in `CausalityCore`, and `--lang` selects the language.
 
-- Accepted values: `zh-Hans`, `en`, `ja`, `zh-Hant`; regional spellings work too (`zh-TW` / `zh-HK` / `zh-MO` → `zh-Hant`, `en-US` → `en`, `ja-JP` → `ja`).
-- Position: before or after the subcommand; `--lang en` and `--lang=en` are equivalent.
-- Precedence: explicit `--lang` > storyboard header inference > the language prefix of `LANG` > default `zh-Hans`.
-- Headers: storyboard import always recognises Chinese headers, plus the set for the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). To have a document with Traditional Chinese headers recognised, pass `--lang zh-Hant`; the same argument also decides whether the three-part card labels read `Sees / Does / Leaves` or `見る / する / 残る`.
+- Values: `zh-Hans`, `en`, `ja`, `zh-Hant`. Regional spellings work too (`zh-TW` / `zh-HK` / `zh-MO` → `zh-Hant`, `en-US` → `en`, `ja-JP` → `ja`).
+- Position: before or after the subcommand; `--lang en` and `--lang=en` are the same thing.
+- Precedence: an explicit `--lang` wins, then storyboard header inference, then the language prefix of `LANG`, then the `zh-Hans` default.
+- Headers: storyboard import always recognises the Chinese headers, plus the set for the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). A document with Traditional Chinese headers needs `--lang zh-Hant` for its headers to be recognised; the same argument decides whether the three-part card labels read `Sees / Does / Leaves` or `見る / する / 残る`.
 - MCP: with `causal mcp --lang en`, `tools/list` descriptions, `tools/call` error text, and the HTTP transport's handshake and auth messages all come back in English.
 
 ```bash
@@ -57,11 +57,11 @@ causal mcp --transport http --lang ja         # mixed with other arguments
 
 ## What import understands
 
-The importer recognises four header sets — Chinese, English, Japanese, Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the header's language: `Sees / Does / Leaves`, `見る / する / 残る`, `眼前 / 動手 / 留下`. When the header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
+The importer recognises four header sets — Chinese, English, Japanese, and Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the header's language: `Sees / Does / Leaves`, `見る / する / 残る`, `眼前 / 動手 / 留下`. When a header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
 
-Detection is automatic by default: a document containing a `| 节点与时机 |` table takes storyboard import, everything else takes plain Markdown import. `--format storyboard|prose` forces either.
+Detection is automatic: a document containing a `| 节点与时机 |` table goes through storyboard import, anything else through plain Markdown import. `--format storyboard|prose` forces either one.
 
-**Plain Markdown**: `#` is the project name, `##` is a chapter, `###`/`####` are scenes, and other paragraphs go into bodies; a chapter without `###` collapses into one scene. Tables under `## 人物` / `## 地点` / `## 设定` (characters / places / settings), or `- **Name**: description` lines, create the matching entities and attach them by name to the scenes they appear in.
+**Plain Markdown**: `#` is the project name, `##` is a chapter, `###`/`####` are scenes, and remaining paragraphs go into scene text; a chapter with no `###` collapses into a single scene. Tables under `## 人物` / `## 地点` / `## 设定` (characters / places / settings), or `- **Name**: description` lines, create the matching entities and attach them by name to the scenes they appear in.
 
 ```markdown
 # Letters in the Rain
@@ -95,12 +95,12 @@ Lin Yuan receives a letter on a rainy night.
 | S01 Arrival, afternoon | … | … | … |
 ```
 
-- The first row is the header; the first column ("number short name, timing") splits into the card title and a note;
-- The other three columns go into the card body, prefixed `眼前：` / `动手：` / `留下：` (sees / does / leaves);
-- Cards are joined causally in row order, and each edge takes the first sentence of the "what remains" column;
-- Tables whose header is not `节点与时机` (four-direction tables, for instance) become idea cards and stay off the storyboard;
-- `- **Subtitle**: body` inside a chapter also becomes an idea card;
-- Characters, places, and fact settings only come from in-document `## 人物` / `## 地点` / `## 设定` sections; absent sections create nothing, and no sample library is preloaded.
+- The first row is the header; the first column ("number short name, timing") splits into the card title and a note.
+- The other three columns go into the scene text, prefixed `眼前：` / `动手：` / `留下：` (sees / does / leaves).
+- Cards are joined causally in row order, and each edge takes the first sentence of the "what remains" column.
+- A table whose header is something else (a four-way table, say) becomes idea cards and stays off the storyboard.
+- `- **Subtitle**: text` inside a chapter also becomes an idea card.
+- Characters, places, and story facts come only from in-document `## 人物` / `## 地点` / `## 设定` sections; with no such section, nothing is created, and no sample library is preloaded.
 - JSON from prose import carries `"mode": "prose"` plus one `notes` entry (chapters and scenes).
 
 ## JSON structure
@@ -123,7 +123,7 @@ Shared by `import` and `info`:
 }
 ```
 
-`info` additionally carries `cards` and `edges`:
+`info` adds `cards` and `edges`:
 
 ```json
 "cards": [{
@@ -160,9 +160,9 @@ A failure carries two fields:
 }
 ```
 
-- Refer to cards, chapters, characters, places, and fact settings by name or UUID; duplicate names fail with the candidates listed;
-- Ops run in order and stop at the first failure, with the index and op name in the error; already-applied changes can be left unsaved;
-- `causal apply --dry-run` computes without writing.
+- Cards, chapters, characters, places, and story facts can be named or given by UUID; a duplicate name fails with the candidates listed.
+- Ops run in order and stop at the first failure, with the index and op name in the error; applied changes can be left unsaved.
+- `causal apply --dry-run` works everything out without writing.
 
 | op | Required | Optional |
 | --- | --- | --- |
@@ -192,35 +192,35 @@ A failure carries two fields:
 
 `kind` takes `event` / `choice` / `ending`; `status` takes `draft` / `idea`; edge `kind` takes `cause` / `choice` / `condition` / `plain`; relation `kind` takes `father` `mother` `child` `elderBrother` `youngerBrother` `elderSister` `youngerSister` `sibling` `grandparent` `spouse` `lover` `friend` `mentor` `student` `rival` `enemy`.
 
-## Talking MCP
+## Connecting over MCP
 
 ```bash
 causal mcp                     # the client calls open_project to pick a package
 causal mcp --package /path/to/sample.causal   # pin one package
 ```
 
-Default is stdio with newline-delimited JSON-RPC 2.0. `initialize` declares `tools` / `resources` / `prompts`; supported methods are `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, and `ping`.
+The default is stdio with newline-delimited JSON-RPC 2.0. `initialize` declares `tools` / `resources` / `prompts`, and the supported methods are `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`, and `ping`.
 
-**Leaving out `--package` is recommended**: the client calls `open_project` first, and every later read and write in that process acts on that package. `causal` here is a release build; substitute the absolute path on your machine:
+**Leave out `--package`**: the client calls `open_project` first, and every later read and write in that process acts on that package. The `causal` below is a release build, so substitute the absolute path on your machine.
 
 ### HTTP / SSE + token
 
-Remote machines, containers, and clients that accept a URL can use HTTP. stdio is the default; HTTP transport has to be turned on explicitly and always needs a token:
+Remote machines, containers, and clients that accept a URL can use HTTP. stdio stays the default, so HTTP transport has to be switched on and always carries a token:
 
 ```bash
 export CAUSAL_MCP_TOKEN="$(openssl rand -hex 24)"
 causal mcp --transport http --host 127.0.0.1 --port 8765
-# equivalent shorthand
+# shorthand
 causal mcp --http --port 8765
 ```
 
-The token is read from `CAUSAL_MCP_TOKEN`, `--token`, or `--token-file`; environment variable preferred, and never put it in a URL. The server binds `127.0.0.1` only. For cross-machine access, put a reverse proxy such as Nginx or Caddy in front with TLS and point `--host` at an address the proxy can reach; the service itself does no TLS.
+The token comes from `CAUSAL_MCP_TOKEN`, `--token`, or `--token-file`, with the environment variable the safest of the three, and it has no place in a URL. The server binds `127.0.0.1` only. For access from another machine, put a reverse proxy such as Nginx or Caddy in front with TLS and point `--host` at an address the proxy can reach; the service itself does no TLS.
 
 ```bash
 # liveness, no token needed
 curl -s http://127.0.0.1:8765/health
 
-# initialize, note the Mcp-Session-Id response header
+# initialize, and note the Mcp-Session-Id response header
 curl -i -X POST http://127.0.0.1:8765/mcp \
   -H "Authorization: Bearer $CAUSAL_MCP_TOKEN" \
   -H "Content-Type: application/json" \
@@ -234,7 +234,7 @@ curl -s -X POST http://127.0.0.1:8765/mcp \
   -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}'
 
-# progress over SSE: send text/event-stream in Accept
+# progress over SSE: ask for text/event-stream in Accept
 curl -N -X POST http://127.0.0.1:8765/mcp \
   -H "Authorization: Bearer $CAUSAL_MCP_TOKEN" \
   -H "Mcp-Session-Id: $SID" \
@@ -248,13 +248,13 @@ curl -i -X DELETE http://127.0.0.1:8765/mcp \
   -H "Mcp-Session-Id: $SID"
 ```
 
-Behaviour:
+How it behaves:
 
-- A missing or wrong token returns `401` with `WWW-Authenticate: Bearer`; comparison is constant-time.
-- `initialize` creates a session and returns `Mcp-Session-Id`, which every later request carries. An unknown session returns `404`; `DELETE` ends a session.
-- `POST /mcp` needs `Content-Type: application/json`; with `Accept: text/event-stream` progress and the final response arrive as SSE, otherwise as plain JSON.
-- `GET /mcp` returns `405` (the older `GET /sse` is not implemented); `GET /health` returns `ok` for liveness checks.
-- Request bodies are capped at 8MB and `Transfer-Encoding: chunked` is not supported yet; `Content-Length` is required.
+- A missing or wrong token returns `401` with `WWW-Authenticate: Bearer`, and the comparison is constant-time.
+- `initialize` creates a session and returns `Mcp-Session-Id`, which every later request carries. An unknown session returns `404`; `DELETE` ends the session.
+- `POST /mcp` wants `Content-Type: application/json`. With `Accept: text/event-stream` the progress and the final response arrive as SSE, otherwise as plain JSON.
+- `GET /mcp` returns `405` (the older `GET /sse` was never implemented), while `GET /health` returns `ok` for liveness checks.
+- Request bodies stop at 8MB and `Transfer-Encoding: chunked` is not supported yet, so `Content-Length` is required.
 - Each session gets its own `MCPState`, so two clients calling `open_project` never collide; cross-process writes still go through `.write.lock` and `PackageStamp`.
 
 ```bash
@@ -270,7 +270,7 @@ codex mcp list
 codex mcp get causal
 ```
 
-Codex asks for approval on MCP tool calls by default; approve once interactively. For a headless smoke test use
+Codex asks for approval on MCP tool calls by default; approve once in the session. For a headless smoke test, use
 `codex exec --dangerously-bypass-approvals-and-sandbox ...`.
 
 Lands in `~/.codex/config.toml`:
@@ -314,7 +314,7 @@ Lands in `~/.pi/agent/mcp.json` (use `pi mcp add -l` for project level):
 {"mcpServers": {"causal": {"command": "/path/to/causal", "args": ["mcp"]}}}
 ```
 
-`pi mcp list` really connects once: you should see `causal: connected, 15 tools`, plus a note that it `offers resources`.
+`pi mcp list` really connects once, so you should see `causal: connected, 15 tools` and a note that it `offers resources`.
 
 ### OpenClaw
 
@@ -323,9 +323,9 @@ openclaw mcp add causal --command /path/to/causal --arg mcp
 openclaw mcp doctor causal --probe
 ```
 
-Without an `openclaw` executable on this machine, add it first in the Control UI under Settings → MCP using the `mcp.servers` structure above, with transport set to Stdio.
+Without an `openclaw` executable on this machine, add the entry in the Control UI under Settings → MCP using the `mcp.servers` structure above, with transport set to Stdio.
 
-Defined under `mcp.servers` in `openclaw.json` (the Control UI's Settings → MCP can also add it, transport Stdio):
+It lives under `mcp.servers` in `openclaw.json` (the Control UI's Settings → MCP adds it too, transport Stdio):
 
 ```json5
 {
@@ -339,7 +339,7 @@ Defined under `mcp.servers` in `openclaw.json` (the Control UI's Settings → MC
 
 ### DSH (DeepSeek Harness)
 
-Edit `~/.dsh/profiles/desktop/cordis.patch.yml`, add an entry to the `- insert:` list (at the same level as `mcp-blender`), then restart DeepSeek Harness. The MCP management plugin loads it on startup:
+Edit `~/.dsh/profiles/desktop/cordis.patch.yml`, add an entry to the `- insert:` list at the same level as `mcp-blender`, then restart DeepSeek Harness. The MCP management plugin loads it on startup:
 
 ```yaml
     - id: mcp-causal
@@ -368,21 +368,21 @@ Edit `~/.dsh/profiles/desktop/cordis.patch.yml`, add an entry to the `- insert:`
 | Tool | Purpose |
 | --- | --- |
 | `open_project {path}` | Open a project package |
-| `save_project {path?}` | The only place changes land; refuses to overwrite a package changed by another program, so pass a new path |
+| `save_project {path?}` | The only place changes land; a package changed by another program is refused, so pass a new path |
 | `project_info {}` | Summary, counts, validation, `dirty` |
 | `project_export {}` | Full project.json |
 | `list_chapters {}` / `list_cards {chapter?}` | Chapters / cards |
-| `get_card {card}` | One card's full text and references |
-| `list_entities {kind}` | Characters / places / fact settings |
+| `get_card {card}` | One card's full text and what it references |
+| `list_entities {kind}` | Characters / places / story facts |
 | `apply_ops {ops, dryRun?}` | Changes memory and sets `dirty`; waits for `save_project` |
 | `import_markdown {path? markdown? title?}` | Text storyboard → new project (not yet saved) |
 | `validate {}` / `outline {format?}` | Validation / outline |
-| `history {steps?}` / `undo {steps?}` / `redo {steps?}` | Snapshots, revert, reapply |
+| `history {steps?}` / `undo {steps?}` / `redo {steps?}` | Snapshots, step back, reapply |
 
 Resources: `causal://project`, `causal://outline`, `causal://card/{uuid}`, `causal://chapter/{uuid}`, `causal://character/{uuid}`. Prompts: `polish-card`, `find-broken`, `add-causality`.
 
-Typical call order: `open_project` → `list_chapters` / `get_card` → `apply_ops` → `validate` → `save_project`. Consecutive `apply_ops` calls all stay in memory, and the final `save_project` writes them out; `project_info`'s `dirty` means there are unsaved changes.
+A typical run: `open_project` → `list_chapters` / `get_card` → `apply_ops` → `validate` → `save_project`. Consecutive `apply_ops` calls all stay in memory and the last `save_project` writes them out; `project_info`'s `dirty` reports changes that have not been saved yet.
 
-`apply_ops` runs in batches of 20. When the request carries `params._meta.progressToken`, each finished batch emits a `notifications/progress` (`progress` / `total`). Sending `notifications/cancelled {requestId}` stops at the end of the current batch, the cancelled changes never reach memory, and `save_project` does not see them.
+`apply_ops` runs in batches of 20. When the request carries `params._meta.progressToken`, each finished batch emits a `notifications/progress` with `progress` and `total`. Sending `notifications/cancelled {requestId}` stops at the end of the current batch: the cancelled changes never reach memory, and `save_project` never sees them.
 
-Beyond MCP, a `.causal` directory is ordinary: `project.json` is versioned Codable JSON and `assets/` holds original images. To edit the files directly without the CLI, read the whole structure and write it back atomically.
+Outside MCP, a `.causal` is an ordinary folder: `project.json` is versioned Codable JSON and `assets/` holds the original images. To edit the files without the CLI, read the whole structure first and write it back atomically.

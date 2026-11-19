@@ -1,15 +1,17 @@
-# 安全
+**English** · [简体中文](SECURITY.zh-Hans.md)
 
-## 报告问题
+# Security
 
-发现安全问题请不要开公开 issue。发邮件到维护者（见仓库提交记录），写清复现步骤、影响版本与可能的利用方式。确认后会在修复版本里署名。
+## Reporting a problem
 
-## 密钥
+If you find a security problem, mail the maintainer instead of opening a public issue — the address is in the commit history. Say what you did to trigger it, which version it affects, and how you think it could be exploited. Once the fix ships, you can be credited by name in that release.
 
-- AI API key 三层来源：环境变量 → Release 钥匙串 → Debug 的 `~/Library/Application Support/Causality/credentials.plist`（目录 0700、文件 0600）。都不进工程包、不进仓库。
-- `.causal` 工程包只含故事数据与本地相对路径的配图，不含凭据。
-- 提 issue / PR 前检查日志与截图里没有 key、token 与个人路径。
+## Keys
 
-## 支持范围
+- AI API keys are read from three places, in this order: environment variables → the Release keychain → `~/Library/Application Support/Causality/credentials.plist` in Debug builds (directory 0700, file 0600). None of them end up in a project package or in the repository.
+- A `.causal` package holds story data and image paths relative to the package. No credentials.
+- Before you open an issue or a pull request, check your logs and screenshots for keys, tokens, and personal paths.
 
-当前版本 1.0.0。支持范围以带签名的 Release 为准；仓库最新提交的 Debug 构建属于开发版本，随时可能有变化。
+## Supported versions
+
+The current version is 1.0.0. The signed release is the supported build; the Debug build of the latest commit is work in progress and can change without notice.
