@@ -90,7 +90,7 @@ macOS 第一次仍会按「已隔离」拦一次。install.sh 会清掉隔离标
   xattr -d com.apple.quarantine ~/.local/bin/causal
 
 接到 AI 客户端（Codex / Hermes / Pi）的注册命令、以及让 AI 直接生成故事板的
-提示词示例，见仓库里的 docs/连接-MCP.md。
+提示词示例，见仓库里的 docs/mcp.md。
 TXT
 
 echo "== 打包 =="
