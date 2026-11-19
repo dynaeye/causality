@@ -272,7 +272,7 @@ Pick the service your AI account belongs to and the key field shows asterisks. E
 
 **Model Assignments**: one service does not have to do everything. Split the work into Planning / Outline and Writing, each with its own service and model — plan the structure with ChatGPT and hand the sentence work to DeepSeek, for instance.
 
-**Key safety**: keys stay on this Mac and show as asterisks. They never enter the project package, an export, or the installer. On another machine, or for another person, you see that machine's own credentials; a service without a key says "No API key configured for …". The installer and the project packages carry no account or sign-in state.
+**Key safety**: keys stay on this Mac and show as asterisks. They never enter the project package, an export, or the installer. On another machine, or for another person, you see that machine's own credentials; a service without a key says "Set an API key for this provider." The installer and the project packages carry no account or sign-in state.
 
 **If you use ChatGPT**: install Codex on this Mac and sign in once, then choose ChatGPT and it works — the app only reads that sign-in, never changing or copying it. With no sign-in it shows "Signed out", and an expired one asks you to sign in again in the browser instead of failing quietly.
 
