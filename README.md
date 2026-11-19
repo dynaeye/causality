@@ -4,7 +4,7 @@
 
 A tool for people writing long-form, branching stories. It lays scene → choice → consequence out in front of you, so you can see the structure while you write and export both the manuscript and its diagram when you finish.
 
-Requires macOS 15.0 or later, on Apple Silicon or Intel. Download the DMG and drag Causality into Applications.
+Requires macOS 15.0 or later, on Apple Silicon or Intel. [Download the DMG](https://github.com/dynaeye/causality/releases/download/v1.0.0/Causality-1.0.0.dmg) and drag Causality into Applications.
 
 ![Start page: new project, open project](docs/images/00-startpage.png)
 
