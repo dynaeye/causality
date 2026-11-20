@@ -336,7 +336,7 @@ extension ProjectSession {
             anchorNodeID: selectedNodeID,
             references: (liveContext?.references ?? []).map(Self.reference)
         )
-        apply(ProjectMutations.appendDiscussion(discussion, to: project), name: "新建讨论")
+        apply(ProjectMutations.appendDiscussion(discussion, to: project), name: InterfaceLanguage.label("新建讨论"))
         aiDiscussionID = discussion.id
         return discussion.id
     }
@@ -345,7 +345,7 @@ extension ProjectSession {
         guard let project, !text.isEmpty else { return }
         apply(
             ProjectMutations.appendMessage(Message(role: role, text: text), to: discussionID, in: project),
-            name: "记录讨论"
+            name: InterfaceLanguage.label("记录讨论")
         )
     }
 
@@ -354,7 +354,7 @@ extension ProjectSession {
         guard let project, let discussionID = aiDiscussionID else { return }
         apply(
             ProjectMutations.clearMessages(in: discussionID, in: project),
-            name: "清空讨论记录"
+            name: InterfaceLanguage.label("清空讨论记录")
         )
         aiLastError = nil
         if case .failed = aiState {

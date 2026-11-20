@@ -192,7 +192,7 @@ extension ScriptOp: Decodable {
         func require(_ key: CodingKeys) throws -> String {
             guard let value = text(key), !value.isEmpty else {
                 throw DecodingError.dataCorruptedError(
-                    forKey: key, in: container, debugDescription: "\(tag) 缺少 \(key.rawValue)"
+                    forKey: key, in: container, debugDescription: CoreText.format("%@ 缺少 %@", tag, key.rawValue)
                 )
             }
             return value
@@ -210,7 +210,7 @@ extension ScriptOp: Decodable {
         if let op = try Self.decodeEntities(tag, reader) { self = op; return }
         if let op = try Self.decodeSettings(tag, reader) { self = op; return }
         throw DecodingError.dataCorruptedError(
-            forKey: .op, in: container, debugDescription: "不认识的 op：\(tag)"
+            forKey: .op, in: container, debugDescription: CoreText.format("不认识的 op：%@", tag)
         )
     }
 
@@ -314,7 +314,7 @@ extension ScriptOp: Decodable {
         case "addRelation":
             guard let kind = reader.text(.kind).flatMap(RelationKind.init(rawValue:)) else {
                 throw DecodingError.dataCorruptedError(
-                    forKey: .kind, in: reader.container, debugDescription: "addRelation 需要 kind"
+                    forKey: .kind, in: reader.container, debugDescription: CoreText.text("addRelation 需要 kind")
                 )
             }
             return .addRelation(from: try reader.require(.from), to: try reader.require(.to), kind: kind)

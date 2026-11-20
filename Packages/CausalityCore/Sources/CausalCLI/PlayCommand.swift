@@ -4,7 +4,7 @@ import CausalityCore
 /// `causal play <工程包> [--choices 1,1] [--out 试读稿.md] [--json]`
 func runPlay(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md] [--json]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md] [--json]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let loaded: LoadedProject
@@ -33,20 +33,20 @@ func runPlay(_ args: Arguments) -> Int32 {
             let index = choices[choiceIndex] - 1
             choiceIndex += 1
             guard current.options.indices.contains(index) else {
-                error = "第 \(choices[choiceIndex - 1]) 个选项超出范围：这一步只有 \(current.options.count) 个"
+                error = CoreText.format("第 %lld 个选项超出范围：这一步只有 %lld 个", choices[choiceIndex - 1], current.options.count)
                 break
             }
             edgeID = current.options[index].edgeID
         }
         guard let next = PlaythroughEngine.choose(edgeID, in: play, project: project) else {
-            error = "这一步走不下去"
+            error = CoreText.text("这一步走不下去")
             break
         }
         play = next
     }
 
     if let out = args.values["out"] {
-        let markdown = PlaythroughMarkdown.render(play, project: project)
+        let markdown = PlaythroughMarkdown.render(play, project: project, localize: CoreText.text)
         do {
             try markdown.write(to: URL(fileURLWithPath: out), atomically: true, encoding: .utf8)
         } catch {

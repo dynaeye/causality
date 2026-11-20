@@ -49,7 +49,7 @@ struct MindMapPane: View {
                     CharacterMatrixView(
                         session: session,
                         matrix: CharacterMatrixBuilder.build(
-                            project: session.project ?? StoryProject(title: "未命名项目")
+                            project: session.project ?? StoryProject(title: InterfaceLanguage.label("未命名项目"))
                         )
                     )
                 } else {
@@ -119,7 +119,7 @@ struct MindMapPane: View {
                     Text("人物")
                         .font(theme.fontTitle)
                         .foregroundStyle(theme.textPrimary)
-                    Text("\(graph.nodes.count) 人 · 同场 \(graph.coPresenceLinks.count) 条 · 因果 \(graph.links.count) 条")
+                    Text(String(format: InterfaceLanguage.label("%lld 人 · 同场 %lld 条 · 因果 %lld 条"), graph.nodes.count, graph.coPresenceLinks.count, graph.links.count))
                         .font(theme.fontMin)
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -155,7 +155,7 @@ struct MindMapPane: View {
                         .font(theme.fontBody)
                         .foregroundStyle(theme.textPrimary)
                         .lineLimit(1)
-                    Text(node.hasAppeared ? LocalizedStringKey("出场 \(node.sceneCount) 场 · 关系 \(node.linkCount) 条") : LocalizedStringKey("还没出场"))
+                    Text(node.hasAppeared ? LocalizedStringKey(String(format: InterfaceLanguage.label("出场 %lld 场 · 关系 %lld 条"), node.sceneCount, node.linkCount)) : LocalizedStringKey("还没出场"))
                         .font(theme.fontMin)
                         .foregroundStyle(node.hasAppeared ? theme.textTertiary : theme.warning)
                         .lineLimit(1)

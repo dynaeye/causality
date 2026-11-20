@@ -38,7 +38,7 @@ extension ProjectSession {
             get: { self.project?.node(id)?.chapterID },
             set: { newValue in
                 guard let project = self.project else { return }
-                self.apply(ProjectMutations.moveNode(id, toChapter: newValue, at: nil, in: project), name: "移动章节")
+                self.apply(ProjectMutations.moveNode(id, toChapter: newValue, at: nil, in: project), name: InterfaceLanguage.label("移动章节"))
             }
         )
     }
@@ -120,7 +120,7 @@ struct SearchResultsList: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("搜索结果 \(results.count)")
+            Text(String(format: InterfaceLanguage.label("搜索结果 %lld"), results.count))
                 .font(theme.fontMin)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 12)
@@ -218,7 +218,7 @@ struct ReachableEndingsMenu: View {
             } else {
                 ForEach(endings) { ending in
                     let mainlineSuffix = ending.onMainline ? InterfaceLanguage.label(" · 主线") : ""
-                    Button("\(ending.title) · \(ending.steps) 步\(mainlineSuffix)") {
+                    Button(String(format: InterfaceLanguage.label("%@ · %lld 步%@"), ending.title, ending.steps, mainlineSuffix)) {
                         session.selectedNodeID = ending.endingID
                         session.focusedChapterID = session.project?.node(ending.endingID)?.chapterID
                     }
@@ -237,7 +237,7 @@ enum WordCountText {
         guard count >= 10_000, InterfaceLanguage.current.identifier != "en" else {
             return String(format: InterfaceLanguage.label("%@ 字"), number(count))
         }
-        return "\(wan(count))\(tenThousand)字"
+        return String(format: InterfaceLanguage.label("%@%@字"), wan(count), tenThousand)
     }
 
     /// 只给数字（过万带「万」），用在「字数 12.4 万」这类已经点了单位的写法里。
@@ -250,7 +250,7 @@ enum WordCountText {
 
     /// 繁体中文用「萬」，日文与简体用「万」。
     private static var tenThousand: String {
-        InterfaceLanguage.current.identifier == "zh-Hant" ? "萬" : "万"
+        InterfaceLanguage.label("万")
     }
 
     private static func number(_ count: Int) -> String {

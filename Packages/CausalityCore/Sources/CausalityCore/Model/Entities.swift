@@ -47,7 +47,7 @@ public enum SceneType: String, Codable, Sendable, CaseIterable, Hashable {
         case .exploration: "探索"
         case .puzzle: "解谜"
         case .combat: "战斗"
-        case .boss: "Boss"
+        case .boss: "首领"
         case .montage: "蒙太奇"
         }
     }
@@ -532,7 +532,7 @@ public struct Discussion: Codable, Sendable, Identifiable, Hashable {
 
     public init(
         id: DiscussionID = DiscussionID(),
-        title: String = "新讨论",
+        title: String = CoreText.text("新讨论"),
         anchorNodeID: NodeID? = nil,
         references: [DiscussionReference] = [],
         messages: [Message] = [],

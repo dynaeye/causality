@@ -43,7 +43,7 @@ struct ThreadPane: View {
         HStack(spacing: 12) {
             Text("线索")
                 .font(theme.fontTitle)
-            Text("\(session.threads.count) 条")
+            Text(String(format: InterfaceLanguage.label("%lld 条"), session.threads.count))
                 .font(theme.fontMin)
                 .foregroundStyle(theme.textTertiary)
             Spacer()
@@ -286,7 +286,7 @@ struct ThreadPane: View {
         .menuStyle(.borderlessButton)
         .fixedSize()
         .disabled(session.selectedNodeID == nil)
-        .help(session.selectedNodeID == nil ? "先选中一张卡" : "把当前场景记到这条线索上")
+        .help(LocalizedStringKey(session.selectedNodeID == nil ? "先选中一张卡" : "把当前场景记到这条线索上"))
     }
 
     private func entryTextBinding(thread: StoryThread, entry: ThreadEntry) -> Binding<String> {

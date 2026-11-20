@@ -92,7 +92,7 @@ struct AISettingsView: View {
         let statusText: String = if provider.id == AIProvider.chatGPT.id {
             store.chatGPTStatusLabel
         } else {
-            connected ? "已设置 API 密钥" : "未设置"
+            connected ? InterfaceLanguage.label("已设置 API 密钥") : InterfaceLanguage.label("未设置")
         }
         let statusColor: Color = connected
             ? .green

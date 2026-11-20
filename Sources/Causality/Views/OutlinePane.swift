@@ -72,10 +72,10 @@ struct OutlinePane: View {
             .menuStyle(.borderlessButton)
             .fixedSize()
             .disabled(session.endings.isEmpty)
-            .help(session.endings.isEmpty ? "还没有结局卡" : "只看通往某个结局的路径")
+            .help(LocalizedStringKey(session.endings.isEmpty ? "还没有结局卡" : "只看通往某个结局的路径"))
 
             if let route = session.activeRoute {
-                Text("路上 \(route.nodeIDs.count) 张 · \(WordCountText.text(session.wordCounts.count(of: route)))")
+                Text(String(format: InterfaceLanguage.label("路上 %lld 张 · %@"), route.nodeIDs.count, WordCountText.text(session.wordCounts.count(of: route))))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textTertiary)
             }
@@ -138,16 +138,16 @@ struct OutlinePane: View {
 
     private func statsRow(_ outline: ChapterOutline) -> some View {
         HStack(spacing: 8) {
-            Text("场景 \(outline.sceneCount)")
-            Text("字数 \(WordCountText.bare(session.wordCounts.count(of: outline.chapterID)))")
+            Text(String(format: InterfaceLanguage.label("场景 %lld"), outline.sceneCount))
+            Text(String(format: InterfaceLanguage.label("字数 %@"), WordCountText.bare(session.wordCounts.count(of: outline.chapterID))))
             if outline.revisitCount > 0 {
-                Text("汇合跳转 \(outline.revisitCount)")
+                Text(String(format: InterfaceLanguage.label("汇合跳转 %lld"), outline.revisitCount))
             }
             if outline.crossChapterCount > 0 {
-                Text("跨章 \(outline.crossChapterCount)")
+                Text(String(format: InterfaceLanguage.label("跨章 %lld"), outline.crossChapterCount))
             }
             if outline.detachedCount > 0 {
-                Text("未接线 \(outline.detachedCount)")
+                Text(String(format: InterfaceLanguage.label("未接线 %lld"), outline.detachedCount))
                     .foregroundStyle(.orange)
             }
         }
@@ -206,7 +206,7 @@ struct OutlinePane: View {
                                 .foregroundStyle(theme.textTertiary)
                         }
                         if row.role == .crossChapter {
-                            Text("跨章 → \(session.chapterTitle(row.targetChapterID))")
+                            Text(String(format: InterfaceLanguage.label("跨章 → %@"), session.chapterTitle(row.targetChapterID)))
                                 .font(theme.fontMin)
                                 .padding(.horizontal, 4)
                                 .background(.quaternary, in: Capsule())
@@ -255,7 +255,7 @@ struct OutlinePane: View {
             ReachableEndingsMenu(session: session, nodeID: row.nodeID)
             Button("删除场景", role: .destructive) {
                 guard let project = session.project, let node = project.node(row.nodeID) else { return }
-                session.apply(ProjectMutations.deleteNode(node.id, in: project), name: "删除场景")
+                session.apply(ProjectMutations.deleteNode(node.id, in: project), name: InterfaceLanguage.label("删除场景"))
             }
         }
     }

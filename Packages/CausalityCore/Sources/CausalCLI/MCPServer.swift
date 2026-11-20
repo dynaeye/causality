@@ -318,7 +318,7 @@ final class MCPServer: @unchecked Sendable {
                 "uri": "causal://outline",
                 "name": CoreText.text("大纲"),
                 "mimeType": "text/markdown",
-                "description": OutlineMarkdown.render(project: project).count > 0
+                "description": OutlineMarkdown.render(project: project, label: CoreText.text).count > 0
                     ? CoreText.text("与导出同一份推导")
                     : CoreText.text("空大纲"),
             ],
@@ -358,7 +358,7 @@ final class MCPServer: @unchecked Sendable {
             return ResourceContent(mimeType: "application/json", text: String(decoding: data, as: UTF8.self))
         }
         if uri == "causal://outline" {
-            return ResourceContent(mimeType: "text/markdown", text: OutlineMarkdown.render(project: project))
+            return ResourceContent(mimeType: "text/markdown", text: OutlineMarkdown.render(project: project, label: CoreText.text))
         }
         if uri.hasPrefix("causal://card/"),
            let id = UUID(uuidString: String(uri.dropFirst("causal://card/".count))),
@@ -836,8 +836,8 @@ final class MCPServer: @unchecked Sendable {
                 }
                 return jsonText(payload)
             }
-            return route.map { OutlineMarkdown.render(project: project, route: $0) }
-                ?? OutlineMarkdown.render(project: project)
+            return route.map { OutlineMarkdown.render(project: project, route: $0, label: CoreText.text) }
+                ?? OutlineMarkdown.render(project: project, label: CoreText.text)
         default:
             return nil
         }

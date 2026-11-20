@@ -93,7 +93,7 @@ struct ProposalReviewSheet: View {
                 HStack(spacing: 6) {
                     Image(systemName: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
-                    Text("这些场景在等待期间被改过：\(titles.joined(separator: "、"))。可以重新生成，或手动合并。")
+                    Text(String(format: InterfaceLanguage.label("这些场景在等待期间被改过：%@。可以重新生成，或手动合并。"), titles.joined(separator: InterfaceLanguage.listSeparator)))
                 }
                 .font(theme.fontMin)
             }
@@ -114,7 +114,7 @@ struct ProposalReviewSheet: View {
                 }
                 Spacer()
                 if group.adoptableItemIDs.isEmpty {
-                    Text("\(group.itemIDs.count) 项建议")
+                    Text(String(format: InterfaceLanguage.label("%lld 项建议"), group.itemIDs.count))
                         .font(theme.fontMin)
                         .foregroundStyle(.secondary)
                 } else if group.adoptableItemIDs.allSatisfy(session.adoptedProposalItems.contains) {
@@ -122,7 +122,7 @@ struct ProposalReviewSheet: View {
                         .font(theme.fontMin)
                         .foregroundStyle(.green)
                 } else {
-                    Text("\(group.adoptableItemIDs.count)/\(group.itemIDs.count) 可采纳")
+                    Text(String(format: InterfaceLanguage.label("%lld/%lld 可采纳"), group.adoptableItemIDs.count, group.itemIDs.count))
                         .font(theme.fontMin)
                         .foregroundStyle(.secondary)
                     Button("采纳本组") {

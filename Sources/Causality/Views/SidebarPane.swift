@@ -33,12 +33,12 @@ struct SidebarPane: View {
     private var totalsFooter: some View {
         let counts = session.wordCounts
         return HStack(spacing: 5) {
-            Text("全书 \(WordCountText.text(counts.total))")
+            Text(String(format: InterfaceLanguage.label("全书 %@"), WordCountText.text(counts.total)))
             Text("·")
             if counts.finalCount > 0 {
-                Text("定稿 \(counts.finalCount)/\(counts.sceneCount)")
+                Text(String(format: InterfaceLanguage.label("定稿 %lld/%lld"), counts.finalCount, counts.sceneCount))
             } else {
-                Text("\(counts.sceneCount) 场")
+                Text(String(format: InterfaceLanguage.label("%lld 场"), counts.sceneCount))
             }
             Spacer(minLength: 0)
         }
@@ -279,10 +279,10 @@ struct SidebarPane: View {
                         .foregroundStyle(session.auditErrorCount > 0 ? Color.red : theme.accent)
                     VStack(alignment: .leading, spacing: 2) {
                         // 错误数当标题，警告与提示各占一行：窄侧栏里英文不会把词折开。
-                        Text("错误 \(session.auditErrorCount)")
+                        Text(String(format: InterfaceLanguage.label("错误 %lld"), session.auditErrorCount))
                             .foregroundStyle(session.auditErrorCount > 0 ? Color.red : theme.textSecondary)
-                        Text("警告 \(session.auditWarningCount)")
-                        Text("提示 \(session.auditInfoCount)")
+                        Text(String(format: InterfaceLanguage.label("警告 %lld"), session.auditWarningCount))
+                        Text(String(format: InterfaceLanguage.label("提示 %lld"), session.auditInfoCount))
                     }
                     Spacer(minLength: 0)
                 }

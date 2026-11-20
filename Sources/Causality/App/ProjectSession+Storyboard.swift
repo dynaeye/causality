@@ -53,7 +53,7 @@ extension ProjectSession {
         let node = StoryNode(status: status, title: trimmed, chapterID: point.chapterID)
         apply(
             ProjectMutations.insertCard(node, in: point.chapterID, at: point.index, in: project),
-            name: "插入卡片"
+            name: InterfaceLanguage.label("插入卡片")
         )
         selectedNodeID = node.id
         insertion = nil
@@ -63,7 +63,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.moveCard(id, toChapter: chapterID, at: index, in: project),
-            name: "移动卡片"
+            name: InterfaceLanguage.label("移动卡片")
         )
     }
 
@@ -71,7 +71,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.moveNode(id, toChapter: chapterID, at: nil, in: project),
-            name: "移动卡片"
+            name: InterfaceLanguage.label("移动卡片")
         )
     }
 
@@ -79,7 +79,7 @@ extension ProjectSession {
     func addCharacter(name: String = InterfaceLanguage.label("新人物")) -> CharacterID {
         guard let project else { return CharacterID() }
         let character = StoryCharacter(name: name)
-        apply(ProjectMutations.appendCharacter(character, to: project), name: "新建人物")
+        apply(ProjectMutations.appendCharacter(character, to: project), name: InterfaceLanguage.label("新建人物"))
         return character.id
     }
 
@@ -87,7 +87,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.updateCharacter(id, in: project, body),
-            name: "修改人物",
+            name: InterfaceLanguage.label("修改人物"),
             coalescingKey: coalescingKey
         )
     }
@@ -100,7 +100,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.setCharacterCanvasPoint(point, for: id, in: project),
-            name: "移动人物",
+            name: InterfaceLanguage.label("移动人物"),
             coalescingKey: "characterCanvas:\(id)"
         )
     }
@@ -109,7 +109,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.addRelation(kind, from: id, to: target, in: project),
-            name: "添加人物关系"
+            name: InterfaceLanguage.label("添加人物关系")
         )
     }
 
@@ -117,13 +117,13 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.removeRelation(relationID, from: id, in: project),
-            name: "删除人物关系"
+            name: InterfaceLanguage.label("删除人物关系")
         )
     }
 
     func deleteCharacter(_ id: CharacterID) {
         guard let project else { return }
-        apply(ProjectMutations.deleteCharacter(id, in: project), name: "删除人物")
+        apply(ProjectMutations.deleteCharacter(id, in: project), name: InterfaceLanguage.label("删除人物"))
     }
 
     func convertCard(_ id: NodeID, to status: NodeStatus) {
@@ -149,7 +149,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.setCardGroupOverride(id, value: value, in: project),
-            name: value == nil ? "恢复自动并列组" : "调整并列组"
+            name: InterfaceLanguage.label(value == nil ? "恢复自动并列组" : "调整并列组")
         )
     }
 }

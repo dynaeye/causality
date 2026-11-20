@@ -297,7 +297,7 @@ struct StartView: View {
             Button("移到废纸篓", role: .destructive) { discardDraft(url) }
             Button("取消", role: .cancel) { draftPendingDelete = nil }
         } message: { url in
-            Text("「\(DraftStore.title(of: url))」还没有保存到正式位置。删除会把整个工程包移到废纸篓，之后可以从废纸篓恢复。")
+            Text(String(format: InterfaceLanguage.label("「%@」还没有保存到正式位置。删除会把整个工程包移到废纸篓，之后可以从废纸篓恢复。"), DraftStore.title(of: url)))
         }
     }
 
@@ -437,9 +437,9 @@ struct WorkbenchView: View {
             Button("重新载入磁盘", role: .destructive) { session.resolveConflictByReloadingDisk() }
             Button("取消", role: .cancel) { session.dismissSaveConflict() }
         } message: {
-            Text(session.conflictMessage ?? "磁盘上的工程包已经变了。另存为可以保住两边的改动。")
+            Text(session.conflictMessage ?? InterfaceLanguage.label("磁盘上的工程包已经变了。另存为可以保住两边的改动。"))
         }
-        .navigationTitle(session.project?.title ?? "因果")
+        .navigationTitle(session.project?.title ?? InterfaceLanguage.label("因果"))
         .navigationSubtitle(session.saveState.displayText)
         .toolbar(removing: .title)
         .onAppear {
@@ -522,7 +522,7 @@ struct WorkbenchView: View {
                     .onAppear { titleFocused = true }
             } else {
                 // 顶栏的工具项收不到点击，改名走「文件 → 重命名项目…」（⇧⌘R）。
-                Text(session.project?.title ?? "因果")
+                Text(session.project?.title ?? InterfaceLanguage.label("因果"))
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.primary)
                     .lineLimit(1)
@@ -551,7 +551,7 @@ struct WorkbenchView: View {
         guard !trimmed.isEmpty, trimmed != project.title else { return }
         session.apply(
             ProjectMutations.updateHeader(title: trimmed, in: project),
-            name: "改项目名"
+            name: InterfaceLanguage.label("改项目名")
         )
     }
 
@@ -641,7 +641,7 @@ struct WorkbenchView: View {
                     }
                     .foregroundStyle(.red)
                 }
-                .help("体检：\(session.auditErrorCount) 个错误")
+                .help(String(format: InterfaceLanguage.label("体检：%lld 个错误"), session.auditErrorCount))
             }
 
             Button {

@@ -42,17 +42,17 @@ struct CLISettingsView: View {
                     } label: {
                         HStack(spacing: 6) {
                             if isInstallingAll { ProgressView().controlSize(.small) }
-                            Text(isInstallingAll ? "正在安装…" : "一键安装 MCP")
+                            Text(InterfaceLanguage.label(isInstallingAll ? "正在安装…" : "一键安装 MCP"))
                         }
                     }
                     .disabled(isInstallingAll || bundled == nil)
 
-                    Text("装好命令行，并把它写进这台机器上已经安装的 AI 客户端；写完逐个自检能不能连上。")
+                    Text(InterfaceLanguage.label("装好命令行，并把它写进这台机器上已经安装的 AI 客户端；写完逐个自检能不能连上。"))
                         .font(theme.fontMin)
                         .foregroundStyle(theme.textSecondary)
 
                     if bundled == nil {
-                        Text("这个版本没有自带命令行。官网 DMG 里的 App 自带它；开发和源码构建的版本不含。")
+                        Text(InterfaceLanguage.label("这个版本没有自带命令行。官网 DMG 里的 App 自带它；开发和源码构建的版本不含。"))
                             .font(theme.fontMin)
                             .foregroundStyle(theme.warning)
                     }
@@ -60,7 +60,7 @@ struct CLISettingsView: View {
 
                 Section("Codex / Hermes / Pi") {
                     if detectedClients.isEmpty {
-                        Text("没检测到这三个。它们有命令行，装好后回到这一页点「一键安装 MCP」，App 会让它们自己写入。")
+                        Text(InterfaceLanguage.label("没检测到这三个。它们有命令行，装好后回到这一页点「一键安装 MCP」，App 会让它们自己写入。"))
                             .font(theme.fontMin)
                             .foregroundStyle(theme.textSecondary)
                     } else {
@@ -70,9 +70,9 @@ struct CLISettingsView: View {
                     }
                 }
 
-                Section("桌面类客户端（App 直接改它的配置文件）") {
+                Section(InterfaceLanguage.label("桌面类客户端（App 直接改它的配置文件）")) {
                     if detectedConfigClients.isEmpty {
-                        Text("没检测到 Claude 桌面版、Cursor、Windsurf、Kiro、VS Code、OpenCode。装了其中之一再回到这一页，它就会出现在这里。")
+                        Text(InterfaceLanguage.label("没检测到 Claude 桌面版、Cursor、Windsurf、Kiro、VS Code、OpenCode。装了其中之一再回到这一页，它就会出现在这里。"))
                             .font(theme.fontMin)
                             .foregroundStyle(theme.textSecondary)
                     } else {
@@ -82,16 +82,16 @@ struct CLISettingsView: View {
                     }
                 }
 
-                Section("还需要的才手动处理") {
+                Section(InterfaceLanguage.label("还需要的才手动处理")) {
                     Text(manualHint)
                         .font(theme.fontMin)
                         .foregroundStyle(theme.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                     configText
                     HStack {
-                        Button("复制这段配置") { copyConfig() }
+                        Button(InterfaceLanguage.label("复制这段配置")) { copyConfig() }
                             .disabled(installedPath == nil)
-                        Button("打开命令行所在文件夹") {
+                        Button(InterfaceLanguage.label("打开命令行所在文件夹")) {
                             NSWorkspace.shared.activateFileViewerSelecting([installedURL])
                         }
                         .disabled(!FileManager.default.fileExists(atPath: installedURL.path))
@@ -108,7 +108,7 @@ struct CLISettingsView: View {
             get: { message != nil },
             set: { if !$0 { message = nil } }
         )) {
-            Button("好") { message = nil }
+            Button(InterfaceLanguage.label("好")) { message = nil }
         }
     }
 
@@ -125,7 +125,7 @@ struct CLISettingsView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer()
-            Button(busyClientID == client.id ? "检查中…" : "重新检查") {
+            Button(InterfaceLanguage.label(busyClientID == client.id ? "检查中…" : "重新检查")) {
                 check(client)
             }
             .disabled(busyClientID != nil || isInstallingAll || cliURL == nil)
@@ -158,12 +158,12 @@ struct CLISettingsView: View {
     }
 
     private func statusText(for client: CLIClient) -> String {
-        guard cliURL != nil else { return "还没安装命令行" }
+        guard cliURL != nil else { return InterfaceLanguage.label("还没安装命令行") }
         return switch clientState[client.id] {
-        case let .configured(tools): "已接入，\(tools) 个工具可用"
-        case let .failed(reason): "没连通：\(reason)"
-        case .notConfigured: "还没接入"
-        case .none: "还没检查"
+        case let .configured(tools): String(format: InterfaceLanguage.label("已接入，%lld 个工具可用"), tools)
+        case let .failed(reason): String(format: InterfaceLanguage.label("没连通：%@"), reason)
+        case .notConfigured: InterfaceLanguage.label("还没接入")
+        case .none: InterfaceLanguage.label("还没检查")
         }
     }
 
@@ -191,8 +191,12 @@ struct CLISettingsView: View {
                 let connected = detectedClients.filter { clientState[$0.id]?.isOK == true }.count
                     + detectedConfigClients.filter { configState[$0.id]?.isOK == true }.count
                 message = connected > 0
-                    ? "已装到 \(installed.path)，\(connected) 个客户端接入并连通。重启对应客户端或让它重新加载 MCP 即可使用。"
-                    : "已装到 \(installed.path)，但还没有客户端连通。看下面每行的原因。"
+                    ? String(
+                        format: InterfaceLanguage.label("已装到 %@，%lld 个客户端接入并连通。重启对应客户端或让它重新加载 MCP 即可使用。"),
+                        installed.path,
+                        connected
+                    )
+                    : String(format: InterfaceLanguage.label("已装到 %@，但还没有客户端连通。看下面每行的原因。"), installed.path)
             } catch {
                 isInstallingAll = false
                 busyClientID = nil
@@ -245,11 +249,11 @@ struct CLISettingsView: View {
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 4) {
-                Button(busyClientID == client.id ? "写入中…" : "写入并检查") {
+                Button(InterfaceLanguage.label(busyClientID == client.id ? "写入中…" : "写入并检查")) {
                     writeConfig(client)
                 }
                 .disabled(busyClientID != nil || isInstallingAll || cliURL == nil)
-                Button("在访达中显示") { reveal(client) }
+                Button(InterfaceLanguage.label("在访达中显示")) { reveal(client) }
                     .buttonStyle(.link)
             }
         }
@@ -272,24 +276,30 @@ struct CLISettingsView: View {
     }
 
     private func statusText(for client: ConfigClient) -> String {
-        guard cliURL != nil else { return "还没安装命令行" }
+        guard cliURL != nil else { return InterfaceLanguage.label("还没安装命令行") }
         return switch configState[client.id] {
-        case .configured: "已接入，配置文件里指向现在这份命令行"
+        case .configured: InterfaceLanguage.label("已接入，配置文件里指向现在这份命令行")
         case let .stalePath(path): path.isEmpty
-            ? "配过，但没写命令行路径"
-            : "配过，但指向的是 \(path)（换过位置？点「写入并检查」）"
+            ? InterfaceLanguage.label("配过，但没写命令行路径")
+            : String(format: InterfaceLanguage.label("配过，但指向的是 %@（换过位置？点「写入并检查」）"), path)
         case let .notWritable(reason): reason
-        case .notConfigured: "还没接入"
-        case .none: "还没检查"
+        case .notConfigured: InterfaceLanguage.label("还没接入")
+        case .none: InterfaceLanguage.label("还没检查")
         }
     }
 
     private var manualHint: String {
         let missing = missingClients.map(\.displayName)
         let list = missing.isEmpty
-            ? "DSH 这类没有固定配置位置的客户端"
-            : "\(missing.joined(separator: "、"))，以及 DSH 这类没有固定配置位置的客户端"
-        return "上面两栏之外的客户端（\(list)）才需要手工：在它自己的设置里找 MCP / Model Context Protocol 一项，把下面这段粘进去，保存，重启它，然后回到这一页看它有没有出现在列表里。用「复制这段配置」按钮复制，别手动选中文字——那样会带出 \\n、&#x20; 之类的转义。"
+            ? InterfaceLanguage.label("DSH 这类没有固定配置位置的客户端")
+            : String(
+                format: InterfaceLanguage.label("%@，以及 DSH 这类没有固定配置位置的客户端"),
+                missing.joined(separator: InterfaceLanguage.listSeparator)
+            )
+        return String(
+            format: InterfaceLanguage.label("上面两栏之外的客户端（%@）才需要手工：在它自己的设置里找 MCP / Model Context Protocol 一项，把下面这段粘进去，保存，重启它，然后回到这一页看它有没有出现在列表里。"),
+            list
+        ) + InterfaceLanguage.label("用「复制这段配置」按钮复制，别手动选中文字——那样会带出转义字符。")
     }
 
     private func writeConfig(_ client: ConfigClient) {
@@ -300,10 +310,15 @@ struct CLISettingsView: View {
                 let backup = try client.write(cli: cliURL)
                 configState[client.id] = client.status(cli: cliURL)
                 let where_ = client.configURL().path
+                let head = String(format: InterfaceLanguage.label("已写入 %@：%@"), client.displayName, where_)
                 if let backup {
-                    message = "已写入 \(client.displayName)：\(where_)\n原文件备份为 \(backup.lastPathComponent)。重启该客户端后生效。"
+                    message = head + "\n"
+                        + String(
+                            format: InterfaceLanguage.label("原文件备份为 %@。重启该客户端后生效。"),
+                            backup.lastPathComponent
+                        )
                 } else {
-                    message = "已写入 \(client.displayName)：\(where_)\n重启该客户端后生效。"
+                    message = head + "\n" + InterfaceLanguage.label("重启该客户端后生效。")
                 }
             } catch {
                 configState[client.id] = client.status(cli: cliURL)
@@ -328,6 +343,6 @@ struct CLISettingsView: View {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(CLITool.mcpConfig(executable: installedURL), forType: .string)
-        message = "配置已复制（纯文本，不带转义）。"
+        message = InterfaceLanguage.label("配置已复制（纯文本，不带转义）。")
     }
 }

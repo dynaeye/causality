@@ -23,9 +23,9 @@ public struct OutlineIncomingEdge: Sendable, Hashable {
 
     public func displayText(localize: (String) -> String) -> String {
         let kindName = localize(kind.displayName)
-        let head = label.isEmpty ? kindName : "\(kindName)：\(label)"
+        let head = label.isEmpty ? kindName : kindName + localize("：") + label
         guard !condition.isEmpty else { return head }
-        return "\(head)（\(localize("条件"))：\(condition)）"
+        return head + String(format: localize("（%@）"), localize("条件") + localize("：") + condition)
     }
 }
 

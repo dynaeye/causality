@@ -142,7 +142,9 @@ public final class StoryEditor {
 
         let operations = chosen.flatMap(\.operations)
         guard !operations.isEmpty else { throw ProposalApplyError.empty }
-        let name = chosen.count == remaining.count ? "采纳 AI 提案" : "采纳 AI 提案（\(chosen.count) 项）"
+        let name = chosen.count == remaining.count
+            ? CoreText.text("采纳 AI 提案")
+            : CoreText.format("采纳 AI 提案（%lld 项）", chosen.count)
         try apply(operations, name: name, proposalID: validated.proposal.id)
         adoptedProposalItems[validated.proposal.id, default: []].formUnion(chosen.map(\.id))
         return chosen.count

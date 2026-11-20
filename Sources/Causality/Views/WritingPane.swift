@@ -94,7 +94,7 @@ struct WritingPane: View {
 
             Spacer()
 
-            Text("\(scene.chapterTitle) · 第 \(scene.sceneNumber) 场")
+            Text(String(format: InterfaceLanguage.label("%@ · 第 %lld 场"), scene.chapterTitle, scene.sceneNumber))
                 .font(theme.fontMin)
                 .foregroundStyle(theme.textSecondary)
 
@@ -181,19 +181,19 @@ struct WritingPane: View {
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
         let picked = fromEnd ? Array(lines.suffix(3)) : Array(lines.prefix(3))
-        return picked.isEmpty ? "（还没有正文）" : picked.joined(separator: "\n")
+        return picked.isEmpty ? InterfaceLanguage.label("（还没有正文）") : picked.joined(separator: "\n")
     }
 
     private func wordLine(_ node: StoryNode) -> some View {
         let words = session.wordCounts.count(of: node.id)
         return HStack(spacing: 10) {
-            Text("本场 \(WordCountText.text(words))")
+            Text(String(format: InterfaceLanguage.label("本场 %@"), WordCountText.text(words)))
             if let target = node.targetWords, target > 0 {
                 ProgressView(value: Double(words), total: Double(target))
                     .progressViewStyle(.linear)
                     .tint(theme.accent)
                     .frame(width: 120)
-                Text("目标 \(WordCountText.text(target))")
+                Text(String(format: InterfaceLanguage.label("目标 %@"), WordCountText.text(target)))
             }
             Spacer(minLength: 0)
             if let state = node.writingState {
@@ -214,7 +214,7 @@ struct WritingPane: View {
 
             infoRow("视角", povName(node))
             infoRow("时间", node.storyTimeLabel.isEmpty ? InterfaceLanguage.label("未填") : node.storyTimeLabel)
-            infoRow("张力", node.tension.map { "\($0)/5" } ?? "未填")
+            infoRow("张力", node.tension.map { "\($0)/5" } ?? InterfaceLanguage.label("未填"))
 
             Rectangle().fill(theme.border).frame(height: 1)
 
@@ -253,7 +253,7 @@ struct WritingPane: View {
     private func povName(_ node: StoryNode) -> String {
         guard let id = node.pov,
               let name = session.project?.characters.first(where: { $0.id == id })?.name else {
-            return "未定"
+            return InterfaceLanguage.label("未定")
         }
         return name
     }
@@ -261,7 +261,7 @@ struct WritingPane: View {
     private func castNames(_ node: StoryNode) -> String {
         let index = session.projectIndex
         let names = node.characterIDs.compactMap { index?.characterByID[$0]?.name }
-        return names.isEmpty ? "未填" : names.joined(separator: "、")
+        return names.isEmpty ? InterfaceLanguage.label("未填") : names.joined(separator: InterfaceLanguage.listSeparator)
     }
 
     // MARK: 去向
@@ -301,7 +301,7 @@ struct WritingPane: View {
                         guard let project = session.project else { return }
                         session.apply(
                             ProjectMutations.updateEdge(edge.id, in: project) { $0.kind = kind },
-                            name: "修改连线类型"
+                            name: InterfaceLanguage.label("修改连线类型")
                         )
                     }
                 }
@@ -329,7 +329,7 @@ struct WritingPane: View {
 
             Button {
                 guard let project = session.project else { return }
-                session.apply(ProjectMutations.disconnect(edge.id, in: project), name: "删除发展线")
+                session.apply(ProjectMutations.disconnect(edge.id, in: project), name: InterfaceLanguage.label("删除发展线"))
             } label: {
                 Image(systemName: "trash")
                     .font(theme.fontMin)
@@ -380,7 +380,7 @@ struct WritingPane: View {
     }
 
     private func targetTitle(_ edge: StoryEdge) -> String {
-        guard let node = session.project?.node(edge.to) else { return "未知" }
+        guard let node = session.project?.node(edge.to) else { return InterfaceLanguage.label("未知") }
         return "\(session.chapterTitle(node.chapterID)) · \(node.title)"
     }
 
@@ -391,7 +391,7 @@ struct WritingPane: View {
                 guard let project = self.session.project else { return }
                 self.session.apply(
                     ProjectMutations.updateEdge(edge.id, in: project) { $0.label = value },
-                    name: "修改连线文字",
+                    name: InterfaceLanguage.label("修改连线文字"),
                     coalescingKey: "edge:\(edge.id):label"
                 )
             }
@@ -405,7 +405,7 @@ struct WritingPane: View {
                 guard let project = self.session.project else { return }
                 self.session.apply(
                     ProjectMutations.updateEdge(edge.id, in: project) { $0.condition = value },
-                    name: "修改连线条件",
+                    name: InterfaceLanguage.label("修改连线条件"),
                     coalescingKey: "edge:\(edge.id):condition"
                 )
             }

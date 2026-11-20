@@ -73,7 +73,7 @@ public struct BranchSynopsis: Sendable, Equatable {
     public var stats: EndingStats
 
     public var text: String {
-        blocks.map { "\($0.label)｜\($0.text)" }.joined(separator: "\n")
+        blocks.map { "\($0.label)\(CoreText.localize("｜"))\($0.text)" }.joined(separator: "\n")
     }
 
     // MARK: - 入口
@@ -356,17 +356,17 @@ public struct BranchSynopsis: Sendable, Equatable {
 
         var blocks: [BranchBlock] = []
         if !prefix.isEmpty {
-            blocks.append(block(label: localize("开始"), items: items(for: prefix, index: index)))
+            blocks.append(block(label: localize("开始"), items: items(for: prefix, index: index, localize: localize)))
         }
         for key in order {
             guard let middle = middles[key] else { continue }
-            blocks.append(block(label: middle.label, items: items(for: middle.nodes, index: index)))
+            blocks.append(block(label: middle.label, items: items(for: middle.nodes, index: index, localize: localize)))
         }
         if !suffix.isEmpty {
             let label = index.nodeByID[suffix.first!]?.kind == .ending
                 ? localize("结局")
                 : localize("汇合")
-            blocks.append(block(label: label, items: items(for: suffix, index: index)))
+            blocks.append(block(label: label, items: items(for: suffix, index: index, localize: localize)))
         }
         return blocks
     }
@@ -386,10 +386,14 @@ public struct BranchSynopsis: Sendable, Equatable {
         return String(format: localize("通向「%@」"), target)
     }
 
-    private static func items(for nodes: [NodeID], index: ProjectIndex) -> [(id: NodeID, sentence: String)] {
+    private static func items(
+        for nodes: [NodeID],
+        index: ProjectIndex,
+        localize: (String) -> String
+    ) -> [(id: NodeID, sentence: String)] {
         nodes.compactMap { id in
             guard let node = index.nodeByID[id] else { return nil }
-            return (id, sentence(for: node))
+            return (id, sentence(for: node, localize: localize))
         }
     }
 
@@ -409,11 +413,13 @@ public struct BranchSynopsis: Sendable, Equatable {
     }
 
     /// 一句：优先用摘要首句，没有摘要就退到标题。
-    static func sentence(for node: StoryNode) -> String {
+    /// 句末用当前语言的句号（英文是「. 」），所以相邻两句拼起来不带中文标点。
+    static func sentence(for node: StoryNode, localize: (String) -> String = { CoreText.localize($0) }) -> String {
         let summary = node.summary.trimmingCharacters(in: .whitespacesAndNewlines)
-        if let first = summary.split(separator: "。").first, !first.isEmpty {
-            return String(first) + "。"
+        let terminators = "。！？!?"
+        if let first = summary.split(whereSeparator: { terminators.contains($0) }).first, !first.isEmpty {
+            return String(first) + localize("。")
         }
-        return node.title + "。"
+        return node.title + localize("。")
     }
 }

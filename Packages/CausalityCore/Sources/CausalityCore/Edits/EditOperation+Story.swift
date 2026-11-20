@@ -6,7 +6,7 @@ extension EditOperation {
         switch self {
         case let .insertNode(node, index):
             guard !project.nodes.contains(where: { $0.id == node.id }) else {
-                throw EditError.duplicateID("节点 \(node.id)")
+                throw EditError.duplicateID(CoreText.format("节点 %@", String(describing: node.id)))
             }
             project.nodes.insert(node, at: clamped(index, project.nodes.count))
 
@@ -29,7 +29,7 @@ extension EditOperation {
             project.nodes[position] = after
 
         default:
-            throw EditError.invalidOperation("节点操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("节点操作收到 %@", String(describing: self)))
         }
     }
 
@@ -37,7 +37,7 @@ extension EditOperation {
         switch self {
         case let .insertEdge(edge, index):
             guard !project.edges.contains(where: { $0.id == edge.id }) else {
-                throw EditError.duplicateID("发展线 \(edge.id)")
+                throw EditError.duplicateID(CoreText.format("发展线 %@", String(describing: edge.id)))
             }
             project.edges.insert(edge, at: clamped(index, project.edges.count))
 
@@ -54,7 +54,7 @@ extension EditOperation {
             project.edges[position] = after
 
         default:
-            throw EditError.invalidOperation("发展线操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("发展线操作收到 %@", String(describing: self)))
         }
     }
 
@@ -62,7 +62,7 @@ extension EditOperation {
         switch self {
         case let .insertChapter(chapter, index):
             guard !project.chapters.contains(where: { $0.id == chapter.id }) else {
-                throw EditError.duplicateID("章节 \(chapter.id)")
+                throw EditError.duplicateID(CoreText.format("章节 %@", String(describing: chapter.id)))
             }
             project.chapters.insert(chapter, at: clamped(index, project.chapters.count))
 
@@ -79,7 +79,7 @@ extension EditOperation {
             project.chapters[position] = after
 
         default:
-            throw EditError.invalidOperation("章节操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("章节操作收到 %@", String(describing: self)))
         }
     }
 
@@ -87,7 +87,7 @@ extension EditOperation {
         switch self {
         case let .insertCharacter(value, index):
             guard !project.characters.contains(where: { $0.id == value.id }) else {
-                throw EditError.duplicateID("人物 \(value.id)")
+                throw EditError.duplicateID(CoreText.format("人物 %@", String(describing: value.id)))
             }
             project.characters.insert(value, at: clamped(index, project.characters.count))
 
@@ -111,7 +111,7 @@ extension EditOperation {
             project.characters[position] = after
 
         default:
-            throw EditError.invalidOperation("人物操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("人物操作收到 %@", String(describing: self)))
         }
     }
 
@@ -119,7 +119,7 @@ extension EditOperation {
         switch self {
         case let .insertPlace(value, index):
             guard !project.places.contains(where: { $0.id == value.id }) else {
-                throw EditError.duplicateID("地点 \(value.id)")
+                throw EditError.duplicateID(CoreText.format("地点 %@", String(describing: value.id)))
             }
             project.places.insert(value, at: clamped(index, project.places.count))
 
@@ -139,7 +139,7 @@ extension EditOperation {
             project.places[position] = after
 
         default:
-            throw EditError.invalidOperation("地点操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("地点操作收到 %@", String(describing: self)))
         }
     }
 }

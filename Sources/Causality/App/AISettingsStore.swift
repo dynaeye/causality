@@ -346,7 +346,7 @@ final class AISettingsStore {
         }
         let id = "custom-\(UUID().uuidString)"
         let displayName = name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            ? "自定义服务"
+            ? InterfaceLanguage.label("自定义服务")
             : name.trimmingCharacters(in: .whitespacesAndNewlines)
         let stored = StoredCustomProvider(
             id: id,

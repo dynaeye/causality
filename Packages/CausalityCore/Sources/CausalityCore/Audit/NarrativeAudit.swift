@@ -55,39 +55,7 @@ public struct AuditFinding: Identifiable, Sendable, Equatable {
     }
 }
 
-/// 一条规则的说明，界面与文档共用。
-public struct AuditRule: Sendable, Equatable, Identifiable {
-    public var id: String
-    public var title: String
-    public var severity: AuditFinding.Severity
-    public var text: String
-}
-
 public enum NarrativeAudit {
-    public static let rules: [AuditRule] = [
-        .init(id: "N01", title: "断头", severity: .error, text: "正式场景有人走到它，却没有一条去向，也没标成结局。"),
-        .init(id: "N02", title: "结局悬空", severity: .error, text: "标成结局，但没有任何一条线走到它。"),
-        .init(id: "N03", title: "结局还有去向", severity: .error, text: "标成结局却还挂着出边，读者走完结局又回到故事里。"),
-        .init(id: "N04", title: "不可达", severity: .error, text: "从任何入口都走不到这张卡。"),
-        .init(id: "N05", title: "没有显式入口", severity: .error, text: "没有任何卡标成故事入口，只能靠「第一章第一张」兜底。"),
-        .init(id: "N06", title: "单去向的选择点", severity: .warning, text: "挂了选项连线，却只有一个去向，选无可选。"),
-        .init(id: "N07", title: "伪选择", severity: .warning, text: "两个选项指向同一张卡，也没有条件差别。"),
-        .init(id: "N08", title: "无条件分叉", severity: .info, text: "分叉的两条线都没有写条件，玩家无法预期取舍。"),
-        .init(id: "N09", title: "环无出口", severity: .warning, text: "一圈场景互相可达，却没有一条线通往圈外。"),
-        .init(id: "N10", title: "结局太近", severity: .info, text: "到结局的步数不到全书最长路径的一半。"),
-        .init(id: "N11", title: "分支不落结局", severity: .warning, text: "从这条去向出发，怎么走都到不了任何结局。"),
-        .init(id: "N12", title: "没有结局", severity: .error, text: "整部作品没有标出任何结局。"),
-        .init(id: "N13", title: "空场景", severity: .info, text: "正式场景既没有摘要也没有正文。"),
-        .init(id: "N14", title: "同名场景", severity: .info, text: "两张正式场景用了同一个标题，导出后不好分辨。"),
-        .init(id: "N15", title: "主线未标注", severity: .info, text: "有分叉但没有标主线去向，推导会按第一条出边兜底。"),
-        .init(id: "N16", title: "伏笔未收", severity: .warning, text: "线索有埋点没有收点（线索落地后启用）。"),
-        .init(id: "N17", title: "收在埋之前", severity: .error, text: "同一线索的收点早于埋点（线索落地后启用）。"),
-        .init(id: "N18", title: "设定冲突", severity: .warning, text: "两条已确认设定同名，正文却不一致。"),
-        .init(id: "N19", title: "人物断层", severity: .info, text: "人物在章序列中间连续两章不出场，前后都有出场。"),
-        .init(id: "N20", title: "类型与结构脱节", severity: .info, text: "选择点没有分叉，或事件卡靠选项连线分叉。"),
-        .init(id: "N21", title: "线性结构", severity: .info, text: "全书没有任何分叉，所有场景排成一条线。"),
-    ]
-
     /// 体检。默认按 `project.auditWaivers` 过滤掉已忽略项。
     public static func run(project: StoryProject, includeWaived: Bool = false) -> [AuditFinding] {
         var findings = compute(project)
@@ -356,7 +324,7 @@ public enum NarrativeAudit {
             }
             guard !hasOutlet else { continue }
             let representative = component.min { $0.rawValue.uuidString < $1.rawValue.uuidString }
-            let title = representative.flatMap { index.nodeByID[$0]?.title } ?? "一圈场景"
+            let title = representative.flatMap { index.nodeByID[$0]?.title } ?? CoreText.localize("一圈场景")
             findings.append(.init(
                 rule: "N09", severity: .warning, title: CoreText.localize("环无出口"),
                 message: String(format: CoreText.localize("「%@」所在的一圈互相可达，却没有一条线通往圈外。"), title),

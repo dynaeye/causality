@@ -19,7 +19,7 @@ extension ProjectSession {
     func captureMessageAsIdea(_ text: String) {
         guard let project else { return }
         let idea = StoryNode(status: .idea, title: MessageCapture.title(text), body: text)
-        apply(ProjectMutations.appendNode(idea, to: project), name: "收为灵感卡")
+        apply(ProjectMutations.appendNode(idea, to: project), name: InterfaceLanguage.label("收为灵感卡"))
         selectedNodeID = idea.id
     }
 
@@ -40,7 +40,7 @@ extension ProjectSession {
                 }
             }
         }
-        apply(operations, name: "记为事实设定")
+        apply(operations, name: InterfaceLanguage.label("记为事实设定"))
     }
 
     /// 插到锚点后：沿用故事板点下的缝隙，整段话进卡片正文。
@@ -51,7 +51,7 @@ extension ProjectSession {
         card.body = text
         apply(
             ProjectMutations.insertCard(card, in: point.chapterID, at: point.index, in: project),
-            name: "插到锚点后"
+            name: InterfaceLanguage.label("插到锚点后")
         )
         selectedNodeID = card.id
         insertion = nil

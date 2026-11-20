@@ -46,7 +46,7 @@ public enum MarkdownImport {
             return Result(
                 project: project,
                 mode: .prose,
-                notes: ["按普通 Markdown 导入：\(project.chapters.count) 章 \(scenes) 场。"]
+                notes: [CoreText.format("按普通 Markdown 导入：%lld 章 %lld 场。", project.chapters.count, scenes)]
             )
         }
     }

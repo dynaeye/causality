@@ -241,7 +241,7 @@ struct InspectorPane: View {
                     .progressViewStyle(.linear)
                     .tint(theme.accent)
                     .frame(width: 84)
-                Text("目标 \(WordCountText.text(target))")
+                Text(String(format: InterfaceLanguage.label("目标 %@"), WordCountText.text(target)))
             }
             Spacer(minLength: 0)
         }
@@ -385,7 +385,7 @@ struct AddEdgeSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("从「\(source.title)」出发")
+            Text(String(format: InterfaceLanguage.label("从「%@」出发"), source.title))
                 .font(theme.fontCardTitle)
 
             Picker("目标场景", selection: $targetID) {

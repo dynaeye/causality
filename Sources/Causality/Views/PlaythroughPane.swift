@@ -35,7 +35,7 @@ struct PlaythroughPane: View {
             Text("试玩")
                 .font(theme.fontTitle)
             if let play {
-                Text("\(play.stepCount) 步 · 累计 \(WordCountText.text(play.cumulativeWords))")
+                Text(String(format: InterfaceLanguage.label("%lld 步 · 累计 %@"), play.stepCount, WordCountText.text(play.cumulativeWords)))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textTertiary)
             }
@@ -119,7 +119,7 @@ struct PlaythroughPane: View {
                     .font(.system(size: 24, weight: .semibold))
                     .foregroundStyle(theme.textPrimary)
                 Spacer()
-                Text("第 \(step.stepNumber) 步 · 累计 \(WordCountText.text(step.cumulativeWords))")
+                Text(String(format: InterfaceLanguage.label("第 %lld 步 · 累计 %@"), step.stepNumber, WordCountText.text(step.cumulativeWords)))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textTertiary)
             }
@@ -146,7 +146,7 @@ struct PlaythroughPane: View {
             HStack(spacing: 8) {
                 Image(systemName: "flag.checkered")
                     .foregroundStyle(theme.accent)
-                Text("到达结局「\(step.node.title)」")
+                Text(String(format: InterfaceLanguage.label("到达结局「%@」"), step.node.title))
                     .font(theme.fontBody)
                     .foregroundStyle(theme.textPrimary)
                 Spacer()
@@ -190,7 +190,7 @@ struct PlaythroughPane: View {
                                 .font(theme.fontBody)
                                 .foregroundStyle(theme.textPrimary)
                             if !option.condition.isEmpty {
-                                Text("（条件：\(option.condition)）")
+                                Text(String(format: InterfaceLanguage.label("（条件：%@）"), option.condition))
                                     .font(theme.fontMin)
                                     .foregroundStyle(theme.textTertiary)
                             }

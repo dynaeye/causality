@@ -95,7 +95,7 @@ public struct StoryThread: Codable, Sendable, Identifiable, Hashable {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(ThreadID.self, forKey: .id) ?? ThreadID()
-        name = try container.decodeIfPresent(String.self, forKey: .name) ?? "未命名线索"
+        name = try container.decodeIfPresent(String.self, forKey: .name) ?? CoreText.text("未命名线索")
         kind = try container.decodeIfPresent(ThreadKind.self, forKey: .kind) ?? .foreshadow
         colorHex = try container.decodeIfPresent(String.self, forKey: .colorHex) ?? ""
         summary = try container.decodeIfPresent(String.self, forKey: .summary) ?? ""

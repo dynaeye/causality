@@ -48,7 +48,7 @@ struct InspectorSection<Content: View>: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .help(collapsed ? "展开「\(title)」" : "收起「\(title)」")
+            .help(String(format: InterfaceLanguage.label(collapsed ? "展开「%@」" : "收起「%@」"), title))
 
             if !collapsed {
                 content

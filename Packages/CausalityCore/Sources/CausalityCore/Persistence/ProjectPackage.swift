@@ -381,7 +381,7 @@ public enum ProjectPackage {
         warnings.append(contentsOf: ProjectValidator.issues(in: project))
 
         for asset in project.assets where !fileManager.fileExists(atPath: assetURL(for: asset, in: packageURL).path) {
-            warnings.append("配图文件缺失：\(asset.fileName)")
+            warnings.append(CoreText.format("配图文件缺失：%@", asset.fileName))
         }
 
         return LoadedProject(

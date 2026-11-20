@@ -156,7 +156,7 @@ func edgesDetail(_ project: StoryProject) -> [[String: Any]] {
 func runImport(_ args: Arguments) -> Int32 {
     guard let input = args.positional.first else {
         return Output.failure(
-            "用法：causal import <输入.md> <输出.causal> [--title 标题] [--format storyboard|prose] [--lang 语言]",
+            CoreText.text("用法：causal import <故事板.md> <输出.causal> [--title 标题] [--format storyboard|prose] [--lang 语言]"),
             json: args.wantsJSON
         )
     }
@@ -234,7 +234,7 @@ func runImport(_ args: Arguments) -> Int32 {
 
 func loadPackage(_ args: Arguments, command: String) -> (LoadedProject, URL)? {
     guard let path = args.positional.first else {
-        _ = Output.failure("用法：causal \(command) <工程包.causal>", json: args.wantsJSON)
+        _ = Output.failure(CoreText.format("用法：causal %@ <工程包.causal>", command), json: args.wantsJSON)
         return nil
     }
     let url = URL(fileURLWithPath: path)
@@ -337,59 +337,66 @@ func runOutline(_ args: Arguments) -> Int32 {
         Output.json(["ok": true, "command": "outline", "package": url.path, "outlines": payload])
         return 0
     }
-    let markdown = route.map { OutlineMarkdown.render(project: project, route: $0) }
-        ?? OutlineMarkdown.render(project: project)
+    let markdown = route.map { OutlineMarkdown.render(project: project, route: $0, label: CoreText.text) }
+        ?? OutlineMarkdown.render(project: project, label: CoreText.text)
     print(markdown, terminator: markdown.hasSuffix("\n") ? "" : "\n")
     return 0
 }
 
 func usage() {
-    print("""
-    causal — 因果的命令行接口与 MCP 服务器
-
-    用法：
-      causal import <输入.md> [输出.causal] [--title 标题] [--format storyboard|prose] [--lang zh-Hans|en|ja|zh-Hant] [--json]
-      causal info <工程包.causal> [--json]
-      causal validate <工程包.causal> [--json]
-      causal outline <工程包.causal> [--to 结局] [--json]
-      causal apply <工程包.causal> [--ops ops.json | --stdin] [--dry-run] [--json]
-      causal export <工程包.causal> [--out 文件]
-      causal contract <导出.json> [--json]
-      causal audit <工程包.causal> [--json] [--all]
-      causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md] [--json]
-      causal thread <工程包.causal> [--json]
-      causal branch <工程包.causal> [--to 结局] [--mode segments|per-path] [--json]
-      causal reach <工程包.causal> --from <卡片> [--json]
-      causal bench [工程包.causal] [--json]
-      causal history <工程包.causal> [--json]
-      causal undo <工程包.causal> [--steps 1] [--json]
-      causal redo <工程包.causal> [--steps 1] [--json]
-      causal mcp [--package 工程包.causal] [--transport stdio|http] [--host 127.0.0.1] [--port 8765]
-          MCP 服务器；默认 stdio。HTTP 需要 CAUSAL_MCP_TOKEN 或 --token / --token-file
-      causal mcp-config [--command 可执行文件路径]
-          打印通用 MCP 配置（mcpServers 片段），任何支持 command/args 的客户端都能用
-
-    约定：
-      · --lang 可放在子命令前后：zh-Hans | en | ja | zh-Hant；缺省按 LANG 前缀推断。
-      · 每条命令成功返回 0，失败返回 1，用法错误返回 2。
-      · --json 时输出单个 JSON 对象，字段见 docs/cli.md。
-    """)
+    let commands: [(indent: Int, key: String)] = [
+        (2, "causal import <故事板.md> [输出.causal] [--title 标题] [--format storyboard|prose] [--lang zh-Hans|en|ja|zh-Hant] [--json]"),
+        (2, "causal info <工程包.causal> [--json]"),
+        (2, "causal validate <工程包.causal> [--json]"),
+        (2, "causal outline <工程包.causal> [--to 结局] [--json]"),
+        (2, "causal apply <工程包.causal> [--ops ops.json | --stdin] [--dry-run] [--json]"),
+        (2, "causal export <工程包.causal> [--out 文件]"),
+        (2, "causal contract <导出.json> [--json]"),
+        (2, "causal audit <工程包.causal> [--json] [--all]"),
+        (2, "causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md] [--json]"),
+        (2, "causal thread <工程包.causal> [--json]"),
+        (2, "causal branch <工程包.causal> [--to 结局] [--mode segments|per-path] [--json]"),
+        (2, "causal reach <工程包.causal> --from <卡片> [--json]"),
+        (2, "causal bench [工程包.causal] [--json]"),
+        (2, "causal history <工程包.causal> [--json]"),
+        (2, "causal undo <工程包.causal> [--steps 1] [--json]"),
+        (2, "causal redo <工程包.causal> [--steps 1] [--json]"),
+        (2, "causal mcp [--package 工程包.causal] [--transport stdio|http] [--host 127.0.0.1] [--port 8765]"),
+        (4, "MCP 服务器；默认 stdio。HTTP 需要 CAUSAL_MCP_TOKEN 或 --token / --token-file"),
+        (2, "causal mcp-config [--command 可执行文件路径]"),
+        (4, "打印通用 MCP 配置（mcpServers 片段），任何支持 command/args 的客户端都能用"),
+    ]
+    let notes = [
+        "· --lang 可放在子命令前后：zh-Hans | en | ja | zh-Hant；缺省按 LANG 前缀推断。",
+        "· 每条命令成功返回 0，失败返回 1，用法错误返回 2。",
+        "· --json 时输出单个 JSON 对象，字段见 docs/cli.md。",
+    ]
+    var lines = [
+        CoreText.text("causal — 因果的命令行接口与 MCP 服务器"),
+        "",
+        CoreText.text("用法："),
+    ]
+    lines += commands.map { String(repeating: " ", count: $0.indent) + CoreText.text($0.key) }
+    lines += ["", CoreText.text("约定：")]
+    lines += notes.map { "  " + CoreText.text($0) }
+    print(lines.joined(separator: "\n"))
 }
 
 // MARK: - 入口
 
 let extraction = Arguments.splittingLanguage(Array(CommandLine.arguments.dropFirst()))
 let raw = extraction.arguments
-guard let command = raw.first else {
-    usage()
-    exit(2)
-}
 var args = Arguments(Array(raw.dropFirst()))
 // 子命令前写下的 --lang 注入到统一参数表；命令自身的输出跟随同一套词条。
 if let language = extraction.language, args.values["lang"] == nil {
     args.values["lang"] = language
 }
+// 词条表先装好，用法说明才跟着 --lang 走。
 CLILanguage.install(explicit: args.values["lang"])
+guard let command = raw.first else {
+    usage()
+    exit(2)
+}
 switch command {
 case "import":
     exit(runImport(args))
@@ -428,17 +435,17 @@ case "mcp-config":
 case "mcp":
     let transport = args.values["transport"] ?? (args.flags.contains("http") ? "http" : "stdio")
     guard transport == "stdio" || transport == "http" else {
-        FileHandle.standardError.write(Data("未知传输：\(transport)（可用 stdio / http）\n".utf8))
+        FileHandle.standardError.write(Data((CoreText.format("未知传输：%@（可用 stdio / http）", transport) + "\n").utf8))
         exit(2)
     }
     guard let port = UInt16(args.values["port"] ?? "8765") else {
-        FileHandle.standardError.write(Data("端口不正确：\(args.values["port"] ?? "")\n".utf8))
+        FileHandle.standardError.write(Data((CoreText.format("端口不正确：%@", args.values["port"] ?? "") + "\n").utf8))
         exit(2)
     }
     var token = args.values["token"]
     if token == nil, let path = args.values["token-file"] {
         guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
-            FileHandle.standardError.write(Data("读不到 token 文件：\(path)\n".utf8))
+            FileHandle.standardError.write(Data((CoreText.format("读不到 token 文件：%@", path) + "\n").utf8))
             exit(2)
         }
         token = text.trimmingCharacters(in: .whitespacesAndNewlines)

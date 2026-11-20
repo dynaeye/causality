@@ -6,7 +6,7 @@ extension EditOperation {
         switch self {
         case let .insertSetting(value, index):
             guard !project.settings.contains(where: { $0.id == value.id }) else {
-                throw EditError.duplicateID("事实设定 \(value.id)")
+                throw EditError.duplicateID(CoreText.format("事实设定 %@", String(describing: value.id)))
             }
             project.settings.insert(value, at: clamped(index, project.settings.count))
 
@@ -33,7 +33,7 @@ extension EditOperation {
             project.settings[position] = normalized
 
         default:
-            throw EditError.invalidOperation("事实设定操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("事实设定操作收到 %@", String(describing: self)))
         }
     }
 
@@ -41,7 +41,7 @@ extension EditOperation {
         switch self {
         case let .insertAsset(value, index):
             guard !project.assets.contains(where: { $0.id == value.id }) else {
-                throw EditError.duplicateID("配图 \(value.id)")
+                throw EditError.duplicateID(CoreText.format("配图 %@", String(describing: value.id)))
             }
             project.assets.insert(value, at: clamped(index, project.assets.count))
 
@@ -61,7 +61,7 @@ extension EditOperation {
             project.assets[position] = after
 
         default:
-            throw EditError.invalidOperation("配图操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("配图操作收到 %@", String(describing: self)))
         }
     }
 
@@ -69,7 +69,7 @@ extension EditOperation {
         switch self {
         case let .insertDiscussion(value, index):
             guard !project.discussions.contains(where: { $0.id == value.id }) else {
-                throw EditError.duplicateID("讨论 \(value.id)")
+                throw EditError.duplicateID(CoreText.format("讨论 %@", String(describing: value.id)))
             }
             project.discussions.insert(value, at: clamped(index, project.discussions.count))
 
@@ -86,7 +86,7 @@ extension EditOperation {
             project.discussions[position] = after
 
         default:
-            throw EditError.invalidOperation("讨论操作收到 \(self)")
+            throw EditError.invalidOperation(CoreText.format("讨论操作收到 %@", String(describing: self)))
         }
     }
 }

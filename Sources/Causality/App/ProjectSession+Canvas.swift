@@ -6,7 +6,7 @@ extension ProjectSession {
         guard let project else { return }
         let operations = CanvasLayout.arrange(project: project, columns: columns)
         guard !operations.isEmpty else { return }
-        apply(operations, name: "重排故事图")
+        apply(operations, name: InterfaceLanguage.label("重排故事图"))
     }
 }
 

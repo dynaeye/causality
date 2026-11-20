@@ -14,7 +14,7 @@ public enum StoryboardMarkdown {
 
         public var description: String {
             switch self {
-            case .noContent: "没有找到可导入的章节或表格"
+            case .noContent: CoreText.text("没有找到可导入的章节或表格")
             }
         }
 

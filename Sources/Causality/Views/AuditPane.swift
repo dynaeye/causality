@@ -81,7 +81,7 @@ struct AuditPane: View {
             }
             Button("取消", role: .cancel) { waiverTarget = nil }
         } message: { finding in
-            Text("「\(finding.rule) \(finding.title)」将不再出现在体检里；理由会随工程包保存。")
+            Text(String(format: InterfaceLanguage.label("「%@ %@」将不再出现在体检里；理由会随工程包保存。"), finding.rule, finding.title))
         }
     }
 
@@ -109,7 +109,7 @@ struct AuditPane: View {
                     showingWaived.toggle()
                 }
             } label: {
-                Text("已忽略 \(session.auditWaivedFindings.count) 条")
+                Text(String(format: InterfaceLanguage.label("已忽略 %lld 条"), session.auditWaivedFindings.count))
                     .font(theme.fontMin)
             }
             .buttonStyle(.link)

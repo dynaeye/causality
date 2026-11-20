@@ -15,17 +15,17 @@ public enum EditError: Error, CustomStringConvertible, Equatable {
 
     public var description: String {
         switch self {
-        case let .nodeNotFound(id): "节点不存在：\(id)"
-        case let .edgeNotFound(id): "发展线不存在：\(id)"
-        case let .chapterNotFound(id): "章节不存在：\(id)"
-        case let .characterNotFound(id): "人物不存在：\(id)"
-        case let .placeNotFound(id): "地点不存在：\(id)"
-        case let .settingNotFound(id): "设定不存在：\(id)"
-        case let .assetNotFound(id): "配图不存在：\(id)"
-        case let .discussionNotFound(id): "讨论不存在：\(id)"
-        case let .duplicateID(what): "标识重复：\(what)"
-        case let .invalidOperation(reason): "操作非法：\(reason)"
-        case let .lockedSetting(id): "设定已锁定，不能改动：\(id)"
+        case let .nodeNotFound(id): CoreText.format("节点不存在：%@", String(describing: id))
+        case let .edgeNotFound(id): CoreText.format("发展线不存在：%@", String(describing: id))
+        case let .chapterNotFound(id): CoreText.format("章节不存在：%@", String(describing: id))
+        case let .characterNotFound(id): CoreText.format("人物不存在：%@", String(describing: id))
+        case let .placeNotFound(id): CoreText.format("地点不存在：%@", String(describing: id))
+        case let .settingNotFound(id): CoreText.format("设定不存在：%@", String(describing: id))
+        case let .assetNotFound(id): CoreText.format("配图不存在：%@", String(describing: id))
+        case let .discussionNotFound(id): CoreText.format("讨论不存在：%@", String(describing: id))
+        case let .duplicateID(what): CoreText.format("标识重复：%@", what)
+        case let .invalidOperation(reason): CoreText.format("操作非法：%@", reason)
+        case let .lockedSetting(id): CoreText.format("设定已锁定，不能改动：%@", String(describing: id))
         }
     }
 }
@@ -136,7 +136,7 @@ public enum EditOperation: Sendable, Equatable {
             try applyDiscussionChange(to: &project)
         case let .replaceAuditWaivers(before, after):
             guard project.auditWaivers == before else {
-                throw EditError.invalidOperation("体检忽略列表已变化")
+                throw EditError.invalidOperation(CoreText.text("体检忽略列表已变化"))
             }
             project.auditWaivers = after
         case let .setCanvasPoint(nodeID, _, after):
@@ -156,7 +156,7 @@ public enum EditOperation: Sendable, Equatable {
             project.logline = after.logline
         case let .replaceThreads(before, after):
             guard project.threads == before else {
-                throw EditError.invalidOperation("线索列表已变化")
+                throw EditError.invalidOperation(CoreText.text("线索列表已变化"))
             }
             project.threads = after
         case let .setCardGroupOverride(id, _, after):

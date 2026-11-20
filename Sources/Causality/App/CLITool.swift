@@ -22,17 +22,17 @@ enum CLITool {
         var errorDescription: String? {
             switch self {
             case .missingInApp:
-                "这个 App 里没有自带命令行（开发版常见）。请用官网 DMG 安装的版本。"
+                InterfaceLanguage.label("这个 App 里没有自带命令行（开发版常见）。请用官网 DMG 安装的版本。")
             case let .copyFailed(reason):
-                "复制失败：\(reason)"
+                String(format: InterfaceLanguage.label("复制失败：%@"), reason)
             case let .clientNotInstalled(name):
-                "没有找到 \(name) 的命令行，无法自动写入。可以用下面的配置手工粘贴。"
+                String(format: InterfaceLanguage.label("没有找到 %@ 的命令行，无法自动写入。可以用下面的配置手工粘贴。"), name)
             case let .configNotJSON(name):
-                "\(name) 的配置不是标准 JSON，没有改动它。点「打开配置文件」自己看一眼。"
+                String(format: InterfaceLanguage.label("%@ 的配置不是标准 JSON，没有改动它。点「在访达中显示」自己看一眼。"), name)
             case let .writeNotVerified(name):
-                "写进 \(name) 后回读对不上，请点「打开配置文件」确认。"
+                String(format: InterfaceLanguage.label("写进 %@ 后回读对不上，请点「在访达中显示」确认。"), name)
             case let .registerFailed(reason):
-                "写入失败：\(reason)"
+                String(format: InterfaceLanguage.label("写入失败：%@"), reason)
             }
         }
     }
@@ -114,23 +114,21 @@ enum CLIToolActions {
     static func installCLI() {
         guard let source = CLITool.bundledDirectory() else {
             present(
-                title: "这个版本没有自带命令行",
-                message: "官网 DMG 里的 App 自带命令行。开发和源码构建的版本不含它。"
+                title: InterfaceLanguage.label("这个版本没有自带命令行"),
+                message: InterfaceLanguage.label("官网 DMG 里的 App 自带命令行。开发和源码构建的版本不含它。")
             )
             return
         }
         do {
             let installed = try CLITool.install(from: source, into: CLITool.defaultInstallDirectory)
             present(
-                title: "命令行工具已装好",
-                message: """
-                位置：\(installed.path)
-
-                接下来在任意支持 MCP 的 AI 客户端里，用菜单「工具 › 复制 MCP 配置」拿到一段 JSON，贴进它的 MCP 配置即可。
-                """
+                title: InterfaceLanguage.label("命令行工具已装好"),
+                message: String(format: InterfaceLanguage.label("位置：%@"), installed.path)
+                    + "\n\n"
+                    + InterfaceLanguage.label("接下来在任意支持 MCP 的 AI 客户端里，用菜单「工具 › 复制 MCP 配置」拿到一段 JSON，贴进它的 MCP 配置即可。")
             )
         } catch {
-            present(title: "没装成", message: error.localizedDescription)
+            present(title: InterfaceLanguage.label("没装成"), message: error.localizedDescription)
         }
     }
 
@@ -141,13 +139,10 @@ enum CLIToolActions {
         pasteboard.clearContents()
         pasteboard.setString(config, forType: .string)
         present(
-            title: "MCP 配置已复制",
-            message: """
-            已复制到剪贴板：
-
-            \(config)
-            没有装命令行的话，先点「工具 › 安装命令行工具」。
-            """
+            title: InterfaceLanguage.label("MCP 配置已复制"),
+            message: InterfaceLanguage.label("已复制到剪贴板：")
+                + "\n\n" + config + "\n"
+                + InterfaceLanguage.label("没有装命令行的话，先点「工具 › 安装命令行工具」。")
         )
     }
 
@@ -156,7 +151,7 @@ enum CLIToolActions {
         alert.messageText = title
         alert.informativeText = message
         alert.alertStyle = .informational
-        alert.addButton(withTitle: "好")
+        alert.addButton(withTitle: InterfaceLanguage.label("好"))
         alert.runModal()
     }
 }
@@ -172,7 +167,7 @@ enum CLIClient: String, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .codex: "GPT（Codex）"
+        case .codex: InterfaceLanguage.label("GPT（Codex）")
         case .hermes: "Hermes"
         case .pi: "Pi"
         }
@@ -249,7 +244,7 @@ extension CLITool {
             guard process.terminationStatus == 0 else {
                 throw Failure.registerFailed(
                     text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                        ? "退出码 \(process.terminationStatus)"
+                        ? String(format: InterfaceLanguage.label("退出码 %lld"), Int(process.terminationStatus))
                         : text.trimmingCharacters(in: .whitespacesAndNewlines)
                 )
             }
@@ -272,7 +267,7 @@ extension CLIClient {
     /// 查这个客户端有没有配 causal、以及配的那条命令能不能起来。
     /// 判断依据：客户端自己的命令能查到条目 + `causal mcp` 真能完成一次握手。
     func check(cli: URL) async -> ClientMCPState {
-        guard let executable else { return .failed("没有找到它的命令行") }
+        guard let executable else { return .failed(InterfaceLanguage.label("没有找到它的命令行")) }
 
         // 1) 客户端自己怎么看待这条配置
         let (ok, output) = await CLIClient.run(
@@ -286,7 +281,7 @@ extension CLIClient {
             if lowered.contains("not found") || lowered.contains("no mcp servers") {
                 return .notConfigured
             }
-            return .failed(output.isEmpty ? "查询失败" : output)
+            return .failed(output.isEmpty ? InterfaceLanguage.label("查询失败") : output)
         }
         let configured: Bool
         switch self {
@@ -393,7 +388,7 @@ extension CLITool {
                     continuation.resume(returning: tools.count)
                     return
                 }
-                continuation.resume(throwing: Failure.registerFailed("MCP 没有回应握手"))
+                continuation.resume(throwing: Failure.registerFailed(InterfaceLanguage.label("MCP 没有回应握手")))
             }
         }
     }
@@ -414,7 +409,7 @@ enum ConfigClient: String, CaseIterable, Identifiable, Sendable {
 
     var displayName: String {
         switch self {
-        case .claudeDesktop: "Claude（桌面版）"
+        case .claudeDesktop: InterfaceLanguage.label("Claude（桌面版）")
         case .cursor: "Cursor"
         case .windsurf: "Windsurf"
         case .kiro: "Kiro"
@@ -499,7 +494,7 @@ enum ConfigClient: String, CaseIterable, Identifiable, Sendable {
         guard FileManager.default.fileExists(atPath: url.path) else { return .notConfigured }
         guard let data = try? Data(contentsOf: url),
               let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            return .notWritable("这份配置不是标准 JSON，我没敢改；可以用下面的「打开配置文件」自己看一眼")
+            return .notWritable(InterfaceLanguage.label("这份配置不是标准 JSON，我没敢改；可以用下面的「在访达中显示」自己看一眼"))
         }
         guard let servers = root[rootKey] as? [String: Any],
               let ours = servers[serverName] as? [String: Any] else {

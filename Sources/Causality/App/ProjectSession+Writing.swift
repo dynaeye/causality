@@ -72,7 +72,7 @@ extension ProjectSession {
             at: insertIndex(after: current, in: project),
             in: project
         )
-        apply(operations, name: "新建下一场")
+        apply(operations, name: InterfaceLanguage.label("新建下一场"))
         selectedNodeID = card.id
         return card.id
     }
@@ -100,7 +100,7 @@ extension ProjectSession {
             label: "",
             in: working
         )
-        apply(insertion + edge, name: "从本场分叉")
+        apply(insertion + edge, name: InterfaceLanguage.label("从本场分叉"))
         selectedNodeID = card.id
         return card.id
     }

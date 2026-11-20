@@ -36,7 +36,7 @@ struct SynopsisPane: View {
         HStack(spacing: 12) {
             Text("分支梗概")
                 .font(theme.fontTitle)
-            Text("\(groups.count) 个结局")
+            Text(String(format: InterfaceLanguage.label("%lld 个结局"), groups.count))
                 .font(theme.fontMin)
                 .foregroundStyle(theme.textTertiary)
 
@@ -94,7 +94,7 @@ struct SynopsisPane: View {
             HStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundStyle(theme.warning)
-                Text("「\(shared.map(\.title).joined(separator: InterfaceLanguage.listSeparator))」覆盖全部结局，读者每次都会经过。")
+                Text(String(format: InterfaceLanguage.label("「%@」覆盖全部结局，读者每次都会经过。"), shared.map(\.title).joined(separator: InterfaceLanguage.listSeparator)))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textSecondary)
                 Spacer()
@@ -108,10 +108,10 @@ struct SynopsisPane: View {
         let isExpanded = expanded.contains(group.endingID)
         return VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
-                Text("结局 · \(group.endingTitle)")
+                Text(String(format: InterfaceLanguage.label("结局 · %@"), group.endingTitle))
                     .font(theme.fontCardTitle)
                     .foregroundStyle(theme.textPrimary)
-                badge("\(group.cardCount) 张")
+                badge(LocalizedStringKey(String(format: InterfaceLanguage.label("%lld 张"), group.cardCount)))
                 badge(LocalizedStringKey(WordCountText.text(group.stats.wordCount)), warning: group.stats.thin)
                 if group.stats.thin {
                     Text("结局薄")
@@ -120,7 +120,7 @@ struct SynopsisPane: View {
                         .padding(.vertical, 1)
                         .background(theme.warning.opacity(0.16), in: Capsule())
                         .foregroundStyle(theme.warning)
-                        .help("独占卡只有 \(group.stats.exclusiveCount) 张：这个结局和别的结局走得太近。")
+                        .help(String(format: InterfaceLanguage.label("独占卡只有 %lld 张：这个结局和别的结局走得太近。"), group.stats.exclusiveCount))
                 }
                 if group.truncated {
                     Text("分支超过 24 条，按分叉分块")
@@ -179,7 +179,7 @@ struct SynopsisPane: View {
                 Text(block.label)
                     .font(theme.fontMinBold)
                     .foregroundStyle(theme.textSecondary)
-                Text("\(block.cardCount) 张 · \(blockWordCount(block)) 字")
+                Text(String(format: InterfaceLanguage.label("%lld 张 · %lld 字"), block.cardCount, blockWordCount(block)))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textTertiary)
                 Spacer()

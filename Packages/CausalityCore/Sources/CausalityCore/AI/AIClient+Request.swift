@@ -92,7 +92,7 @@ extension AIClient {
     func parseSchema(_ json: String) throws -> Any {
         guard let data = json.data(using: .utf8),
               let object = try? JSONSerialization.jsonObject(with: data) else {
-            throw AIError.unsupported("内置 JSON Schema 无法解析")
+            throw AIError.unsupported(CoreText.text("内置 JSON Schema 无法解析"))
         }
         return object
     }
@@ -104,7 +104,7 @@ extension AIClient {
         // `where` 只挂在最后一个模式上：拆开写，400 的参数错误才不会被当成模型下线。
         if [400, 403, 404].contains(http.statusCode), Self.isModelUnavailable(message) {
             throw AIError.modelUnavailable(
-                "模型不可用（\(message)）。多半是这个 ID 已下线或未对当前账号开放，换一个模型再试。"
+                CoreText.format("模型不可用（%@）。多半是这个 ID 已下线或未对当前账号开放，换一个模型再试。", message)
             )
         }
         switch http.statusCode {

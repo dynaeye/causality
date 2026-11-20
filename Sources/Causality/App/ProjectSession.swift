@@ -484,7 +484,7 @@ final class ProjectSession {
 
     func updateNode(_ id: NodeID, coalescingKey: String? = nil, _ body: @escaping (inout StoryNode) -> Void) {
         guard let project else { return }
-        apply(ProjectMutations.updateNode(id, in: project, body), name: "修改场景", coalescingKey: coalescingKey)
+        apply(ProjectMutations.updateNode(id, in: project, body), name: InterfaceLanguage.label("修改场景"), coalescingKey: coalescingKey)
     }
 
     func addNode(title: String = InterfaceLanguage.label("新场景"), kind: NodeKind = .event) {
@@ -499,21 +499,21 @@ final class ProjectSession {
         )
         var operations = ProjectMutations.appendNode(node, to: project)
         operations += ProjectMutations.setCanvasPoint(nextCanvasPoint(), for: node.id, in: project)
-        apply(operations, name: "新建场景")
+        apply(operations, name: InterfaceLanguage.label("新建场景"))
         selectedNodeID = node.id
     }
 
     func addChapter() {
         guard let project else { return }
         let chapter = Chapter(title: String(format: InterfaceLanguage.label("第%lld章"), project.chapters.count + 1))
-        apply(ProjectMutations.appendChapter(chapter, to: project), name: "新建章节")
+        apply(ProjectMutations.appendChapter(chapter, to: project), name: InterfaceLanguage.label("新建章节"))
         focusedChapterID = chapter.id
     }
 
     func addIdeaCard() {
         guard let project else { return }
         let node = StoryNode(status: .idea, title: InterfaceLanguage.label("灵感"))
-        apply(ProjectMutations.appendNode(node, to: project), name: "新建灵感卡")
+        apply(ProjectMutations.appendNode(node, to: project), name: InterfaceLanguage.label("新建灵感卡"))
         selectedNodeID = node.id
     }
 
@@ -528,7 +528,7 @@ final class ProjectSession {
                 condition: condition,
                 in: project
             ),
-            name: "连线"
+            name: InterfaceLanguage.label("连线")
         )
     }
 
@@ -536,7 +536,7 @@ final class ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.setCanvasPoint(point, for: id, in: project),
-            name: "移动卡片",
+            name: InterfaceLanguage.label("移动卡片"),
             coalescingKey: "canvas:\(id)"
         )
     }
@@ -563,7 +563,7 @@ final class ProjectSession {
             pendingAssets[asset.id] = data
             var operations = ProjectMutations.appendAsset(asset, to: project)
             operations += ProjectMutations.attachCover(asset.id, to: nodeID, in: project)
-            apply(operations, name: "添加配图")
+            apply(operations, name: InterfaceLanguage.label("添加配图"))
         }
     }
 
@@ -889,7 +889,7 @@ final class ProjectSession {
         guard let project else { return }
         let trimmed = renameDraft.trimmingCharacters(in: .whitespaces)
         guard !trimmed.isEmpty, trimmed != project.title else { return }
-        apply(ProjectMutations.updateHeader(title: trimmed, in: project), name: "改项目名")
+        apply(ProjectMutations.updateHeader(title: trimmed, in: project), name: InterfaceLanguage.label("改项目名"))
     }
 
     func clearErrorHistory() {
@@ -1130,8 +1130,8 @@ final class ProjectSession {
     var auditInfoCount: Int { auditFindings.count { $0.severity == .info } }
 
     func chapterTitle(_ id: ChapterID?) -> String {
-        guard let id, let project else { return "未分章" }
-        return project.chapter(id)?.title ?? "未分章"
+        guard let id, let project else { return InterfaceLanguage.label("未分章") }
+        return project.chapter(id)?.title ?? InterfaceLanguage.label("未分章")
     }
 
     var searchResults: [(node: StoryNode, chapterTitle: String)] {
@@ -1220,7 +1220,7 @@ enum AIState: Equatable {
     var displayText: String {
         switch self {
         case .idle: ""
-        case .waiting: "等待首个字…"
+        case .waiting: InterfaceLanguage.label("等待首个字…")
         case let .streaming(text): text
         case let .failed(message): String(format: InterfaceLanguage.label("失败：%@"), message)
         }

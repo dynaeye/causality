@@ -65,13 +65,13 @@ extension ProjectSession {
             subjectID: finding.subjectID,
             reason: reason.trimmingCharacters(in: .whitespacesAndNewlines)
         )
-        apply(ProjectMutations.addAuditWaiver(waiver, to: project), name: "忽略体检项")
+        apply(ProjectMutations.addAuditWaiver(waiver, to: project), name: InterfaceLanguage.label("忽略体检项"))
     }
 
     /// 把一条忽略记录撤掉，问题重新出现。
     func restoreWaiver(_ waiver: AuditWaiver) {
         guard let project else { return }
-        apply(ProjectMutations.removeAuditWaiver(waiver.id, in: project), name: "恢复体检项")
+        apply(ProjectMutations.removeAuditWaiver(waiver.id, in: project), name: InterfaceLanguage.label("恢复体检项"))
     }
 
     func waiver(for finding: AuditFinding) -> AuditWaiver? {

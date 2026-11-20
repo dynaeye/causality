@@ -87,7 +87,7 @@ extension InspectorPane {
                 value.title = title
                 value.text = text
             },
-            name: "编辑事实设定"
+            name: InterfaceLanguage.label("编辑事实设定")
         )
         editingSettingID = nil
     }
@@ -103,14 +103,14 @@ extension InspectorPane {
                 guard let project = session.project else { return }
                 session.apply(
                     ProjectMutations.setSettingConfirmed(setting.id, !setting.isConfirmed, in: project),
-                    name: "修改事实设定状态"
+                    name: InterfaceLanguage.label("修改事实设定状态")
                 )
             }
             Button(setting.isLocked ? LocalizedStringKey("解锁") : LocalizedStringKey("锁定")) {
                 guard let project = session.project else { return }
                 session.apply(
                     ProjectMutations.setSettingLocked(setting.id, !setting.isLocked, in: project),
-                    name: "修改事实设定锁"
+                    name: InterfaceLanguage.label("修改事实设定锁")
                 )
             }
             Divider()
@@ -118,7 +118,7 @@ extension InspectorPane {
                 guard let project = session.project else { return }
                 session.apply(
                     ProjectMutations.detachSetting(setting.id, from: node.id, in: project),
-                    name: "解除事实设定挂载"
+                    name: InterfaceLanguage.label("解除事实设定挂载")
                 )
             }
             if !setting.isLocked {
@@ -137,7 +137,7 @@ extension InspectorPane {
     private func deleteSetting(_ setting: Setting) {
         guard let project = session.project,
               let operations = try? ProjectMutations.deleteSetting(setting.id, in: project) else { return }
-        session.apply(operations, name: "删除事实设定")
+        session.apply(operations, name: InterfaceLanguage.label("删除事实设定"))
     }
 
     private func newSettingField(_ node: StoryNode) -> some View {
@@ -185,7 +185,7 @@ extension InspectorPane {
                 after.caption = newValue
                 self.session.apply(
                     [.replaceAsset(before: before, after: after)],
-                    name: "修改配图说明",
+                    name: InterfaceLanguage.label("修改配图说明"),
                     coalescingKey: "asset:\(asset.id):caption"
                 )
             }
@@ -239,14 +239,14 @@ extension InspectorPane {
                     let operations = edge.isMainline
                         ? ProjectMutations.clearMainline(edge.id, in: project)
                         : ProjectMutations.setMainline(edge.id, in: project)
-                    session.apply(operations, name: edge.isMainline ? "取消主线" : "设为主线")
+                    session.apply(operations, name: InterfaceLanguage.label(edge.isMainline ? "取消主线" : "设为主线"))
                 } label: {
                     Image(systemName: edge.isMainline ? "arrow.up.right.circle.fill" : "arrow.up.right.circle")
                         .font(theme.fontMin)
                         .foregroundStyle(edge.isMainline ? theme.accent : theme.textTertiary)
                 }
                 .buttonStyle(.plain)
-                .help(edge.isMainline ? "这条是这个选择点的主线去向（点一下取消）" : "把这个选择点的主线去向指到这条线")
+                .help(LocalizedStringKey(edge.isMainline ? "这条是这个选择点的主线去向（点一下取消）" : "把这个选择点的主线去向指到这条线"))
                 Text(LocalizedStringKey(edge.kind.displayName))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.lineColor(for: edge.kind))
@@ -257,7 +257,7 @@ extension InspectorPane {
                 Spacer()
                 Button {
                     guard let project = session.project else { return }
-                    session.apply(ProjectMutations.disconnect(edge.id, in: project), name: "删除发展线")
+                    session.apply(ProjectMutations.disconnect(edge.id, in: project), name: InterfaceLanguage.label("删除发展线"))
                 } label: {
                     Image(systemName: "trash")
                         .font(theme.fontMin)
@@ -274,7 +274,7 @@ extension InspectorPane {
 
     private func targetLabel(_ edge: StoryEdge) -> String {
         let node = session.project?.node(edge.to)
-        return session.chapterTitle(node?.chapterID) + " · " + (node?.title ?? "未知")
+        return session.chapterTitle(node?.chapterID) + " · " + (node?.title ?? InterfaceLanguage.label("未知"))
     }
 
     private func labelBinding(_ edge: StoryEdge) -> Binding<String> {
@@ -284,7 +284,7 @@ extension InspectorPane {
                 guard let project = self.session.project else { return }
                 self.session.apply(
                     ProjectMutations.updateEdge(edge.id, in: project) { $0.label = newValue },
-                    name: "修改连线文字",
+                    name: InterfaceLanguage.label("修改连线文字"),
                     coalescingKey: "edge:\(edge.id):label"
                 )
             }
@@ -300,7 +300,7 @@ extension InspectorPane {
                 Button {
                     session.selectedNodeID = edge.from
                 } label: {
-                    Text(session.project?.node(edge.from)?.title ?? "未知")
+                    Text(session.project?.node(edge.from)?.title ?? InterfaceLanguage.label("未知"))
                         .font(theme.fontMin)
                         .foregroundStyle(theme.textSecondary)
                         .lineLimit(1)
@@ -314,7 +314,7 @@ extension InspectorPane {
                             guard let project = session.project else { return }
                             session.apply(
                                 ProjectMutations.updateEdge(edge.id, in: project) { $0.kind = kind },
-                                name: "修改连线类型"
+                                name: InterfaceLanguage.label("修改连线类型")
                             )
                         }
                     }
@@ -329,7 +329,7 @@ extension InspectorPane {
                     Divider()
                     Button("删除这条线", role: .destructive) {
                         guard let project = session.project else { return }
-                        session.apply(ProjectMutations.disconnect(edge.id, in: project), name: "删除发展线")
+                        session.apply(ProjectMutations.disconnect(edge.id, in: project), name: InterfaceLanguage.label("删除发展线"))
                     }
                 } label: {
                     Image(systemName: "ellipsis")
@@ -355,7 +355,7 @@ extension InspectorPane {
         guard let project = session.project else { return }
         session.apply(
             ProjectMutations.updateEdge(edge.id, in: project) { $0.from = nodeID },
-            name: "更换来源场景"
+            name: InterfaceLanguage.label("更换来源场景")
         )
     }
 
@@ -392,7 +392,7 @@ extension InspectorPane {
 
     func setEntry(_ node: StoryNode, _ value: Bool) {
         guard let project = session.project else { return }
-        session.apply(ProjectMutations.setEntry(node.id, isEntry: value, in: project), name: "设置入口")
+        session.apply(ProjectMutations.setEntry(node.id, isEntry: value, in: project), name: InterfaceLanguage.label("设置入口"))
     }
 
     func setIdea(_ node: StoryNode, _ idea: Bool) {
@@ -404,7 +404,7 @@ extension InspectorPane {
 
     func delete(_ node: StoryNode) {
         guard let project = session.project else { return }
-        session.apply(ProjectMutations.deleteNode(node.id, in: project), name: "删除场景")
+        session.apply(ProjectMutations.deleteNode(node.id, in: project), name: InterfaceLanguage.label("删除场景"))
         session.selectedNodeID = nil
     }
 
@@ -425,7 +425,7 @@ extension InspectorPane {
         operations += ProjectMutations.updateNode(node.id, in: project) { value in
             value.characterIDs.append(character.id)
         }
-        session.apply(operations, name: "新建人物")
+        session.apply(operations, name: InterfaceLanguage.label("新建人物"))
         newCharacterName = ""
     }
 
@@ -438,7 +438,7 @@ extension InspectorPane {
         operations += ProjectMutations.updateNode(node.id, in: project) { value in
             value.settingIDs.append(setting.id)
         }
-        session.apply(operations, name: "新建事实设定")
+        session.apply(operations, name: InterfaceLanguage.label("新建事实设定"))
         newSettingTitle = ""
     }
 

@@ -76,7 +76,7 @@ extension ProjectSession {
         let request = AIRequest(
             provider: roleProvider,
             model: choice.model,
-            systemPrompt: "你在帮编剧润色分支梗概。保持事实、顺序与人物不变；用四句以内的中文；不写正文细节，不新增原文没有的情节；只输出润色后的梗概。",
+            systemPrompt: InterfaceLanguage.label("你在帮编剧润色分支梗概。保持事实、顺序与人物不变；用四句以内的原文语言；不写正文细节，不新增原文没有的情节；只输出润色后的梗概。"),
             userMessage: """
             原文：
             \(block.text)

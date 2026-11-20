@@ -48,7 +48,7 @@ struct AIPanel: View {
 
             HStack(spacing: 6) {
                 if let insertionLabel {
-                    Text("插入位置：\(insertionLabel)")
+                    Text(String(format: InterfaceLanguage.label("插入位置：%@"), insertionLabel))
                         .font(theme.fontMin)
                         .foregroundStyle(theme.warning)
                         .lineLimit(2)
@@ -102,7 +102,7 @@ struct AIPanel: View {
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textSecondary)
                 if let context = session.liveContext {
-                    Text("\(context.references.count) 项")
+                    Text(String(format: InterfaceLanguage.label("%lld 项"), context.references.count))
                         .font(theme.fontMin)
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -151,7 +151,7 @@ struct AIPanel: View {
             .foregroundStyle(excluded ? theme.textTertiary : theme.textPrimary)
         }
         .buttonStyle(.plain)
-        .help(excluded ? "重新加入本轮材料" : "从本轮材料里移除")
+        .help(LocalizedStringKey(excluded ? "重新加入本轮材料" : "从本轮材料里移除"))
     }
 
     private var allReferences: [AIContext.Reference] {
@@ -237,7 +237,7 @@ struct AIPanel: View {
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
         .disabled(session.aiState.isBusy)
-        .help("点按执行「\(primaryTitle)」，也可以从下拉里换一种提案范围")
+        .help(String(format: InterfaceLanguage.label("点按执行「%@」，也可以从下拉里换一种提案范围"), primaryTitle))
     }
 
     private var primaryTitle: String {

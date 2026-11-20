@@ -29,10 +29,10 @@ struct CharacterCardView: View {
             }
 
             HStack(spacing: 8) {
-                Text(node.hasAppeared ? LocalizedStringKey("出场 \(node.sceneCount)") : LocalizedStringKey("未出场"))
+                Text(node.hasAppeared ? LocalizedStringKey(String(format: InterfaceLanguage.label("出场 %lld"), node.sceneCount)) : LocalizedStringKey("未出场"))
                     .foregroundStyle(node.hasAppeared ? theme.textTertiary : theme.warning)
                 if node.selfAdvanceCount > 0 {
-                    Text("自身推进 \(node.selfAdvanceCount)")
+                    Text(String(format: InterfaceLanguage.label("自身推进 %lld"), node.selfAdvanceCount))
                         .foregroundStyle(theme.textTertiary)
                 }
             }

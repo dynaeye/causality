@@ -38,14 +38,14 @@ extension ProjectSession {
             name: trimmed.isEmpty ? InterfaceLanguage.label("新线索") : trimmed,
             kind: kind
         )
-        apply(ProjectMutations.appendThread(thread, to: project), name: "新建线索")
+        apply(ProjectMutations.appendThread(thread, to: project), name: InterfaceLanguage.label("新建线索"))
         focusedThreadID = thread.id
         return thread.id
     }
 
     func deleteThread(_ id: ThreadID) {
         guard let project else { return }
-        apply(ProjectMutations.deleteThread(id, in: project), name: "删除线索")
+        apply(ProjectMutations.deleteThread(id, in: project), name: InterfaceLanguage.label("删除线索"))
         if focusedThreadID == id {
             focusedThreadID = threads.first { $0.id != id }?.id
         }
@@ -56,7 +56,7 @@ extension ProjectSession {
         let entry = ThreadEntry(nodeID: nodeID, role: role, text: text)
         apply(
             ProjectMutations.addThreadEntry(entry, threadID: threadID, in: project),
-            name: "记在线索上"
+            name: InterfaceLanguage.label("记在线索上")
         )
     }
 
@@ -68,7 +68,7 @@ extension ProjectSession {
                     thread.entries[index].text = text
                 }
             },
-            name: "修改线索注记",
+            name: InterfaceLanguage.label("修改线索注记"),
             coalescingKey: "thread:\(threadID.rawValue.uuidString):\(entryID.uuidString)"
         )
     }
@@ -77,7 +77,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.updateThread(threadID, in: project) { $0.kind = kind },
-            name: "修改线索类型"
+            name: InterfaceLanguage.label("修改线索类型")
         )
     }
 
@@ -85,7 +85,7 @@ extension ProjectSession {
         guard let project else { return }
         apply(
             ProjectMutations.removeThreadEntry(entryID, threadID: threadID, in: project),
-            name: "移出线索"
+            name: InterfaceLanguage.label("移出线索")
         )
     }
 

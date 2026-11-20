@@ -28,7 +28,7 @@ public struct ScriptError: Error, CustomStringConvertible, LocalizedError {
     }
 
     public var description: String {
-        "第 \(index + 1) 条 \(op) 失败：\(reason)"
+        CoreText.format("第 %lld 条 %@ 失败：%@", index + 1, op, reason)
     }
 
     public var errorDescription: String? { description }
@@ -359,8 +359,8 @@ public enum OperationRunner {
         let matches = project.nodes.filter { $0.title == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到卡片「\(ref)」")
-        default: throw ResolveFailure(message: "卡片「\(ref)」重名，请改用 UUID：\(matches.map(\.id.rawValue.uuidString).joined(separator: ", "))")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到卡片「%@」", ref))
+        default: throw ResolveFailure(message: CoreText.format("卡片「%@」重名，请改用 UUID：%@", ref, matches.map(\.id.rawValue.uuidString).joined(separator: ", ")))
         }
     }
 
@@ -371,8 +371,8 @@ public enum OperationRunner {
         let matches = project.chapters.filter { $0.title == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到章节「\(ref)」")
-        default: throw ResolveFailure(message: "章节「\(ref)」重名，请改用 UUID")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到章节「%@」", ref))
+        default: throw ResolveFailure(message: CoreText.format("章节「%@」重名，请改用 UUID", ref))
         }
     }
 
@@ -383,8 +383,8 @@ public enum OperationRunner {
         let matches = project.edges.filter { $0.label == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到连线「\(ref)」，请用 UUID 或连线文字")
-        default: throw ResolveFailure(message: "连线文字「\(ref)」有多条，请改用 UUID")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到连线「%@」，请用 UUID 或连线文字", ref))
+        default: throw ResolveFailure(message: CoreText.format("连线文字「%@」有多条，请改用 UUID", ref))
         }
     }
 
@@ -395,8 +395,8 @@ public enum OperationRunner {
         let matches = project.characters.filter { $0.name == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到人物「\(ref)」")
-        default: throw ResolveFailure(message: "人物「\(ref)」重名，请改用 UUID")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到人物「%@」", ref))
+        default: throw ResolveFailure(message: CoreText.format("人物「%@」重名，请改用 UUID", ref))
         }
     }
 
@@ -407,8 +407,8 @@ public enum OperationRunner {
         let matches = project.places.filter { $0.name == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到地点「\(ref)」")
-        default: throw ResolveFailure(message: "地点「\(ref)」重名，请改用 UUID")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到地点「%@」", ref))
+        default: throw ResolveFailure(message: CoreText.format("地点「%@」重名，请改用 UUID", ref))
         }
     }
 
@@ -419,8 +419,8 @@ public enum OperationRunner {
         let matches = project.settings.filter { $0.title == ref }
         switch matches.count {
         case 1: return matches[0].id
-        case 0: throw ResolveFailure(message: "找不到事实设定「\(ref)」")
-        default: throw ResolveFailure(message: "事实设定「\(ref)」重名，请改用 UUID")
+        case 0: throw ResolveFailure(message: CoreText.format("找不到事实设定「%@」", ref))
+        default: throw ResolveFailure(message: CoreText.format("事实设定「%@」重名，请改用 UUID", ref))
         }
     }
 }

@@ -83,7 +83,7 @@ struct CharacterEditor: View {
                 Text(verbatim: character.name.isEmpty ? InterfaceLanguage.label("未命名人物") : character.name)
                     .font(theme.fontCardTitle)
                     .foregroundStyle(theme.textPrimary)
-                Text(node?.hasAppeared == true ? LocalizedStringKey("出场 \(node?.sceneCount ?? 0) 场 · 关系 \(node?.linkCount ?? 0) 条") : LocalizedStringKey("还没出场"))
+                Text(node?.hasAppeared == true ? LocalizedStringKey(String(format: InterfaceLanguage.label("出场 %lld 场 · 关系 %lld 条"), node?.sceneCount ?? 0, node?.linkCount ?? 0)) : LocalizedStringKey("还没出场"))
                     .font(theme.fontMin)
                     .foregroundStyle(node?.hasAppeared == true ? theme.textTertiary : theme.warning)
             }

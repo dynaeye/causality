@@ -243,10 +243,10 @@ public enum ProjectValidator {
         var issues: [String] = []
         for edge in project.edges {
             if index.nodeByID[edge.from] == nil {
-                issues.append("发展线 \(edge.id) 的起点 \(edge.from) 不存在")
+                issues.append(CoreText.format("发展线 %@ 的起点 %@ 不存在", String(describing: edge.id), String(describing: edge.from)))
             }
             if index.nodeByID[edge.to] == nil {
-                issues.append("发展线 \(edge.id) 的终点 \(edge.to) 不存在")
+                issues.append(CoreText.format("发展线 %@ 的终点 %@ 不存在", String(describing: edge.id), String(describing: edge.to)))
             }
         }
         return issues
@@ -257,19 +257,19 @@ public enum ProjectValidator {
         var issues: [String] = []
         for node in project.nodes {
             if let chapterID = node.chapterID, index.chapterByID[chapterID] == nil {
-                issues.append("节点 \(node.title) 指向不存在的章节 \(chapterID)")
+                issues.append(CoreText.format("节点 %@ 指向不存在的章节 %@", node.title, String(describing: chapterID)))
             }
             for id in node.characterIDs where index.characterByID[id] == nil {
-                issues.append("节点 \(node.title) 引用不存在的人物 \(id)")
+                issues.append(CoreText.format("节点 %@ 引用不存在的人物 %@", node.title, String(describing: id)))
             }
             for id in node.placeIDs where index.placeByID[id] == nil {
-                issues.append("节点 \(node.title) 引用不存在的地点 \(id)")
+                issues.append(CoreText.format("节点 %@ 引用不存在的地点 %@", node.title, String(describing: id)))
             }
             for id in node.settingIDs where index.settingByID[id] == nil {
-                issues.append("节点 \(node.title) 引用不存在的事实设定 \(id)")
+                issues.append(CoreText.format("节点 %@ 引用不存在的事实设定 %@", node.title, String(describing: id)))
             }
             if let assetID = node.coverAssetID, index.assetByID[assetID] == nil {
-                issues.append("节点 \(node.title) 引用不存在的配图 \(assetID)")
+                issues.append(CoreText.format("节点 %@ 引用不存在的配图 %@", node.title, String(describing: assetID)))
             }
         }
         return issues
@@ -282,14 +282,14 @@ public enum ProjectValidator {
             var seen = Set<NodeID>()
             for nodeID in chapter.order {
                 guard let node = index.nodeByID[nodeID] else {
-                    issues.append("章节 \(chapter.title) 的顺序表包含不存在的节点 \(nodeID)")
+                    issues.append(CoreText.format("章节 %@ 的顺序表包含不存在的节点 %@", chapter.title, String(describing: nodeID)))
                     continue
                 }
                 if node.chapterID != chapter.id {
-                    issues.append("章节 \(chapter.title) 的顺序表包含属于其它章的节点 \(node.title)")
+                    issues.append(CoreText.format("章节 %@ 的顺序表包含属于其它章的节点 %@", chapter.title, node.title))
                 }
                 if !seen.insert(nodeID).inserted {
-                    issues.append("章节 \(chapter.title) 的顺序表重复包含 \(node.title)")
+                    issues.append(CoreText.format("章节 %@ 的顺序表重复包含 %@", chapter.title, node.title))
                 }
             }
         }
@@ -300,19 +300,19 @@ public enum ProjectValidator {
     static func libraryIssues(_ project: StoryProject) -> [String] {
         var issues: [String] = []
         for setting in project.settings where setting.isLocked && !setting.isConfirmed {
-            issues.append("事实设定 \(setting.title) 已锁定但未确认")
+            issues.append(CoreText.format("事实设定 %@ 已锁定但未确认", setting.title))
         }
         var fileNames = Set<String>()
         for asset in project.assets where !fileNames.insert(asset.fileName).inserted {
-            issues.append("配图文件名重复：\(asset.fileName)")
+            issues.append(CoreText.format("配图文件名重复：%@", asset.fileName))
         }
         let nodeIDs = Set(project.nodes.map(\.id))
         for nodeID in project.canvas.keys where !nodeIDs.contains(nodeID) {
-            issues.append("画布坐标表包含不存在的节点 \(nodeID)")
+            issues.append(CoreText.format("画布坐标表包含不存在的节点 %@", String(describing: nodeID)))
         }
         let characterIDs = Set(project.characters.map(\.id))
         for characterID in project.characterCanvas.keys where !characterIDs.contains(characterID) {
-            issues.append("人物坐标表包含不存在的人物 \(characterID)")
+            issues.append(CoreText.format("人物坐标表包含不存在的人物 %@", String(describing: characterID)))
         }
         return issues
     }

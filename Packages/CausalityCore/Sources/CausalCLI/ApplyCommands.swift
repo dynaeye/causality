@@ -4,7 +4,7 @@ import CausalityCore
 /// `causal apply <工程包> [--ops 文件] [--stdin] [--dry-run] [--json]`
 func runApply(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal apply <工程包.causal> [--ops ops.json] [--stdin] [--dry-run]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal apply <工程包.causal> [--ops ops.json] [--stdin] [--dry-run]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
 
@@ -89,7 +89,7 @@ func runApply(_ args: Arguments) -> Int32 {
 /// `causal export <工程包> [--out 文件] [--json]`
 func runExport(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal export <工程包.causal> [--out 文件]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal export <工程包.causal> [--out 文件]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let loaded: LoadedProject
@@ -136,7 +136,7 @@ func runExport(_ args: Arguments) -> Int32 {
 /// `causal history <工程包> [--json]`
 func runHistory(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal history <工程包.causal> [--json]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal history <工程包.causal> [--json]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let entries: [SnapshotEntry]
@@ -182,7 +182,7 @@ func runHistory(_ args: Arguments) -> Int32 {
 /// `causal undo <工程包> [--steps N] [--json]`
 func runUndo(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal undo <工程包.causal> [--steps 1]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal undo <工程包.causal> [--steps 1]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let steps = Int(args.values["steps"] ?? "1") ?? 1
@@ -217,7 +217,7 @@ func runUndo(_ args: Arguments) -> Int32 {
 /// 校验一份导出文件是否满足当前 schemaVersion 的必填字段契约。
 func runContract(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal contract <导出.json> [--json]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal contract <导出.json> [--json]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     guard let data = try? Data(contentsOf: url) else {
@@ -249,7 +249,7 @@ func runContract(_ args: Arguments) -> Int32 {
 /// `causal redo <工程包> [--steps 1] [--json]`
 func runRedo(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal redo <工程包.causal> [--steps 1]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal redo <工程包.causal> [--steps 1]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let steps = Int(args.values["steps"] ?? "1") ?? 1

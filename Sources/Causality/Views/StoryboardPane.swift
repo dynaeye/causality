@@ -94,12 +94,12 @@ struct StoryboardPane: View {
             Button("删除", role: .destructive) {
                 chapterPendingDelete = nil
                 guard let project = session.project else { return }
-                session.apply(ProjectMutations.deleteChapter(chapter.id, in: project), name: "删除章节")
+                session.apply(ProjectMutations.deleteChapter(chapter.id, in: project), name: InterfaceLanguage.label("删除章节"))
             }
             Button("取消", role: .cancel) { chapterPendingDelete = nil }
         } message: { chapter in
             let count = session.cards(in: chapter.id).count
-            Text("「\(chapter.title)」和里面的 \(count) 张卡会一起删除，可以撤销。")
+            Text(String(format: InterfaceLanguage.label("「%@」和里面的 %lld 张卡会一起删除，可以撤销。"), chapter.title, count))
         }
     }
 
@@ -200,10 +200,10 @@ struct StoryboardPane: View {
                         }
                     }
                     .buttonStyle(.plain)
-                    .help("跨章出口：\(exit.from.title) → \(exit.to.title)")
+                    .help(String(format: InterfaceLanguage.label("跨章出口：%@ → %@"), exit.from.title, exit.to.title))
                 }
                 if exits.count > 3 {
-                    Text("+\(exits.count - 3) 条跨章")
+                    Text(String(format: InterfaceLanguage.label("+%lld 条跨章"), exits.count - 3))
                         .font(.system(size: 9))
                         .foregroundStyle(theme.textTertiary)
                 }
@@ -233,7 +233,7 @@ struct StoryboardPane: View {
                 id: edge.id.rawValue.uuidString,
                 from: from,
                 to: to,
-                chapterTitle: project.chapter(targetChapter)?.title ?? "另一章"
+                chapterTitle: project.chapter(targetChapter)?.title ?? InterfaceLanguage.label("另一章")
             ))
         }
         return exits
@@ -253,7 +253,7 @@ struct StoryboardPane: View {
                     .foregroundStyle(theme.textPrimary)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
-                Text("\(count) 张 · \(WordCountText.text(session.wordCounts.count(of: chapter.id)))")
+                Text(String(format: InterfaceLanguage.label("%lld 张 · %@"), count, WordCountText.text(session.wordCounts.count(of: chapter.id))))
                     .font(theme.fontMin)
                     .foregroundStyle(theme.textTertiary)
                     .lineLimit(1)
@@ -315,7 +315,7 @@ struct StoryboardPane: View {
                             .frame(width: 16, height: 16)
                             .background(branchColor(member.1), in: Circle())
                             .offset(x: -8, y: -8)
-                            .help("第 \(member.1 + 1) 条分支")
+                            .help(String(format: InterfaceLanguage.label("第 %lld 条分支"), member.1 + 1))
                     }
                     if closeGroup != nil {
                         Image(systemName: "diamond.fill")
@@ -373,7 +373,7 @@ struct StoryboardPane: View {
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: "rectangle.split.2x1")
-                Text("选项 \(group.branchCount) · \(titles)")
+                Text(String(format: InterfaceLanguage.label("选项 %lld · %@"), group.branchCount, titles))
                     .lineLimit(1)
                 Spacer()
                 Text("展开")

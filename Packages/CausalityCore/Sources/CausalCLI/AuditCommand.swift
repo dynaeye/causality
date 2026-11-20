@@ -4,7 +4,7 @@ import CausalityCore
 /// `causal audit <工程包> [--json] [--all]`
 func runAudit(_ args: Arguments) -> Int32 {
     guard let path = args.positional.first else {
-        return Output.failure("用法：causal audit <工程包.causal> [--json] [--all]", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal audit <工程包.causal> [--json] [--all]"), json: args.wantsJSON)
     }
     let url = URL(fileURLWithPath: path)
     let loaded: LoadedProject

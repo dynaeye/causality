@@ -77,7 +77,7 @@ func runReach(_ args: Arguments) -> Int32 {
     guard let (loaded, url) = loadPackage(args, command: "reach") else { return 1 }
     let project = loaded.project
     guard let ref = args.values["from"] ?? args.positional.first else {
-        return Output.failure("用法：causal reach <工程包> --from <卡片标题或 UUID>", json: args.wantsJSON)
+        return Output.failure(CoreText.text("用法：causal reach <工程包> --from <卡片标题或 UUID>"), json: args.wantsJSON)
     }
     guard let node = project.nodes.first(where: { $0.title == ref || $0.id.rawValue.uuidString == ref }) else {
         return Output.failure(CoreText.format("找不到卡片「%@」", ref), json: args.wantsJSON)

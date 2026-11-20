@@ -58,7 +58,7 @@ public enum KeychainError: Error, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case let .unhandled(status): "钥匙串写入失败（OSStatus \(status)）"
+        case let .unhandled(status): CoreText.format("钥匙串写入失败（OSStatus %lld）", Int(status))
         }
     }
 }

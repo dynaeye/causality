@@ -14,10 +14,10 @@ enum TextDraftField: Hashable, Sendable {
 
     var editName: String {
         switch self {
-        case .nodeBody: "修改正文"
-        case .nodeAnnotation: "修改注释"
-        case .characterSummary: "修改人物简介"
-        case .characterNotes: "修改人物备注"
+        case .nodeBody: InterfaceLanguage.label("修改正文")
+        case .nodeAnnotation: InterfaceLanguage.label("修改注释")
+        case .characterSummary: InterfaceLanguage.label("修改人物简介")
+        case .characterNotes: InterfaceLanguage.label("修改人物备注")
         }
     }
 

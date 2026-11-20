@@ -184,14 +184,19 @@ struct MindMapGraphView: View {
                 zoom = min(3, zoom * 1.25)
                 zoomStart = zoom
             } label: { Image(systemName: "plus.magnifyingglass") }
+            .help("放大")
+            .accessibilityLabel("放大")
             Button {
                 zoom = max(0.2, zoom / 1.25)
                 zoomStart = zoom
             } label: { Image(systemName: "minus.magnifyingglass") }
+            .help("缩小")
+            .accessibilityLabel("缩小")
             Button {
                 fit(rects: rects, in: size)
             } label: { Image(systemName: "arrow.up.left.and.arrow.down.right") }
             .help("适应窗口")
+            .accessibilityLabel("适应窗口")
         }
         .buttonStyle(.bordered)
     }

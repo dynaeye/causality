@@ -59,7 +59,7 @@ extension InspectorPane {
 
     func threadHint(_ node: StoryNode) -> String {
         let names = session.threads(at: node.id).map(\.name)
-        return names.isEmpty ? "未挂线索" : names.joined(separator: "、")
+        return names.isEmpty ? InterfaceLanguage.label("未挂线索") : names.joined(separator: InterfaceLanguage.listSeparator)
     }
 
     private func entryTextBinding(thread: StoryThread, entry: ThreadEntry) -> Binding<String> {

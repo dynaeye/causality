@@ -41,7 +41,7 @@ struct CharacterMatrixView: View {
             legendItem(.absent, color: theme.borderStrong)
             legendItem(.unwritten, color: theme.border)
             Spacer()
-            Text("\(matrix.rows.count) 人 × \(matrix.chapters.count) 章")
+            Text(String(format: InterfaceLanguage.label("%lld 人 × %lld 章"), matrix.rows.count, matrix.chapters.count))
                 .font(theme.fontMin)
                 .foregroundStyle(theme.textTertiary)
         }

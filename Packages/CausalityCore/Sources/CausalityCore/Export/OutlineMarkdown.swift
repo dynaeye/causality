@@ -9,17 +9,29 @@ public struct OutlineMarkdownDocument: Sendable, Equatable {
 
 /// 从同一份大纲快照生成 Markdown。与界面共用 `OutlineBuilder`，不另写一套推导。
 public enum OutlineMarkdown {
-    public static func render(project: StoryProject) -> String {
-        document(project: project).markdown
+    public static func render(
+        project: StoryProject,
+        label: (String) -> String = { $0 }
+    ) -> String {
+        document(project: project, label: label).markdown
     }
 
     /// 只导出通往某个结局的路径。
-    public static func render(project: StoryProject, route: StoryRoute) -> String {
-        document(project: project, route: route).markdown
+    public static func render(
+        project: StoryProject,
+        route: StoryRoute,
+        label: (String) -> String = { $0 }
+    ) -> String {
+        document(project: project, route: route, label: label).markdown
     }
 
-    public static func render(project: StoryProject, outlines: [ChapterOutline], routeTitle: String? = nil) -> String {
-        document(project: project, outlines: outlines, routeTitle: routeTitle).markdown
+    public static func render(
+        project: StoryProject,
+        outlines: [ChapterOutline],
+        routeTitle: String? = nil,
+        label: (String) -> String = { $0 }
+    ) -> String {
+        document(project: project, outlines: outlines, routeTitle: routeTitle, label: label).markdown
     }
 
     public static func document(project: StoryProject, label: (String) -> String = { $0 }) -> OutlineMarkdownDocument {
@@ -83,8 +95,8 @@ public enum OutlineMarkdown {
                 for point in ThreadSpine.points(for: thread, in: project) {
                     if let allowedNodes, !allowedNodes.contains(point.entry.nodeID) { continue }
                     let role = label(point.entry.role.displayName)
-                    let text = point.entry.text.isEmpty ? "" : "：\(point.entry.text)"
-                    lines.append("- \(role)：\(point.chapterTitle) · \(point.node.title)\(text)")
+                    let text = point.entry.text.isEmpty ? "" : label("：") + point.entry.text
+                    lines.append("- \(role)\(label("："))\(point.chapterTitle) · \(point.node.title)\(text)")
                 }
             }
         }
@@ -157,23 +169,23 @@ public enum OutlineMarkdown {
         let characterNames = node.characterIDs.compactMap { index.characterByID[$0]?.name }
         if !characterNames.isEmpty {
             lines.append("")
-            lines.append("\(pad)- \(label("出场"))：\(characterNames.joined(separator: "、"))")
+            lines.append("\(pad)- \(label("出场"))\(label("："))\(characterNames.joined(separator: label("、")))")
         }
         let placeNames = node.placeIDs.compactMap { index.placeByID[$0]?.name }
         if !placeNames.isEmpty {
-            lines.append("\(pad)- \(label("地点"))：\(placeNames.joined(separator: "、"))")
+            lines.append("\(pad)- \(label("地点"))\(label("："))\(placeNames.joined(separator: label("、")))")
         }
         let settingTitles = node.settingIDs.compactMap { index.settingByID[$0]?.title }
         if !settingTitles.isEmpty {
-            lines.append("\(pad)- \(label("事实设定"))：\(settingTitles.joined(separator: "、"))")
+            lines.append("\(pad)- \(label("事实设定"))\(label("："))\(settingTitles.joined(separator: label("、")))")
         }
         if let assetID = node.coverAssetID, let asset = index.assetByID[assetID] {
             let caption = asset.caption.isEmpty ? asset.fileName : asset.caption
             assets.insert(asset.fileName)
-            lines.append("\(pad)- \(label("配图"))：![\(caption)](assets/\(asset.fileName))")
+            lines.append("\(pad)- \(label("配图"))\(label("："))![\(caption)](assets/\(asset.fileName))")
         }
         if !node.annotation.isEmpty {
-            lines.append("\(pad)- \(label("注释"))：\(node.annotation)")
+            lines.append("\(pad)- \(label("注释"))\(label("："))\(node.annotation)")
         }
         return lines
     }

@@ -17,6 +17,6 @@ public enum ProjectMigration {
     /// 读到更老的工程包时，给一条可读提示。
     public static func warning(found: Int, current: Int) -> String? {
         guard found < current else { return nil }
-        return "工程包是 v\(found) 版本，已按 v\(current) 读取并升级。"
+        return CoreText.format("工程包是 v%lld 版本，已按 v%lld 读取并升级。", found, current)
     }
 }

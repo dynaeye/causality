@@ -19,7 +19,7 @@ func runBench(_ args: Arguments) -> Int32 {
     } else {
         let temp = FileManager.default.temporaryDirectory
             .appendingPathComponent("causal-bench-\(UUID().uuidString)", isDirectory: true)
-        let url = temp.appendingPathComponent("基准.\(ProjectPackage.fileExtension)", isDirectory: true)
+        let url = temp.appendingPathComponent(CoreText.text("基准") + "." + ProjectPackage.fileExtension, isDirectory: true)
         project = BenchmarkFixture.make()
         do {
             try ProjectPackage.save(project, to: url)

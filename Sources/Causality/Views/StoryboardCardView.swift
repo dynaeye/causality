@@ -227,7 +227,7 @@ struct StoryboardCardView: View {
             guard let project = session.project else { return }
             session.apply(
                 ProjectMutations.setEntry(node.id, isEntry: !node.isEntry, in: project),
-                name: "设置入口"
+                name: InterfaceLanguage.label("设置入口")
             )
         }
         Button("选择配图…") {
@@ -236,7 +236,7 @@ struct StoryboardCardView: View {
         Divider()
         Button("删除这张卡", role: .destructive) {
             guard let project = session.project else { return }
-            session.apply(ProjectMutations.deleteNode(node.id, in: project), name: "删除卡片")
+            session.apply(ProjectMutations.deleteNode(node.id, in: project), name: InterfaceLanguage.label("删除卡片"))
             if session.selectedNodeID == node.id {
                 session.selectedNodeID = nil
             }

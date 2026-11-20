@@ -118,7 +118,7 @@ struct CanvasPane: View {
         } label: {
             HStack(spacing: 5) {
                 Image(systemName: "paintpalette")
-                Text(threadFilter.flatMap { id in session.threads.first { $0.id == id }?.name } ?? "按线索着色")
+                Text(threadFilter.flatMap { id in session.threads.first { $0.id == id }?.name } ?? InterfaceLanguage.label("按线索着色"))
             }
             .font(.system(size: 11))
             .foregroundStyle(theme.textSecondary)
@@ -130,7 +130,7 @@ struct CanvasPane: View {
         .menuStyle(.borderlessButton)
         .fixedSize()
         .disabled(session.threads.isEmpty)
-        .help(session.threads.isEmpty ? "还没有线索" : "只亮这条线索上的卡")
+        .help(LocalizedStringKey(session.threads.isEmpty ? "还没有线索" : "只亮这条线索上的卡"))
     }
 
     // MARK: 手势
@@ -237,7 +237,7 @@ struct CanvasPane: View {
             Divider()
             Button("删除场景", role: .destructive) {
                 guard let project = session.project else { return }
-                session.apply(ProjectMutations.deleteNode(node.id, in: project), name: "删除场景")
+                session.apply(ProjectMutations.deleteNode(node.id, in: project), name: InterfaceLanguage.label("删除场景"))
                 if session.selectedNodeID == node.id {
                     session.selectedNodeID = nil
                 }
@@ -673,11 +673,15 @@ struct CanvasPane: View {
                 zoom = min(2.5, zoom * 1.25)
                 zoomStart = zoom
             } label: { Image(systemName: "plus.magnifyingglass") }
+            .help("放大")
+            .accessibilityLabel("放大")
             Button {
                 userAdjusted = true
                 zoom = max(0.3, zoom / 1.25)
                 zoomStart = zoom
             } label: { Image(systemName: "minus.magnifyingglass") }
+            .help("缩小")
+            .accessibilityLabel("缩小")
             Button {
                 userAdjusted = true
                 zoom = 1
@@ -686,6 +690,7 @@ struct CanvasPane: View {
                 panStart = .zero
             } label: { Image(systemName: "1.magnifyingglass") }
             .help("回到 100%")
+            .accessibilityLabel("回到 100%")
             Button {
                 userAdjusted = false
                 if let project = session.project {
@@ -695,6 +700,7 @@ struct CanvasPane: View {
                 }
             } label: { Image(systemName: "arrow.up.left.and.arrow.down.right") }
             .help("适应窗口")
+            .accessibilityLabel("适应窗口")
         }
         .buttonStyle(.bordered)
         .padding(12)

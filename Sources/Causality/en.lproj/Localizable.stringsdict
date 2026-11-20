@@ -2,863 +2,863 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>%lld 张 · %@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ · %@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>%lld 个结局</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld ending</string>
-      <key>other</key>
-      <string>%lld endings</string>
-    </dict>
-  </dict>
-  <key>%lld 张 · %lld 字</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ · %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld word</string>
-      <key>other</key>
-      <string>%lld words</string>
-    </dict>
-  </dict>
-  <key>%lld 项建议</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld suggestion</string>
-      <key>other</key>
-      <string>%lld suggestions</string>
-    </dict>
-  </dict>
-  <key>%lld 条</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld item</string>
-      <key>other</key>
-      <string>%lld items</string>
-    </dict>
-  </dict>
-  <key>%lld 人 × %lld 章</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ × %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld character</string>
-      <key>other</key>
-      <string>%lld characters</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld chapter</string>
-      <key>other</key>
-      <string>%lld chapters</string>
-    </dict>
-  </dict>
-  <key>%lld 场</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld scene</string>
-      <key>other</key>
-      <string>%lld scenes</string>
-    </dict>
-  </dict>
-  <key>%lld 项</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld item</string>
-      <key>other</key>
-      <string>%lld items</string>
-    </dict>
-  </dict>
-  <key>「%@」和里面的 %lld 张卡会一起删除，可以撤销。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Delete “%@” and its %#@v0@? You can undo this.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>体检：%lld 个错误</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Check: %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld error</string>
-      <key>other</key>
-      <string>%lld errors</string>
-    </dict>
-  </dict>
-  <key>%@ · %lld 步%@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%@ · %#@v0@%@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-  </dict>
-  <key>出场 %lld 场 · 关系 %lld 条</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Appears in %#@v0@ · %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld scene</string>
-      <key>other</key>
-      <string>%lld scenes</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld link</string>
-      <key>other</key>
-      <string>%lld links</string>
-    </dict>
-  </dict>
-  <key>%lld 人 · 同场 %lld 条 · 因果 %lld 条</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ · %lld co-appearances · %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld person</string>
-      <key>other</key>
-      <string>%lld people</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld causal link</string>
-      <key>other</key>
-      <string>%lld causal links</string>
-    </dict>
-  </dict>
-  <key>路上 %lld 张 · %@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ on the path · %@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>%lld 步 · 累计 %@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ · %@ total</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-  </dict>
-  <key>出场 %lld 人</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld character</string>
-      <key>other</key>
-      <string>%lld characters</string>
-    </dict>
-  </dict>
-  <key>目标 %lld 字</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Target %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld word</string>
-      <key>other</key>
-      <string>%lld words</string>
-    </dict>
-  </dict>
-  <key>%lld 张</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>%lld 步</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-  </dict>
-  <key>提案：%@（可采纳 %lld 项）</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Proposal: %@ (%#@v0@ can be adopted)</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld item</string>
-      <key>other</key>
-      <string>%lld items</string>
-    </dict>
-  </dict>
-  <key>「%@」离入口只有 %lld 步，全书最长路径 %lld 层。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>“%@” is only %#@v0@ from an entry; the longest path is %#@v1@.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld level</string>
-      <key>other</key>
-      <string>%lld levels</string>
-    </dict>
-  </dict>
-  <key>「%@」有 %lld 条分支，都没有写条件。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>“%@” has %#@v0@, none with a condition.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld branch</string>
-      <key>other</key>
-      <string>%lld branches</string>
-    </dict>
-  </dict>
-  <key>「%@」有 %lld 张同名卡。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>“%@” has %#@v0@ with the same title.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>回复被截断（输出预算 %lld tokens</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Reply truncated (output budget %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld token</string>
-      <key>other</key>
-      <string>%lld tokens</string>
-    </dict>
-  </dict>
-  <key>只能作为建议 %lld 项</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ are suggestions only</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld item</string>
-      <key>other</key>
-      <string>%lld items</string>
-    </dict>
-  </dict>
-  <key>共 %lld 步，累计 %lld 字。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@, %#@v1@ total.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld word</string>
-      <key>other</key>
-      <string>%lld words</string>
-    </dict>
-  </dict>
-  <key>- 最短 %lld 步 · 最长 %lld 步</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>- Shortest %#@v0@ · Longest %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-  </dict>
-  <key>%lld 张卡</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>%lld 张卡：</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@: </string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>- %@ × %lld 场</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>- %@ × %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld scene</string>
-      <key>other</key>
-      <string>%lld scenes</string>
-    </dict>
-  </dict>
-  <key>出场 %lld 场：</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Appears in %#@v0@: </string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld scene</string>
-      <key>other</key>
-      <string>%lld scenes</string>
-    </dict>
-  </dict>
-  <key>【%@】 %lld 张</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>[%@] %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>共 %lld 个错误 · %lld 个警告 · %lld 个提示（已忽略 %lld 条）</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ · %#@v1@ · %#@v2@ (%lld ignored)</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld error</string>
-      <key>other</key>
-      <string>%lld errors</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld warning</string>
-      <key>other</key>
-      <string>%lld warnings</string>
-    </dict>
-    <key>v2</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld note</string>
-      <key>other</key>
-      <string>%lld notes</string>
-    </dict>
-  </dict>
-  <key>已写出 %@（%lld 字节）</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Wrote %@ (%#@v0@)</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld byte</string>
-      <key>other</key>
-      <string>%lld bytes</string>
-    </dict>
-  </dict>
-  <key>%@ %@  r%lld  %lld 字节  %@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%@ %@  r%lld  %#@v0@  %@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld byte</string>
-      <key>other</key>
-      <string>%lld bytes</string>
-    </dict>
-  </dict>
-  <key>规模：节点 %lld · 因果 %lld · 章节 %lld</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Scale: %#@v0@ · %#@v1@ · %#@v2@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld node</string>
-      <key>other</key>
-      <string>%lld nodes</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld causal link</string>
-      <key>other</key>
-      <string>%lld causal links</string>
-    </dict>
-    <key>v2</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld chapter</string>
-      <key>other</key>
-      <string>%lld chapters</string>
-    </dict>
-  </dict>
-  <key>取卡 %lld 次 %.2f ms（%lld 张）</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%#@v0@ %.2f ms (%#@v1@)</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card lookup</string>
-      <key>other</key>
-      <string>%lld card lookups</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>大纲行 %lld · Markdown %lld 字节 · 主线 %lld 张卡</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Outline rows %lld · Markdown %#@v0@ · Mainline %#@v1@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld byte</string>
-      <key>other</key>
-      <string>%lld bytes</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>结局 · %@　　%lld 张卡</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Ending · %@　　%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>结局「%@」　%lld 张卡</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Ending “%@”　%#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
-  <key>  · %@　%lld 步　%@</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>  · %@　%#@v0@　%@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-  </dict>
-  <key>%lld. %@　+%lld 字（累计 %lld）</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>%lld. %@　+%#@v0@ (%lld total)</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld word</string>
-      <key>other</key>
-      <string>%lld words</string>
-    </dict>
-  </dict>
-  <key>到达结局。共 %lld 步，%lld 字。</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Reached the ending. %#@v0@, %#@v1@.</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld step</string>
-      <key>other</key>
-      <string>%lld steps</string>
-    </dict>
-    <key>v1</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld word</string>
-      <key>other</key>
-      <string>%lld words</string>
-    </dict>
-  </dict>
-  <key>重排 %lld 张卡</key>
-  <dict>
-    <key>NSStringLocalizedFormatKey</key>
-    <string>Rearranged %#@v0@</string>
-    <key>v0</key>
-    <dict>
-      <key>NSStringFormatSpecTypeKey</key>
-      <string>NSStringPluralRuleType</string>
-      <key>NSStringFormatValueTypeKey</key>
-      <string>lld</string>
-      <key>one</key>
-      <string>%lld card</string>
-      <key>other</key>
-      <string>%lld cards</string>
-    </dict>
-  </dict>
+	<key>  · %@　%lld 步　%@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>  · %@ %#@v0@ %@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+	</dict>
+	<key>%@ %@  r%lld  %lld 字节  %@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ %@  r%lld  %#@v0@  %@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld byte</string>
+			<key>other</key>
+			<string>%lld bytes</string>
+		</dict>
+	</dict>
+	<key>%@ · %lld 步%@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ · %#@v0@%@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+	</dict>
+	<key>%lld 个结局</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld ending</string>
+			<key>other</key>
+			<string>%lld endings</string>
+		</dict>
+	</dict>
+	<key>%lld 人 · 同场 %lld 条 · 因果 %lld 条</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ · %lld co-appearances · %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld person</string>
+			<key>other</key>
+			<string>%lld people</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld causal link</string>
+			<key>other</key>
+			<string>%lld causal links</string>
+		</dict>
+	</dict>
+	<key>%lld 人 × %lld 章</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ × %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld character</string>
+			<key>other</key>
+			<string>%lld characters</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld chapter</string>
+			<key>other</key>
+			<string>%lld chapters</string>
+		</dict>
+	</dict>
+	<key>%lld 场</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld scene</string>
+			<key>other</key>
+			<string>%lld scenes</string>
+		</dict>
+	</dict>
+	<key>%lld 张</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>%lld 张 · %@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ · %@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>%lld 张 · %lld 字</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ · %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld word</string>
+			<key>other</key>
+			<string>%lld words</string>
+		</dict>
+	</dict>
+	<key>%lld 张卡</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>%lld 张卡：</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@: </string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>%lld 条</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld item</string>
+			<key>other</key>
+			<string>%lld items</string>
+		</dict>
+	</dict>
+	<key>%lld 步</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+	</dict>
+	<key>%lld 步 · 累计 %@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ · %@ total</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+	</dict>
+	<key>%lld 项</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld item</string>
+			<key>other</key>
+			<string>%lld items</string>
+		</dict>
+	</dict>
+	<key>%lld 项建议</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld suggestion</string>
+			<key>other</key>
+			<string>%lld suggestions</string>
+		</dict>
+	</dict>
+	<key>%lld. %@　+%lld 字（累计 %lld）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%lld. %@ +%#@v0@ (%lld total)</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld word</string>
+			<key>other</key>
+			<string>%lld words</string>
+		</dict>
+	</dict>
+	<key>- %@ × %lld 场</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>- %@ × %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld scene</string>
+			<key>other</key>
+			<string>%lld scenes</string>
+		</dict>
+	</dict>
+	<key>- 最短 %lld 步 · 最长 %lld 步</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>- Shortest %#@v0@ · Longest %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+	</dict>
+	<key>「%@」和里面的 %lld 张卡会一起删除，可以撤销。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Delete “%@” and its %#@v0@? You can undo this.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>「%@」有 %lld 张同名卡。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>“%@” has %#@v0@ with the same title.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>「%@」有 %lld 条分支，都没有写条件。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>“%@” has %#@v0@, none with a condition.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld branch</string>
+			<key>other</key>
+			<string>%lld branches</string>
+		</dict>
+	</dict>
+	<key>「%@」离入口只有 %lld 步，全书最长路径 %lld 层。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>“%@” is only %#@v0@ from an entry; the longest path is %#@v1@.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld level</string>
+			<key>other</key>
+			<string>%lld levels</string>
+		</dict>
+	</dict>
+	<key>【%@】 %lld 张</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>[%@] %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>体检：%lld 个错误</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Check: %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld error</string>
+			<key>other</key>
+			<string>%lld errors</string>
+		</dict>
+	</dict>
+	<key>共 %lld 个错误 · %lld 个警告 · %lld 个提示（已忽略 %lld 条）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ · %#@v1@ · %#@v2@ (%lld ignored)</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld error</string>
+			<key>other</key>
+			<string>%lld errors</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld warning</string>
+			<key>other</key>
+			<string>%lld warnings</string>
+		</dict>
+		<key>v2</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld note</string>
+			<key>other</key>
+			<string>%lld notes</string>
+		</dict>
+	</dict>
+	<key>共 %lld 步，累计 %lld 字。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@, %#@v1@ total.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld word</string>
+			<key>other</key>
+			<string>%lld words</string>
+		</dict>
+	</dict>
+	<key>出场 %lld 人</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld character</string>
+			<key>other</key>
+			<string>%lld characters</string>
+		</dict>
+	</dict>
+	<key>出场 %lld 场 · 关系 %lld 条</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Appears in %#@v0@ · %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld scene</string>
+			<key>other</key>
+			<string>%lld scenes</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld link</string>
+			<key>other</key>
+			<string>%lld links</string>
+		</dict>
+	</dict>
+	<key>出场 %lld 场：</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Appears in %#@v0@: </string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld scene</string>
+			<key>other</key>
+			<string>%lld scenes</string>
+		</dict>
+	</dict>
+	<key>到达结局。共 %lld 步，%lld 字。</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Reached the ending. %#@v0@, %#@v1@.</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld step</string>
+			<key>other</key>
+			<string>%lld steps</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld word</string>
+			<key>other</key>
+			<string>%lld words</string>
+		</dict>
+	</dict>
+	<key>取卡 %lld 次 %.2f ms（%lld 张）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ %.2f ms (%#@v1@)</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card lookup</string>
+			<key>other</key>
+			<string>%lld card lookups</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>只能作为建议 %lld 项</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ are suggestions only</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld item</string>
+			<key>other</key>
+			<string>%lld items</string>
+		</dict>
+	</dict>
+	<key>回复被截断（输出预算 %lld tokens</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Reply truncated (output budget %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld token</string>
+			<key>other</key>
+			<string>%lld tokens</string>
+		</dict>
+	</dict>
+	<key>大纲行 %lld · Markdown %lld 字节 · 主线 %lld 张卡</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Outline rows %lld · Markdown %#@v0@ · Mainline %#@v1@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld byte</string>
+			<key>other</key>
+			<string>%lld bytes</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>已写出 %@（%lld 字节）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Wrote %@ (%#@v0@)</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld byte</string>
+			<key>other</key>
+			<string>%lld bytes</string>
+		</dict>
+	</dict>
+	<key>提案：%@（可采纳 %lld 项）</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Proposal: %@ (%#@v0@ can be adopted)</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld item</string>
+			<key>other</key>
+			<string>%lld items</string>
+		</dict>
+	</dict>
+	<key>目标 %lld 字</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Target %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld word</string>
+			<key>other</key>
+			<string>%lld words</string>
+		</dict>
+	</dict>
+	<key>结局 · %@　　%lld 张卡</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Ending · %@  %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>结局「%@」　%lld 张卡</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Ending “%@” %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>规模：节点 %lld · 因果 %lld · 章节 %lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Scale: %#@v0@ · %#@v1@ · %#@v2@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld node</string>
+			<key>other</key>
+			<string>%lld nodes</string>
+		</dict>
+		<key>v1</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld causal link</string>
+			<key>other</key>
+			<string>%lld causal links</string>
+		</dict>
+		<key>v2</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld chapter</string>
+			<key>other</key>
+			<string>%lld chapters</string>
+		</dict>
+	</dict>
+	<key>路上 %lld 张 · %@</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@v0@ on the path · %@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
+	<key>重排 %lld 张卡</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Rearranged %#@v0@</string>
+		<key>v0</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -1,2 +1,3 @@
 CFBundleName = "Causality";
 CFBundleDisplayName = "Causality";
+CFBundleTypeName = "因果项目";
