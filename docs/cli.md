@@ -19,23 +19,26 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 
 | Command | Purpose |
 | --- | --- |
-| `causal import <storyboard.md> [output.causal] [--title title] [--lang en\|ja\|zh-Hant]` | Turn a text storyboard into a project package; `--lang` picks the phrasing language (English/Japanese table headers, three-part card labels, CLI messages) |
-| `causal info <package.causal>` | Print chapters, cards, causality, idea cards |
-| `causal validate <package.causal>` | Run model-layer validation; exit 1 when something is wrong |
-| `causal outline <package.causal>` | Print the derived outline (Markdown) |
-| `causal apply <package.causal> --ops ops.json` | Edit a project from a script and write the package back |
-| `causal undo <package.causal> [--steps N]` | Step back through history snapshots |
-| `causal redo <package.causal> [--steps N]` | Reapply what was just stepped back |
-| `causal export <package.causal> [--out file]` | Export the full project.json, after the contract check |
+| `causal import <storyboard.md> [output.causal] [--title <title>] [--format storyboard\|prose] [--lang en\|ja\|zh-Hant]` | Turn a text storyboard into a project package; `--lang` picks the phrasing language (English/Japanese table headers, three-part card labels, CLI messages) |
+| `causal info <project.causal>` | Print chapters, cards, causality, idea cards |
+| `causal validate <project.causal>` | Run model-layer validation; exit 1 when something is wrong |
+| `causal outline <project.causal> [--to <ending>]` | Print the derived outline (Markdown) |
+| `causal apply <project.causal> [--ops ops.json \| --stdin]` | Edit a project from a script and write the package back |
+| `causal undo <project.causal> [--steps N]` | Step back through history snapshots |
+| `causal redo <project.causal> [--steps N]` | Reapply what was just stepped back |
+| `causal export <project.causal> [--out <file>]` | Export the full project.json, after the contract check |
 | `causal contract <export.json>` | Check required fields against schemaVersion |
-| `causal audit <package.causal> [--all]` | Run the N01–N21 Story Check; exit 1 on errors |
-| `causal branch <package.causal> [--to ending] [--mode segments\|per-path]` | Branch synopsis |
-| `causal reach <package.causal> --from <card>` | Which endings a card can reach, and how many steps away |
-| `causal play <package.causal> [--choices 1,1] [--out reading-copy.md]` | Single-path play through, plus a reading copy |
-| `causal thread <package.causal>` | List threads and the points on each one |
-| `causal mcp [--package package] [--transport stdio\|http]` | Start the MCP server; stdio by default, HTTP needs a token |
+| `causal audit <project.causal> [--all]` | Run the N01–N21 Story Check; exit 1 on errors |
+| `causal branch <project.causal> [--to <ending>] [--mode segments\|per-path]` | Branch synopsis |
+| `causal reach <project.causal> --from <scene>` | Which endings a scene can reach, and how many steps away |
+| `causal play <project.causal> [--choices 1,1] [--out <reading-copy.md>]` | Single-path play through, plus a reading copy |
+| `causal thread <project.causal>` | List threads and the points on each one |
+| `causal bench [project.causal]` | Time the model layer on a project |
+| `causal history <project.causal>` | List the snapshots inside a package |
+| `causal mcp [--package project.causal] [--transport stdio\|http]` | Start the MCP server; stdio by default, HTTP needs a token |
+| `causal mcp-config [--command <executable path>]` | Print a generic MCP config snippet |
 
-Everything except `export` and `mcp` takes `--json`, which puts a single JSON object on stdout.
+Everything except `export`, `mcp`, and `mcp-config` takes `--json`, which puts a single JSON object on stdout.
 
 Exit codes: `0` success, `1` failure (file unreadable, package unopenable, validation failed), `2` usage error.
 
@@ -46,8 +49,9 @@ CLI messages, reports, the three-part card labels, and MCP server text all come 
 - Values: `zh-Hans`, `en`, `ja`, `zh-Hant`. Regional spellings work too (`zh-TW` / `zh-HK` / `zh-MO` → `zh-Hant`, `en-US` → `en`, `ja-JP` → `ja`).
 - Position: before or after the subcommand; `--lang en` and `--lang=en` are the same thing.
 - Precedence: an explicit `--lang` wins, then storyboard header inference, then the language prefix of `LANG`, then the `zh-Hans` default.
-- Headers: storyboard import always recognises the Chinese headers, plus the set for the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). A document with Traditional Chinese headers needs `--lang zh-Hant` for its headers to be recognised; the same argument decides whether the three-part card labels read `Sees / Does / Leaves` or `見る / する / 残る`.
+- Headers: storyboard import always recognises the Chinese headers, plus the set for the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). A document with Traditional Chinese headers needs `--lang zh-Hant` for its headers to be recognised; the same argument decides whether the three-part card labels read `Sees: / Does: / Leaves:` or `見る：/ する：/ 残る：`.
 - MCP: with `causal mcp --lang en`, `tools/list` descriptions, `tools/call` error text, and the HTTP transport's handshake and auth messages all come back in English.
+- Exports: `outline`, `branch`, `play --out`, and the Markdown resource on the MCP server follow the same setting, so `causal outline --lang en` writes `- Cast: Ann, Bob` rather than `- 出场：Ann、Bob`. Section headings, the `:` and list separators, and the sentence terminator are table keys, which is what makes the switch complete.
 
 ```bash
 causal --lang ja validate project.causal      # before the subcommand
@@ -57,9 +61,11 @@ causal mcp --transport http --lang ja         # mixed with other arguments
 
 ## What import understands
 
-The importer recognises four header sets — Chinese, English, Japanese, and Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the header's language: `Sees / Does / Leaves`, `見る / する / 残る`, `眼前 / 動手 / 留下`. When a header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
+The importer recognises four header sets — Chinese, English, Japanese, and Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the header's language: `Sees: / Does: / Leaves:`, `見る：/ する：/ 残る：`, `眼前：/ 動手：/ 留下：`. When a header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
 
 Detection is automatic: a document containing a `| 节点与时机 |` table goes through storyboard import, anything else through plain Markdown import. `--format storyboard|prose` forces either one.
+
+**Project name**: `--title` wins; without it the name comes from the input file name, and underscores in that name become `·` (`my_story.md` → `my · story`). The `#` line of a plain Markdown file is the book's name inside the document, not the package name.
 
 **Plain Markdown**: `#` is the project name, `##` is a chapter, `###`/`####` are scenes, and remaining paragraphs go into scene text; a chapter with no `###` collapses into a single scene. Tables under `## 人物` / `## 地点` / `## 设定` (characters / places / settings), or `- **Name**: description` lines, create the matching entities and attach them by name to the scenes they appear in.
 
@@ -84,23 +90,24 @@ Lin Yuan receives a letter on a rainy night.
 **Storyboard table**:
 
 ```markdown
-# 《Town》 Opening Storyboard   ← H1, used as the project name when --title is absent
+# 《Town》 Opening Storyboard   ← H1; the CLI names the project after --title or the file name, so this line stays a heading
 
 **A paragraph of logline.**      ← project logline (carried in AI context)
 
 ## Act One · Subtitle           ← a chapter
 
-| 节点与时机 | What the player sees | What the player does | What remains, and how it leads to the next scene |
+| Beat and Timing | What the player sees | What the player does | What remains, and how it leads to the next scene |
 |---|---|---|---|
 | S01 Arrival, afternoon | … | … | … |
 ```
 
-- The first row is the header; the first column ("number short name, timing") splits into the card title and a note.
-- The other three columns go into the scene text, prefixed `眼前：` / `动手：` / `留下：` (sees / does / leaves).
-- Cards are joined causally in row order, and each edge takes the first sentence of the "what remains" column.
+- The first row is the header, and only its first cell matters: `节点与时机` always works, and so does the header of the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). The other three columns are free text.
+- The first column ("number short name, timing") splits into the card title and a note.
+- The other three columns go into the scene text, prefixed with the three-part labels of the current language — `眼前：` / `动手：` / `留下：` in Chinese, `Sees:` / `Does:` / `Leaves:` in English.
+- Cards are joined causally in row order, and each edge takes the first sentence of the last column, cut at 28 characters.
 - A table whose header is something else (a four-way table, say) becomes idea cards and stays off the storyboard.
 - `- **Subtitle**: text` inside a chapter also becomes an idea card.
-- Characters, places, and story facts come only from in-document `## 人物` / `## 地点` / `## 设定` sections; with no such section, nothing is created, and no sample library is preloaded.
+- Characters, places, and story facts come only from in-document sections: `## Characters` / `## Places` / `## Settings`, or the synonyms `## Roles` / `## Locations` / `## World`. The Chinese headers `## 人物` / `## 地点` / `## 设定` (`## 角色` / `## 场所` / `## 世界观`) are always recognised, in any language; Japanese and Traditional Chinese have their own synonyms. With no such section, nothing is created, and no sample library is preloaded.
 - JSON from prose import carries `"mode": "prose"` plus one `notes` entry (chapters and scenes).
 
 ## JSON structure
@@ -141,7 +148,7 @@ Shared by `import` and `info`:
 A failure carries two fields:
 
 ```json
-{ "ok": false, "error": "cannot open /path/x.causal: …" }
+{ "ok": false, "error": "Can’t open /path/x.causal: Not a readable project package: …" }
 ```
 
 ## Edit scripts (ops)
@@ -376,8 +383,8 @@ Edit `~/.dsh/profiles/desktop/cordis.patch.yml`, add an entry to the `- insert:`
 | `list_entities {kind}` | Characters / places / story facts |
 | `apply_ops {ops, dryRun?}` | Changes memory and sets `dirty`; waits for `save_project` |
 | `import_markdown {path? markdown? title?}` | Text storyboard → new project (not yet saved) |
-| `validate {}` / `outline {format?}` | Validation / outline |
-| `history {steps?}` / `undo {steps?}` / `redo {steps?}` | Snapshots, step back, reapply |
+| `validate {}` / `outline {format? to?}` | Validation / outline |
+| `history {}` / `undo {steps?}` / `redo {steps?}` | Snapshots, step back, reapply |
 
 Resources: `causal://project`, `causal://outline`, `causal://card/{uuid}`, `causal://chapter/{uuid}`, `causal://character/{uuid}`. Prompts: `polish-card`, `find-broken`, `add-causality`.
 

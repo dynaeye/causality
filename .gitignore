@@ -13,3 +13,12 @@ case/**/.DS_Store
 
 # 跨进程写锁：工程包里的临时文件
 .write.lock
+
+# 本地工作稿：本地化审计与外部评审记录，不进公开仓库
+Causality-产品与开发简报.md
+docs/localization.md
+docs/localization-baseline.json
+docs/localization-baseline-prefix.json
+docs/reviews/
+scripts/localization-report.py
+pi-lens-seed-*

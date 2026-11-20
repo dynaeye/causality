@@ -6,11 +6,11 @@ The main steps — installing the command line, writing the config, having an AI
 
 ## 1. Where the command line comes from
 
-The release app ships it under `Causality.app/Contents/Resources/cli/`: `causal` together with the `CausalityCore_CausalityCore.bundle` it depends on. The **一键安装 MCP** button (install MCP in one click) on the Settings (⌘,) › **MCP** page copies both into `.local/bin` under the current user's home directory; so does 工具 › 安装命令行工具 (Tools › Install Command Line Tool), which only installs the files. The path is worked out from the home directory at runtime.
+The release app ships it under `Causality.app/Contents/Resources/cli/`: `causal` together with the `CausalityCore_CausalityCore.bundle` it depends on. The **Install MCP** button (一键安装 MCP) on the Settings (⌘,) › **MCP** page copies both into `.local/bin` under the current user's home directory; so does **Tools › Install Command-Line Tool** (工具 › 安装命令行工具), which only installs the files. The path is worked out from the home directory at runtime.
 
-That one button also registers the CLI with the Codex / Hermes / Pi found on this machine, by calling each client's own `mcp add` rather than editing config files by hand, and then shows a per-line verdict — 已接入 (connected, N tools available), 还没接入 (not connected yet), or 没连通：reason (failed, with the reason) — each line recheckable on its own.
+That one button also registers the CLI with the Codex / Hermes / Pi found on this machine, by calling each client's own `mcp add` rather than editing config files by hand, and then shows a per-line verdict — **Connected, N tools available** (已接入，N 个工具可用), **Not connected yet** (还没接入), or **Not connected: reason** (没连通：原因) — each line recheckable on its own.
 
-Desktop clients with no command line (Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode) take another route. Whether one is installed is judged by the app bundle in `/Applications` or `~/Applications`, or by the command existing; a config file alone does not count, since some tools pre-create an empty `mcpServers` skeleton and treating that as evidence would list clients you never installed. Once detected, the app lists the client and 写入并检查 (write and check) edits that JSON directly, backing it up to `…bak-mcp-<time>` first, reading it back to verify, and leaving non-standard JSON untouched. Where each client keeps its file, and in what shape:
+Desktop clients with no command line (Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode) take another route. Whether one is installed is judged by the app bundle in `/Applications` or `~/Applications`, or by the command existing; a config file alone does not count, since some tools pre-create an empty `mcpServers` skeleton and treating that as evidence would list clients you never installed. Once detected, the app lists the client and **Write and Check** (写入并检查) edits that JSON directly, backing it up to `…bak-mcp-<time>` first, reading it back to verify, and leaving non-standard JSON untouched. Where each client keeps its file, and in what shape:
 
 | Client | Config file | Key | Entry shape |
 | --- | --- | --- | --- |
@@ -68,5 +68,5 @@ Then have the client make a real call, something like "open `/path/sample.causal
 | The client does not see causal | Wrong config path, or nothing registered | Run `list`; quote any path containing spaces |
 | Says it finished, but the app shows nothing | `apply_ops` ran without `save_project` | Have it save once |
 | `401` | HTTP transport without a token | stdio needs no token; `--transport http` needs `CAUSAL_MCP_TOKEN` in the environment or `--token-file`, never in the URL |
-| Warns that the project was changed by another program | The app or another client saved first | Choose Reload or Save As as prompted |
+| Warns that the project was changed by another program | The app or another client saved first | Choose **Save As…**, **Overwrite on Disk**, or **Reload from Disk** as prompted |
 | Opening a project reports a version that is too new | App and `causal` versions differ | Update both to the same version |

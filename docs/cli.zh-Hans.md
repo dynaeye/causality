@@ -19,11 +19,11 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 
 | 命令 | 作用 |
 | --- | --- |
-| `causal import <故事板.md> [输出.causal] [--title 标题] [--lang en\|ja\|zh-Hant]` | 把文字故事板转成工程包；`--lang` 决定表述语言（英文/日文表头、卡片三段标签、CLI 提示） |
+| `causal import <故事板.md> [输出.causal] [--title 标题] [--format storyboard\|prose] [--lang en\|ja\|zh-Hant]` | 把文字故事板转成工程包；`--lang` 决定表述语言（英文/日文表头、卡片三段标签、CLI 提示） |
 | `causal info <工程包.causal>` | 打印章节、卡片、因果、灵感卡 |
 | `causal validate <工程包.causal>` | 跑模型层校验，有问题返回 1 |
-| `causal outline <工程包.causal>` | 打印推导出的大纲（Markdown） |
-| `causal apply <工程包.causal> --ops ops.json` | 按脚本改工程，写回包 |
+| `causal outline <工程包.causal> [--to 结局]` | 打印推导出的大纲（Markdown） |
+| `causal apply <工程包.causal> [--ops ops.json \| --stdin]` | 按脚本改工程，写回包 |
 | `causal undo <工程包.causal> [--steps N]` | 撤回历史快照 |
 | `causal redo <工程包.causal> [--steps N]` | 重做刚撤回的状态 |
 | `causal export <工程包.causal> [--out 文件]` | 导出完整 project.json；先过契约 |
@@ -33,9 +33,12 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 | `causal reach <工程包.causal> --from <卡片>` | 从一张卡往后能到哪些结局与步数 |
 | `causal play <工程包.causal> [--choices 1,1] [--out 试读稿.md]` | 单路径试玩与试读稿 |
 | `causal thread <工程包.causal>` | 列出线索，以及跨章脊柱上的点 |
-| `causal mcp [--package 工程包] [--transport stdio\|http]` | 起 MCP 服务器；默认 stdio，HTTP 需 token |
+| `causal bench [工程包.causal]` | 在工程包上跑一遍模型层计时 |
+| `causal history <工程包.causal>` | 列出工程包里的历史快照 |
+| `causal mcp [--package 工程包.causal] [--transport stdio\|http]` | 起 MCP 服务器；默认 stdio，HTTP 需 token |
+| `causal mcp-config [--command 可执行文件路径]` | 打印一段通用 MCP 配置 |
 
-除 `export` 与 `mcp` 外都接受 `--json`，此时 stdout 只有一个 JSON 对象。
+除 `export`、`mcp` 与 `mcp-config` 外都接受 `--json`，此时 stdout 只有一个 JSON 对象。
 
 退出码：`0` 成功，`1` 失败（文件读不到、包打不开、校验不通过），`2` 用法错误。
 
@@ -48,6 +51,7 @@ CLI 的提示、报告、卡片三段标签与 MCP 服务端文案共用 `Causal
 - 优先级：显式 `--lang` > 故事板表头推断 > `LANG` 的语言前缀 > 默认 `zh-Hans`。
 - 表头：故事板导入永远认中文表头，再加当前语言那一套（`Beat and Timing` / `ビートとタイミング` / `節點與時機`）。读繁体表头的文档要认出表头，就写 `--lang zh-Hant`；同一个参数也决定卡片正文的三段标签写成 `Sees / Does / Leaves` 还是 `見る / する / 残る`。
 - MCP：`causal mcp --lang en` 起服务后，`tools/list` 的描述、`tools/call` 的错误文本、HTTP 传输的握手与鉴权提示都出英文。
+- 导出：`outline`、`branch`、`play --out` 以及 MCP 服务器上的 Markdown 资源跟随同一个设置，`causal outline --lang en` 写出的是 `- Cast: Ann, Bob`，而不是 `- 出场：Ann、Bob`。段落标题、冒号与列举分隔符、句末标点都是词条键，切换才是完整的。
 
 ```bash
 causal --lang ja validate 工程.causal      # 子命令前
@@ -57,9 +61,11 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 
 ## import 认什么
 
-导入器认中文、英文、日文、繁体四种表头（`节点与时机`、`Beat and Timing`、`ビートとタイミング`、`節點與時機`），并按表头语言把卡片正文的三段标签写成 `Sees / Does / Leaves`、`見る / する / 残る`、`眼前 / 動手 / 留下`。表头无法判断时可用 `--lang en|ja|zh-Hant` 显式指定；CLI 自己的提示、报告与卡片三段标签跟随同一套词条（见上一节「语言」）。
+导入器认中文、英文、日文、繁体四种表头（`节点与时机`、`Beat and Timing`、`ビートとタイミング`、`節點與時機`），并按表头语言把卡片正文的三段标签写成 `Sees: / Does: / Leaves:`、`見る：/ する：/ 残る：`、`眼前：/ 動手：/ 留下：`。表头无法判断时可用 `--lang en|ja|zh-Hant` 显式指定；CLI 自己的提示、报告与卡片三段标签跟随同一套词条（见上一节「语言」）。
 
 默认自动识别：含 `| 节点与时机 |` 表的文档走故事板导入，其余走普通 Markdown 导入。`--format storyboard|prose` 可以强制。
+
+**项目名**：给了 `--title` 就用它；没给就取输入文件名，里面的下划线会变成 `·`（`my_story.md` → `my · story`）。普通 Markdown 里的 `#` 是文内的书名，不是工程包的名字。
 
 **普通 Markdown**：`#` 是项目名，`##` 是章，`###`/`####` 是场，其余段落进正文；没有 `###` 时一章并成一场。`## 人物` / `## 地点` / `## 设定` 下的表或 `- **名字**：说明` 会建成对应实体，并按名字挂到出现的场次。
 
@@ -84,7 +90,7 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 **故事板表格**：
 
 ```markdown
-# 《镇名》开篇故事板        ← 一级标题，没给 --title 时用来命名
+# 《镇名》开篇故事板        ← 一级标题；CLI 用 --title 或文件名给项目命名，这一行只是标题
 
 **一段梗概。**               ← 项目梗概（AI 上下文会带）
 
@@ -95,12 +101,13 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 | S01 入城，当日下午 | … | … | … |
 ```
 
-- 表格第一行是表头，第一列「编号 短名，时机」拆成卡片标题与注释；
-- 其余三列写进卡片正文，前缀分别是 `眼前：` / `动手：` / `留下：`；
-- 卡片按行序用因果连起来，线上的文字取「留下什么」的首句；
+- 表格第一行是表头，只看第一格：`节点与时机` 永远认，当前语言的那一套（`Beat and Timing` / `ビートとタイミング` / `節點與時機`）也认，另外三列是自由文本；
+- 第一列「编号 短名，时机」拆成卡片标题与注释；
+- 其余三列写进卡片正文，前缀是当前语言的三段标签——中文 `眼前：` / `动手：` / `留下：`，英文 `Sees:` / `Does:` / `Leaves:`；
+- 卡片按行序用因果连起来，线上的文字取「留下什么」的首句，最多 28 个字；
 - 表头不是「节点与时机」的表（例如四向表）落成灵感卡，不进故事板；
 - 章节里的 `- **小标题**：正文` 也落成灵感卡；
-- 人物、地点、事实设定只认文内 `## 人物` / `## 地点` / `## 设定` 段；没有就不建，不再预置示例库。
+- 人物、地点、事实设定只认文内资料段：当前语言的 `## Characters` / `## Places` / `## Settings`，或任何语言都认的 `## 人物` / `## 地点` / `## 设定`（也认 `## 角色` / `## 场所` / `## 世界观`）；没有就不建，不再预置示例库。
 - 普通 Markdown 导入的 JSON 带 `"mode": "prose"` 与一条 `notes`（几章几场）。
 
 ## JSON 结构
@@ -141,7 +148,7 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 失败时只有两个字段：
 
 ```json
-{ "ok": false, "error": "打不开 /path/x.causal：…" }
+{ "ok": false, "error": "打不开 /path/x.causal：不是可读的项目包：…" }
 ```
 
 ## 编辑脚本（ops）
@@ -376,8 +383,8 @@ openclaw mcp doctor causal --probe
 | `list_entities {kind}` | 人物 / 地点 / 事实设定 |
 | `apply_ops {ops, dryRun?}` | 只改内存并置 `dirty`，等 `save_project` |
 | `import_markdown {path? markdown? title?}` | 文字故事板 → 新项目（未落盘） |
-| `validate {}` / `outline {format?}` | 校验 / 大纲 |
-| `history {steps?}` / `undo {steps?}` / `redo {steps?}` | 快照、撤回、重做 |
+| `validate {}` / `outline {format? to?}` | 校验 / 大纲 |
+| `history {}` / `undo {steps?}` / `redo {steps?}` | 快照、撤回、重做 |
 
 资源：`causal://project`、`causal://outline`、`causal://card/{uuid}`、`causal://chapter/{uuid}`、`causal://character/{uuid}`。提示词：`polish-card`、`find-broken`、`add-causality`。
 

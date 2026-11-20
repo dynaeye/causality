@@ -69,5 +69,5 @@ pi mcp list                              # Pi 侧能看到 causal
 | 客户端里看不到 causal | 配置路径写错或没登记 | `list` 一遍；路径含空格要加引号 |
 | 说写完了但 App 里没有 | 只 `apply_ops` 没 `save_project` | 让它补一次保存 |
 | `401` | 用了 HTTP 传输却没带 token | stdio 不需要 token；`--transport http` 才需要 `CAUSAL_MCP_TOKEN`，只放环境变量或 `--token-file`，别写进 URL |
-| 提示工程被别的程序改过 | App 或另一个客户端先保存了 | 按提示选「重新载入」或「另存为」 |
+| 提示工程被别的程序改过 | App 或另一个客户端先保存了 | 按提示选「另存为…」「覆盖磁盘」或「重新载入磁盘」 |
 | 打开工程报版本高 | App 与 `causal` 版本不一致 | 两边更新到同一版本 |

@@ -18,6 +18,58 @@ for l in zh-Hans en ja zh-Hant; do
 done
 echo "  四份词条表一致"
 
+# 括号错配、占位符跨语言差异、重复键：这三类在界面上看不见、在测试里也抓不到，
+# 只能靠静态检查。<项目.causal] 这种角度括号配方括号的错就是从这里漏过一次的。
+python3 - <<'PY'
+import pathlib, re, sys
+
+BUNDLE = pathlib.Path("Packages/CausalityCore/Sources/CausalityCore/Resources")
+LOCALES = ["zh-Hans", "en", "ja", "zh-Hant"]
+PAIR = re.compile(r'^"((?:[^"\\]|\\.)*)"\s*=\s*"((?:[^"\\]|\\.)*)";', re.MULTILINE)
+BRACKET = re.compile(r"<[^<>\[\]]*\]|\[[^<>\[\]]*>")
+PLACEHOLDER = re.compile(r"%(?:[0-9]+\$)?(?:lld|llu|ld|d|u|f|@|s)")
+
+problems = []
+tables = {}
+for loc in LOCALES:
+    path = BUNDLE / f"{loc}.lproj" / "Localizable.strings"
+    text = path.read_text(encoding="utf-8")
+    pairs = PAIR.findall(text)
+    tables[loc] = dict(pairs)
+    keys = [k for k, _ in pairs]
+    if len(keys) != len(set(keys)):
+        dupes = sorted({k for k in keys if keys.count(k) > 1})
+        problems.append(f"{loc}: 重复键 {len(dupes)} 个，例如 {dupes[0]!r}")
+    if len(pairs) != text.count("\n"):
+        pass
+    for lineno, line in enumerate(text.splitlines(), 1):
+        if BRACKET.search(line):
+            problems.append(f"{loc}.lproj:{lineno}: 括号错配 {line.strip()[:70]}")
+
+reference = tables["zh-Hans"]
+for loc in LOCALES[1:]:
+    table = tables[loc]
+    missing = set(reference) - set(table)
+    extra = set(table) - set(reference)
+    if missing:
+        problems.append(f"{loc}: 缺 {len(missing)} 个键，例如 {sorted(missing)[0]!r}")
+    if extra:
+        problems.append(f"{loc}: 多 {len(extra)} 个键，例如 {sorted(extra)[0]!r}")
+    for key, value in table.items():
+        if key not in reference:
+            continue
+        want = sorted(PLACEHOLDER.findall(key))
+        got = sorted(PLACEHOLDER.findall(value))
+        if want != got:
+            problems.append(f"{loc}: 占位符不一致 {key!r}: 键 {want} 值 {got}")
+
+if problems:
+    for problem in problems:
+        print("  ✗ " + problem)
+    sys.exit(1)
+print("  括号、占位符、键集三项检查通过")
+PY
+
 echo "== 1/5 模型层测试 =="
 (cd Packages/CausalityCore && swift test)
 
@@ -26,6 +78,26 @@ echo "== 2/5 命令行自检 =="
 # CLI 默认跟随 LANG；自检固定简体中文，英文导入用例单独用表头/--lang 验证。
 export LANG=zh_CN.UTF-8
 CLI="$ROOT/Packages/CausalityCore/.build/release/causal"
+
+# --lang 必须真的切掉语言，且帮助文本里不许出现括号错配。
+for pair in "en:the command-line interface" \
+            "ja:コマンドラインインターフェース" \
+            "zh-Hant:命令行介面" \
+            "zh-Hans:命令行接口"; do
+  lang="${pair%%:*}"
+  want="${pair#*:}"
+  help="$("$CLI" --help --lang "$lang")"
+  if ! printf '%s\n' "$help" | head -1 | grep -qF "$want"; then
+    echo "  ✗ --help --lang $lang: first line is not $want"
+    exit 1
+  fi
+  if printf '%s\n' "$help" | grep -qE '<[^<>]*\]'; then
+    echo "  ✗ --help --lang $lang: mismatched bracket in the help text"
+    printf '%s\n' "$help" | grep -E '<[^<>]*\]'
+    exit 1
+  fi
+done
+echo "  --lang 四种语言帮助文本正常"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 

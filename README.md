@@ -141,9 +141,9 @@ Story › Previous Scene and Next Scene page through the book, Story › Add Nex
 
 ### 5.2 Inspector and Scene Craft
 
-The inspector holds nine sections. Summary, Scene Craft, and Manuscript open by default; Basics, Characters & Places, Settings, Images, Leads to, and Notes open on demand, and the app remembers what you collapsed. Story › Show Inspector closes and opens the inspector; Story › Focus Mode folds the sidebar away as well.
+The inspector holds nine sections, with the summary on top. Scene Craft and Manuscript open by default; Basics, Characters & Places, Threads, Story Facts, Images, Leads to, and Notes open on demand, and the app remembers what you collapsed. Story › Show Inspector closes and opens the inspector; Story › Focus Mode folds the sidebar away as well.
 
-Scene Craft is a set of writing prompts you set yourself: point of view (whose eyes this scene is seen through), time (when it happens in the story), type (what the scene does for the book), tension (how taut it should be), target words, and stage (Idea / Draft / Final). Every field can stay empty and the scene still writes. Fill any in and the target word count sits beside the actual count; the character matrix and Story Check read the same fields.
+Scene Craft is a set of writing prompts you set yourself: point of view (whose eyes this scene is seen through), time (when it happens in the story), type (what the scene does for the book — Dialogue, Cutscene, Exploration, Puzzle, Combat, Boss, Montage), tension (how taut it should be, one to five), target words, and writing status (To write / In progress / To revise / Final). Every field can stay empty and the scene still writes. Fill any in and the target word count sits beside the actual count; the character matrix and Story Check read the same fields.
 
 **How words are counted**: scenes, chapters, a single route, and the whole book share one rule — characters in Chinese, words in English, with punctuation and spaces left out — so the numbers agree with each other.
 
@@ -211,7 +211,7 @@ Switch the inspector to the AI assistant, or click the AI button in the toolbar.
 
 - **Discuss**: writes into the conversation only, touching no manuscript. Lines the discussion produces can be saved as an idea or recorded as a fact.
 - **Create Outline**: sorts what you have agreed into scenes, leaves open questions as pending items, and returns a proposal.
-- **Revise the selection / Insert a card here**: click the gap between two cards first, and the panel shows "Insert at: Chapter One · after '…'", at which point the main button becomes Insert a card here.
+- **Revise the selection / Insert a card here**: click the gap between two cards first, and the panel shows "Insert at: Chapter One · after “…”", at which point the main button becomes Insert a card here.
 
 ```mermaid
 flowchart LR
@@ -235,10 +235,10 @@ Worldbuilding entries come at three levels: draft, confirmed, and locked. Drafts
 
 If you already have a script, a scene breakdown, or a settings document, the first card does not have to be blank. Use File › Import Markdown…, pick a `.md`, and the format decides between two routes:
 
-- The file holds a table headed "Beat and Timing" → **storyboard import**: each row becomes a card, placed in its chapter in table order, with all four columns written into the scene. It draws no causal edges for you: the "where it starts" and "what happens next" columns are written for a human reader, so connect the scenes on the story graph afterwards.
-- Plain Markdown → **prose import**: `#` names the book, `##` is a chapter, `###` (or `####`) is a scene, and paragraphs go into scenes; sections such as `## Characters`, `## Places`, and `## Settings` are read as lists of entities rather than chapters (the spellings "roles", "locations", and "world" work too).
+- The file holds a table headed "Beat and Timing" → **storyboard import**: each row becomes a card, placed in its chapter in table order, with all four columns written into the scene (what the player sees / does / leaves). The cards are joined causally in row order, and each edge takes the first sentence of the last column, so the chain is there from the start and you can redraw it on the story graph afterwards.
+- Plain Markdown → **prose import**: `#` names the book, `##` is a chapter, `###` (or `####`) is a scene, and paragraphs go into scenes; sections such as `## Characters`, `## Places`, and `## Settings` are read as lists of entities rather than chapters (the Chinese spellings `## 角色`, `## 场所`, and `## 世界观` work too).
 
-An imported project behaves like a new one: stored as a draft first, with the permanent location chosen at the first save. Prose import reports how many chapters and scenes it found (shown as "N chapters, M scenes"), and parsing problems arrive as notes — fix the source and import again.
+An imported project behaves like a new one: stored as a draft first, with the permanent location chosen at the first save. Prose import reports how many chapters and scenes it found ("Imported as plain Markdown: N chapters, M scenes."), and parsing problems arrive as notes — fix the source and import again.
 
 ---
 
@@ -335,9 +335,9 @@ Available as soon as the app is installed, with no terminal involved.
 
 ### 9.1 One-click setup
 
-Open **Settings (⌘,) › MCP** and click **一键安装 MCP** (install MCP in one click). That single button does three things: it installs the bundled `causal` — which is also the MCP server — into `.local/bin` under your home directory; it registers it with the Codex (GPT), Hermes, and Pi found on this machine; and it tests each connection in turn. No terminal, no config file to open.
+Open **Settings (⌘,) › MCP** and click **Install MCP** (一键安装 MCP). That single button does three things: it installs the bundled `causal` — which is also the MCP server — into `.local/bin` under your home directory; it registers it with the Codex (GPT), Hermes, and Pi found on this machine; and it tests each connection in turn. No terminal, no config file to open.
 
-Paths are worked out from your home directory at that moment, so nothing is tied to one machine. The whole setup runs once; after an app update, click again to pick up the new version. The **Tools** menu offers the install on its own (安装命令行工具, install command line tool), for the command line without the client registration and testing.
+Paths are worked out from your home directory at that moment, so nothing is tied to one machine. The whole setup runs once; after an app update, click again to pick up the new version. The **Tools** menu offers the install on its own — **Tools › Install Command-Line Tool** (工具 › 安装命令行工具) — for the command line without the client registration and testing.
 
 ### 9.2 Checking the connection
 
@@ -345,15 +345,15 @@ Further down the same page, clients are listed one per line, each ending in a ve
 
 | Shown | Meaning |
 | --- | --- |
-| 已接入，15 个工具可用 (connected, 15 tools available) | Configuration written, handshake succeeded |
-| 还没接入 (not connected yet) | The client is installed, and its config has no Causality entry |
-| 没连通：reason | Writing or connecting failed, with the reason after the colon |
+| Connected, 15 tools available (已接入，15 个工具可用) | Configuration written, handshake succeeded |
+| Not connected yet (还没接入) | The client is installed, and its config has no Causality entry |
+| Not connected: reason (没连通：原因) | Writing or connecting failed, with the reason after the colon |
 
-Click 一键安装 MCP again for anything unconnected, or use 重新检查 (recheck) on that line.
+Click **Install MCP** (一键安装 MCP) again for anything unconnected, or use **Check Again** (重新检查) on that line.
 
-Below that sit the **desktop clients**: Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode. Whichever you have installed appears by itself, since these clients have no command line and connect through a JSON config. "Installed" means the app bundle or the command exists; an empty config file alone does not count, so clients you never installed stay off the list. Click 写入并检查 (write and check) and the app edits that client's config directly, backing the original up as `…bak-mcp-<time>` first and reading it back to verify. Each line shows the exact path of that file, and 在访达中显示 (reveal in Finder) opens its folder. When a config is not standard JSON, the app leaves it alone and writes the reason on that line.
+Below that sit the **desktop clients**: Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode. Whichever you have installed appears by itself, since these clients have no command line and connect through a JSON config. "Installed" means the app bundle or the command exists; an empty config file alone does not count, so clients you never installed stay off the list. Click **Write and Check** (写入并检查) and the app edits that client's config directly, backing the original up as `…bak-mcp-<time>` first and reading it back to verify. Each line shows the exact path of that file, and **Show in Finder** (在访达中显示) opens its folder. When a config is not standard JSON, the app leaves it alone and writes the reason on that line.
 
-Clients in neither list (DSH and the like, with no fixed location) need the manual route: click 复制这段配置 (copy this config) and paste it into the MCP section of that client's settings. **Do not select and copy the preview text by hand** — that drags escapes such as `\n` and `&#x20;` along and the paste arrives broken.
+Clients in neither list (DSH and the like, with no fixed location) need the manual route: click **Copy This Config** (复制这段配置) and paste it into the MCP section of that client's settings. **Do not select and copy the preview text by hand** — that drags escapes such as `\n` and `&#x20;` along and the paste arrives broken.
 
 Once installed, typing `causal` in a terminal may report that the command is not found, because `.local/bin` is not on the default `PATH`; the full path works, and so does the one the app wrote, since it writes an absolute path.
 
