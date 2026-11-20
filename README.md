@@ -4,7 +4,7 @@
 
 A writing tool for long-form branching stories. Causality puts scene, decision, and consequence on one surface, so the shape of the book stays visible while you draft, and the manuscript and its diagram come out when you finish.
 
-Requires macOS 15.0 or later, on Apple Silicon or Intel. [Download the DMG](https://github.com/dynaeye/causality/releases/download/v1.0.0/Causality-1.0.0.dmg) and drag Causality into Applications.
+Requires macOS 15.0 or later, on Apple Silicon or Intel. [Download the DMG](https://github.com/dynaeye/causality/releases/download/v1.0.1/Causality-1.0.1.dmg) and drag Causality into Applications.
 
 ![Start page: new project, open project](docs/images/00-startpage.png)
 

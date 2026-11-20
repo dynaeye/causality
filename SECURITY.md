@@ -14,4 +14,4 @@ If you find a security problem, mail the maintainer instead of opening a public 
 
 ## Supported versions
 
-The current version is 1.0.0. The signed release is the supported build; the Debug build of the latest commit is work in progress and can change without notice.
+The current version is 1.0.1. The signed release is the supported build; the Debug build of the latest commit is work in progress and can change without notice.

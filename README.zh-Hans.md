@@ -4,7 +4,7 @@
 
 这是给写中长篇、写分支故事的人准备的工具。它把「场景 → 选择 → 后果」摊开在你眼前，写的时候能看清结构，写完能直接导出稿子和图。
 
-需要 macOS 15.0 或更新，Apple Silicon 和 Intel 都能跑。[下载 DMG](https://github.com/dynaeye/causality/releases/download/v1.0.0/Causality-1.0.0.dmg)，把 Causality 拖进 Applications 就行。
+需要 macOS 15.0 或更新，Apple Silicon 和 Intel 都能跑。[下载 DMG](https://github.com/dynaeye/causality/releases/download/v1.0.1/Causality-1.0.1.dmg)，把 Causality 拖进 Applications 就行。
 
 ![起始页：新建项目、打开项目](docs/images/00-startpage.png)
 
