@@ -47,7 +47,7 @@ func runAudit(_ args: Arguments) -> Int32 {
         print(CoreText.text("体检通过。"))
     } else {
         for finding in findings {
-            print(CoreText.format("[%@] %@ %@", CoreText.text(finding.severity.displayName), finding.rule, finding.title))
+            print(String(format: "[%@] %@ %@", CoreText.text(finding.severity.displayName), finding.rule, finding.title))
             print("  \(finding.message)")
         }
         print(CoreText.format("共 %lld 个错误 · %lld 个警告 · %lld 个提示（已忽略 %lld 条）", errors, warnings, infos, waivedCount))

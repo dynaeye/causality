@@ -789,7 +789,7 @@
 "张力：%lld/5" = "Tension: %lld/5";
 "故事图尺寸较大，已按 %.2f 倍导出（长边上限 8000 像素）。" = "The story graph is large; exported at %.2f× scale (longest side capped at 8000 px).";
 "失败：%@" = "Failed: %@";
-"（%@）" = "(%@)";
+"（%@）" = " (%@)";
 "%@：%@" = "%@: %@";
 "副本" = "copy";
 
@@ -1329,3 +1329,4 @@
 "第 %lld 个选项超出范围：这一步只有 %lld 个" = "Choice %lld is out of range: this step has only %lld choices";
 "这一步走不下去" = "This branch cannot be continued";
 "基准" = "benchmark";
+"开场" = "Opening";

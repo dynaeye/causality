@@ -63,11 +63,25 @@ for loc in LOCALES[1:]:
         if want != got:
             problems.append(f"{loc}: 占位符不一致 {key!r}: 键 {want} 值 {got}")
 
+# InfoPlist.strings 只在 app 目标里，四份必须同键集，否则缺的那份会退回 Info.plist 的中文值。
+INFO_LOCALES = ["zh-Hans", "en", "ja", "zh-Hant"]
+info_keys = {}
+for loc in INFO_LOCALES:
+    path = pathlib.Path("Sources/Causality") / f"{loc}.lproj" / "InfoPlist.strings"
+    if not path.exists():
+        problems.append(f"InfoPlist.strings 缺失：{loc}")
+        continue
+    info_keys[loc] = set(re.findall(r'^\s*"?([A-Za-z]+)"?\s*=', path.read_text(encoding="utf-8"), re.M))
+reference_info = info_keys.get("zh-Hans", set())
+for loc, keys in info_keys.items():
+    if keys != reference_info:
+        problems.append(f"InfoPlist.strings {loc}: 键集与 zh-Hans 不一致 {sorted(keys ^ reference_info)}")
+
 if problems:
     for problem in problems:
         print("  ✗ " + problem)
     sys.exit(1)
-print("  括号、占位符、键集三项检查通过")
+print("  括号、占位符、键集、InfoPlist 四项检查通过")
 PY
 
 echo "== 1/5 模型层测试 =="

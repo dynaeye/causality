@@ -42,7 +42,7 @@ public enum ProseMarkdown {
 
         func ensureChapter() {
             if currentChapter == nil {
-                startChapter("第一章")
+                startChapter(CoreText.localize("第一章"))
             }
         }
 
@@ -57,7 +57,7 @@ public enum ProseMarkdown {
             guard currentScene == nil else { return }
             ensureChapter()
             guard let chapter = currentChapter else { return }
-            let title = chapters[chapter].title.isEmpty ? "开场" : chapters[chapter].title
+            let title = chapters[chapter].title.isEmpty ? CoreText.localize("开场") : chapters[chapter].title
             startScene(title)
         }
 
@@ -112,8 +112,8 @@ public enum ProseMarkdown {
 
         if !looseParagraphs.isEmpty || chapters.isEmpty {
             if !looseParagraphs.isEmpty || chapters.isEmpty {
-                startChapter("第一章")
-                startScene(docTitle.isEmpty ? "开场" : docTitle)
+                startChapter(CoreText.localize("第一章"))
+                startScene(docTitle.isEmpty ? CoreText.localize("开场") : docTitle)
                 if let chapter = currentChapter, let scene = currentScene {
                     chapters[chapter].scenes[scene].lines = looseParagraphs
                 }
