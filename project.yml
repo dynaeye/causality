@@ -46,6 +46,7 @@ targets:
         CFBundleDisplayName: Causality
         CFBundleIconName: AppIcon
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         LSMinimumSystemVersion: "15.0"
         NSHighResolutionCapable: true
         CFBundleDocumentTypes:
