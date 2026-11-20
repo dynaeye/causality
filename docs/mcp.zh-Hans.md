@@ -11,7 +11,7 @@
 
 这一个按钮同时把它写进这台机器上检测到的 Codex / Hermes / Pi——调用各客户端自己的 `mcp add`，不手改配置——并按行显示自检结果（「已接入，N 个工具可用」／「还没接入」／「没连通：原因」），每行可单独「重新检查」。
 
-没有命令行的桌面类客户端（Claude 桌面版、Cursor、Windsurf、Kiro、VS Code、OpenCode）走另一条路。判断装没装只看 `App` 包（`/Applications` 或 `~/Applications`）或命令行在不在；只有配置文件不算——有些工具会预建空的 `mcpServers` 骨架，拿它当证据会列出没装过的客户端。App 检测到就把它列出来，点「写入并检查」直接改那份 JSON（写前备份 `…bak-mcp-<时间>`，写后回读校验，非标准 JSON 不动手）。各客户端的位置与形状：
+没有命令行的桌面类客户端（Claude 桌面版、Cursor、Windsurf、Kiro、VS Code、OpenCode）走另一条路。判断装没装只看 App 包（`/Applications` 或 `~/Applications`）或命令行在不在；只有配置文件不算——有些工具会预建空的 `mcpServers` 骨架，拿它当证据会列出没装过的客户端。App 检测到就把它列出来，点「写入并检查」直接改那份 JSON（写前备份 `…bak-mcp-<时间>`，写后回读校验，非标准 JSON 不动手）。各客户端的位置与形状：
 
 | 客户端 | 配置文件 | 键 | 条目形状 |
 | --- | --- | --- | --- |
@@ -22,9 +22,9 @@
 | VS Code | `~/Library/Application Support/Code/User/mcp.json` | `servers` | `type: stdio` + `command` + `args` |
 | OpenCode | `~/.config/opencode/opencode.json` | `mcp` | `type: local` + `command: [路径, "mcp"]` |
 
-表里的路径是这些客户端自己用的位置，App 只在检测到它之后才读写；两栏都没有的客户端（DSH 这类）才需要复制 `mcpServers` 片段手工粘。
+表里的路径是这些客户端自己用的位置，App 只在检测到它之后才读写；两张表里都没有的客户端（DSH 这类）才需要复制 `mcpServers` 片段手工粘。
 
-只想用命令行、不装 App 的人，可以从 App 包里取 `Contents/Resources/cli/` 下的 `causal` 与同名 `.bundle`，用 `install.sh` 的方式装（会清隔离标记）。
+只想用命令行、不装 App 的人，可以从 App 包里取 `Contents/Resources/cli/` 下的 `causal` 与旁边的 `CausalityCore_CausalityCore.bundle`，用 `install.sh` 的方式装（会清隔离标记）。
 
 ## 二、配置落在哪
 
@@ -65,7 +65,7 @@ pi mcp list                              # Pi 侧能看到 causal
 | 症状 | 原因 | 处理 |
 | --- | --- | --- |
 | 启动即崩，提示 `unable to find bundle named CausalityCore_CausalityCore` | 只拷了 `causal`，没带 `CausalityCore_CausalityCore.bundle` | 用包里的 `install.sh` 重装，两个文件要在一起 |
-| 第一次运行被系统杀掉（`Killed: 9`） | 下载件带隔离标记，而裸命令行工具没有可 staple 的公证票据 | 用 `install.sh` 装（它会清隔离标记）；手动拷的话补 `xattr -d com.apple.quarantine ~/.local/bin/causal` |
+| 第一次运行被系统杀掉（`Killed: 9`） | 下载件带隔离标记，而裸命令行工具没有可供装订的公证票据 | 用 `install.sh` 装（它会清隔离标记）；手动拷的话补 `xattr -d com.apple.quarantine ~/.local/bin/causal` |
 | 客户端里看不到 causal | 配置路径写错或没登记 | `list` 一遍；路径含空格要加引号 |
 | 说写完了但 App 里没有 | 只 `apply_ops` 没 `save_project` | 让它补一次保存 |
 | `401` | 用了 HTTP 传输却没带 token | stdio 不需要 token；`--transport http` 才需要 `CAUSAL_MCP_TOKEN`，只放环境变量或 `--token-file`，别写进 URL |

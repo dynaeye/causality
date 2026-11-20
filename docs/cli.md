@@ -40,7 +40,7 @@ ln -sf "$PWD/.build/release/causal" /usr/local/bin/causal
 
 Everything except `export`, `mcp`, and `mcp-config` takes `--json`, which puts a single JSON object on stdout.
 
-Exit codes: `0` success, `1` failure (file unreadable, package unopenable, validation failed), `2` usage error.
+Exit codes: `0` success, `1` failure (file unreadable, package not openable, validation failed), `2` usage error.
 
 ## Language (`--lang`)
 
@@ -49,7 +49,7 @@ CLI messages, reports, the three-part card labels, and MCP server text all come 
 - Values: `zh-Hans`, `en`, `ja`, `zh-Hant`. Regional spellings work too (`zh-TW` / `zh-HK` / `zh-MO` → `zh-Hant`, `en-US` → `en`, `ja-JP` → `ja`).
 - Position: before or after the subcommand; `--lang en` and `--lang=en` are the same thing.
 - Precedence: an explicit `--lang` wins, then storyboard header inference, then the language prefix of `LANG`, then the `zh-Hans` default.
-- Headers: storyboard import always recognises the Chinese headers, plus the set for the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). A document with Traditional Chinese headers needs `--lang zh-Hant` for its headers to be recognised; the same argument decides whether the three-part card labels read `Sees: / Does: / Leaves:` or `見る：/ する：/ 残る：`.
+- Headers: storyboard import always recognises `节点与时机`, plus the header of the current language (`Beat and Timing` / `ビートとタイミング` / `節點與時機`). A document with Traditional Chinese headers needs `--lang zh-Hant` for its headers to be recognised; the same argument decides whether the three-part card labels read `Sees: / Does: / Leaves:` or `見る：/ する：/ 残る：`.
 - MCP: with `causal mcp --lang en`, `tools/list` descriptions, `tools/call` error text, and the HTTP transport's handshake and auth messages all come back in English.
 - Exports: `outline`, `branch`, `play --out`, and the Markdown resource on the MCP server follow the same setting, so `causal outline --lang en` writes `- Cast: Ann, Bob` rather than `- 出场：Ann、Bob`. Section headings, the `:` and list separators, and the sentence terminator are table keys, which is what makes the switch complete.
 
@@ -61,13 +61,13 @@ causal mcp --transport http --lang ja         # mixed with other arguments
 
 ## What import understands
 
-The importer recognises four header sets — Chinese, English, Japanese, and Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the header's language: `Sees: / Does: / Leaves:`, `見る：/ する：/ 残る：`, `眼前：/ 動手：/ 留下：`. When a header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
+The importer recognises four header sets — Chinese, English, Japanese, and Traditional Chinese (`节点与时机`, `Beat and Timing`, `ビートとタイミング`, `節點與時機`) — and writes the three-part card labels in the current language: `眼前：/ 動手：/ 留下：`, `Sees: / Does: / Leaves:`, `見る：/ する：/ 残る：`. When a header is ambiguous, name the language with `--lang en|ja|zh-Hant`; the CLI's own messages, reports, and card labels follow the same string table (see "Language" above).
 
 Detection is automatic: a document containing a `| 节点与时机 |` table goes through storyboard import, anything else through plain Markdown import. `--format storyboard|prose` forces either one.
 
 **Project name**: `--title` wins; without it the name comes from the input file name, and underscores in that name become `·` (`my_story.md` → `my · story`). The `#` line of a plain Markdown file is the book's name inside the document, not the package name.
 
-**Plain Markdown**: `#` is the project name, `##` is a chapter, `###`/`####` are scenes, and remaining paragraphs go into scene text; a chapter with no `###` collapses into a single scene. Tables under `## 人物` / `## 地点` / `## 设定` (characters / places / settings), or `- **Name**: description` lines, create the matching entities and attach them by name to the scenes they appear in.
+**Plain Markdown**: `#` is the book's title inside the document, `##` is a chapter, `###`/`####` are scenes, and remaining paragraphs go into scene text; a chapter with no `###` collapses into a single scene. Tables under `## Characters` / `## Places` / `## Settings` (or the Chinese `## 人物` / `## 地点` / `## 设定`), or `- **Name**: description` lines, create the matching entities and attach them by name to the scenes they appear in.
 
 ```markdown
 # Letters in the Rain
@@ -107,7 +107,7 @@ Lin Yuan receives a letter on a rainy night.
 - Cards are joined causally in row order, and each edge takes the first sentence of the last column, cut at 28 characters.
 - A table whose header is something else (a four-way table, say) becomes idea cards and stays off the storyboard.
 - `- **Subtitle**: text` inside a chapter also becomes an idea card.
-- Characters, places, and story facts come only from in-document sections: `## Characters` / `## Places` / `## Settings`, or the synonyms `## Roles` / `## Locations` / `## World`. The Chinese headers `## 人物` / `## 地点` / `## 设定` (`## 角色` / `## 场所` / `## 世界观`) are always recognised, in any language; Japanese and Traditional Chinese have their own synonyms. With no such section, nothing is created, and no sample library is preloaded.
+- Characters, places, and story facts come only from in-document sections: `## Characters` / `## Places` / `## Settings`, or the aliases `## Roles` / `## Locations` / `## Facts` / `## World`. The Chinese headers `## 人物` / `## 地点` / `## 设定` (`## 角色` / `## 场所` / `## 事实` / `## 世界观`) are always recognised, in any language; Japanese and Traditional Chinese have their own synonyms. With no such section, nothing is created, and no sample library is preloaded.
 - JSON from prose import carries `"mode": "prose"` plus one `notes` entry (chapters and scenes).
 
 ## JSON structure

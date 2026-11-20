@@ -49,7 +49,7 @@ CLI 的提示、报告、卡片三段标签与 MCP 服务端文案共用 `Causal
 - 可用值：`zh-Hans`、`en`、`ja`、`zh-Hant`；也认带地区的写法（`zh-TW` / `zh-HK` / `zh-MO` → `zh-Hant`，`en-US` → `en`，`ja-JP` → `ja`）。
 - 位置：子命令前后都行，`--lang en` 与 `--lang=en` 等价。
 - 优先级：显式 `--lang` > 故事板表头推断 > `LANG` 的语言前缀 > 默认 `zh-Hans`。
-- 表头：故事板导入永远认中文表头，再加当前语言那一套（`Beat and Timing` / `ビートとタイミング` / `節點與時機`）。读繁体表头的文档要认出表头，就写 `--lang zh-Hant`；同一个参数也决定卡片正文的三段标签写成 `Sees / Does / Leaves` 还是 `見る / する / 残る`。
+- 表头：故事板导入永远认 `节点与时机`，再加当前语言那一份（`Beat and Timing` / `ビートとタイミング` / `節點與時機`）。读繁体表头的文档要认出表头，就写 `--lang zh-Hant`；同一个参数也决定卡片正文的三段标签写成 `Sees / Does / Leaves` 还是 `見る / する / 残る`。
 - MCP：`causal mcp --lang en` 起服务后，`tools/list` 的描述、`tools/call` 的错误文本、HTTP 传输的握手与鉴权提示都出英文。
 - 导出：`outline`、`branch`、`play --out` 以及 MCP 服务器上的 Markdown 资源跟随同一个设置，`causal outline --lang en` 写出的是 `- Cast: Ann, Bob`，而不是 `- 出场：Ann、Bob`。段落标题、冒号与列举分隔符、句末标点都是词条键，切换才是完整的。
 
@@ -61,13 +61,13 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 
 ## import 认什么
 
-导入器认中文、英文、日文、繁体四种表头（`节点与时机`、`Beat and Timing`、`ビートとタイミング`、`節點與時機`），并按表头语言把卡片正文的三段标签写成 `Sees: / Does: / Leaves:`、`見る：/ する：/ 残る：`、`眼前：/ 動手：/ 留下：`。表头无法判断时可用 `--lang en|ja|zh-Hant` 显式指定；CLI 自己的提示、报告与卡片三段标签跟随同一套词条（见上一节「语言」）。
+导入器认中文、英文、日文、繁体四种表头（`节点与时机`、`Beat and Timing`、`ビートとタイミング`、`節點與時機`），并按当前语言把卡片正文的三段标签写成 `眼前：/ 動手：/ 留下：`、`Sees: / Does: / Leaves:`、`見る：/ する：/ 残る：`。表头无法判断时可用 `--lang en|ja|zh-Hant` 显式指定；CLI 自己的提示、报告与卡片三段标签跟随同一套词条（见上一节「语言」）。
 
 默认自动识别：含 `| 节点与时机 |` 表的文档走故事板导入，其余走普通 Markdown 导入。`--format storyboard|prose` 可以强制。
 
 **项目名**：给了 `--title` 就用它；没给就取输入文件名，里面的下划线会变成 `·`（`my_story.md` → `my · story`）。普通 Markdown 里的 `#` 是文内的书名，不是工程包的名字。
 
-**普通 Markdown**：`#` 是项目名，`##` 是章，`###`/`####` 是场，其余段落进正文；没有 `###` 时一章并成一场。`## 人物` / `## 地点` / `## 设定` 下的表或 `- **名字**：说明` 会建成对应实体，并按名字挂到出现的场次。
+**普通 Markdown**：`#` 是文内书名，`##` 是章，`###`/`####` 是场，其余段落进正文；没有 `###` 时一章并成一场。`## 人物` / `## 地点` / `## 设定` 下的表或 `- **名字**：说明` 会建成对应实体，并按名字挂到出现的场次。
 
 ```markdown
 # 雨夜来信
@@ -107,7 +107,7 @@ causal mcp --transport http --lang ja     # 与其它参数混写
 - 卡片按行序用因果连起来，线上的文字取「留下什么」的首句，最多 28 个字；
 - 表头不是「节点与时机」的表（例如四向表）落成灵感卡，不进故事板；
 - 章节里的 `- **小标题**：正文` 也落成灵感卡；
-- 人物、地点、事实设定只认文内资料段：当前语言的 `## Characters` / `## Places` / `## Settings`，或任何语言都认的 `## 人物` / `## 地点` / `## 设定`（也认 `## 角色` / `## 场所` / `## 世界观`）；没有就不建，不再预置示例库。
+- 人物、地点、事实设定只认文内资料段：当前语言的 `## Characters` / `## Places` / `## Settings`，或任何语言都认的 `## 人物` / `## 地点` / `## 设定`（也认 `## 角色` / `## 场所` / `## 事实` / `## 世界观`，英文别名 `## Roles` / `## Locations` / `## Facts` / `## World` 也认；日文与繁体各有自己的别名）；没有就不建，不再预置示例库。
 - 普通 Markdown 导入的 JSON 带 `"mode": "prose"` 与一条 `notes`（几章几场）。
 
 ## JSON 结构
@@ -208,7 +208,7 @@ causal mcp --package /path/to/示例.causal   # 固定一个包
 
 默认是 stdio、换行分隔的 JSON-RPC 2.0。`initialize` 声明 `tools` / `resources` / `prompts`；支持 `tools/list`、`tools/call`、`resources/list`、`resources/read`、`prompts/list`、`prompts/get`、`ping`。
 
-**推荐不带 `--package`**：客户端先 `open_project`，之后同一进程里的读写都作用在那个包上。`causal` 是 release 产物，换成你机器上的绝对路径：
+**不带 `--package`**：客户端先 `open_project`，之后同一进程里的读写都作用在那个包上。`causal` 是 release 产物，换成你机器上的绝对路径：
 
 ### HTTP / SSE + token
 

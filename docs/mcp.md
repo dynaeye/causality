@@ -23,7 +23,7 @@ Desktop clients with no command line (Claude Desktop, Cursor, Windsurf, Kiro, VS
 
 Those paths belong to the clients themselves; the app only reads and writes after detecting one. Clients in neither list (DSH and the like) take the manual route: copy the `mcpServers` snippet and paste it in.
 
-For the command line alone, without the app, take `causal` and the same-named `.bundle` from `Contents/Resources/cli/` inside the app package and install them the way `install.sh` does, which also clears the quarantine flag.
+For the command line alone, without the app, take `causal` and the `CausalityCore_CausalityCore.bundle` beside it from `Contents/Resources/cli/` inside the app package and install them the way `install.sh` does, which also clears the quarantine flag.
 
 ## 2. Where the config lands
 

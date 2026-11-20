@@ -19,14 +19,14 @@ With a long story, what stops you is usually something concrete:
 - You rework one subplot and forget that a character on another path is still waiting for something that will never happen.
 - The outline is done before you notice all three endings crowded into the last two chapters, with nobody making a decision in between.
 - You planted a setup, and at payoff time you cannot remember which scene holds it, so you page through twenty files.
-- The plot talk with the AI goes well, but when the model edits the draft you miss the five places it touched, and undo leaves a mess.
+- The plot talk with the AI goes well, but when the model edits the draft you miss the five places it changed, and undo leaves a mess.
 
 All four share a cause. A story is a network, while the tools are lines: documents stack chapters, folders stack files, and the thing you want to record — this decision causes that consequence, and the consequence lands on somebody else — has nowhere to go.
 
 Causality is built on that idea, with three commitments:
 
 1. **The unit is the scene and the fork.** A fork carries several options, each leading to a different next scene, each with a line saying why a reader takes it. Two options that land on the same scene still get an edge each, because to the author they are different events.
-2. **Reading order and causality stay apart.** Order inside a chapter sets the rhythm of reading; edges carry cause. Dragging a card on the storyboard reorders the reading and leaves the plot untouched. Changing who causes whom means changing the edge. Storyboard, outline, story graph, and character map all read one piece of content four ways.
+2. **Reading order and causality stay apart.** Order inside a chapter sets the rhythm of reading; edges carry cause. Dragging a card on the storyboard reorders the reading and leaves the plot untouched. Changing who causes whom means changing the edge. Storyboard, Outline, Story Graph, and Character Map all read one piece of content four ways.
 3. **The AI proposes, you decide.** The model hands back a list of changes; the app checks every item, groups related ones together, and lets you revert the whole list in one step after you accept it. Offline, everything but the AI features keeps working: writing, browsing, saving, exporting.
 
 It does different work from Scrivener and Twine, and the three work well side by side:
@@ -46,7 +46,7 @@ It suits books of 80,000 words or more with three or more endings. For a 3,000-w
 Four steps for the first session. Three easy mistakes follow at the end of this section.
 
 1. **Install**: open the DMG, drag Causality into Applications, double-click. The start page offers New Project and Open Project, with your unfinished drafts listed below (empty on the first launch).
-2. **Write the first scene**: File › New Project opens with Chapter One and one card. Right-click the card, choose Write Scene, and write. The text lives on that card, and the card face shows the opening lines. Add the next one with Insert Card at the foot of the chapter.
+2. **Write the first scene**: File › New Project opens with Chapter One and one card, titled First Card. Right-click the card, choose Write Scene, and write. The text lives on that card, and the card face shows the opening lines. Add the next one with Insert Card at the foot of the chapter.
 3. **Add a branch**: from writing mode, Story › Branch from This Scene splits off a second direction and you write that too. On the storyboard the two scenes are joined by a fork edge, labelled with branch numbers (1, 2, …), and both routes stay.
 4. **Check the structure and export**: Story › Writing Mode (⌘⏎) leaves writing mode. Story Check (⇧⌘A) lists structural problems, Branch Synopsis (⇧⌘B) shows the scenes and words behind each ending, and File › Export Outline as PDF… gives you something printable.
 
@@ -66,8 +66,8 @@ One project, four ways to look at it: the storyboard for arranging scenes, the o
 | --- | --- | --- | --- |
 | Storyboard (default) | One column per chapter, the book's rhythm laid out sideways | Insert and drag cards, write scenes, attach images | Story › View › Storyboard |
 | Outline | Reading order by chapter, branches indented, merges as jumps | Reorder, inspect structure, export the PDF | Story › View › Outline |
-| Story graph | The book's causality in one diagram, edges read as "because… therefore…" | Pan, zoom, draw edges, follow mainline and subplot | Story › View › Story Graph |
-| Character map | Who shares a scene with whom, who relates to whom | Drag character cards, read the matrix, rename and annotate | Story › View › Character Map |
+| Story Graph | The book's causality in one diagram, edges read as "because… therefore…" | Pan, zoom, draw edges, follow mainline and subplot | Story › View › Story Graph |
+| Character Map | Who shares a scene with whom, who relates to whom | Drag character cards, read the matrix, rename and annotate | Story › View › Character Map |
 
 ### 3.1 Storyboard (default)
 
@@ -89,7 +89,7 @@ The outline is derived, so you never write a second one. Scenes you read straigh
 - Dragging reorders the reading and leaves causality where it was.
 - A merge shows a jump, so the same text never appears twice.
 
-### 3.3 Story graph
+### 3.3 Story Graph
 
 ![Story graph: cards are scenes, edges are causality](docs/images/03-canvas.png)
 
@@ -99,7 +99,7 @@ The story graph draws the cards currently on screen and the edges between them. 
 - Cards lay out in reading order as a serpentine — first row left to right, second row right to left — with neighbours at most one cell apart, so no edge cuts across the whole screen. When it tangles, Story › Arrange Story Graph sorts the layout out and you can undo it.
 - **Reachable endings**: right-click any card to list the endings reachable from it and the steps to each. Before cutting a branch, see which endings move with it.
 
-### 3.4 Character map
+### 3.4 Character Map
 
 ![Character map](docs/images/04-characters.png)
 
@@ -141,7 +141,7 @@ Story › Previous Scene and Next Scene page through the book, Story › Add Nex
 
 ### 5.2 Inspector and Scene Craft
 
-The inspector holds nine sections, with the summary on top. Scene Craft and Manuscript open by default; Basics, Characters & Places, Threads, Story Facts, Images, Leads to, and Notes open on demand, and the app remembers what you collapsed. Story › Show Inspector closes and opens the inspector; Story › Focus Mode folds the sidebar away as well.
+The inspector holds nine sections, with the summary on top. Scene Craft and Manuscript open by default; Basics, Characters & Places, Threads, Story Facts, Images, Leads to, and Notes open on demand, and the app remembers what you collapsed. Story › Show Inspector closes and opens the inspector; Story › Focus Mode folds the inspector away as well.
 
 Scene Craft is a set of writing prompts you set yourself: point of view (whose eyes this scene is seen through), time (when it happens in the story), type (what the scene does for the book — Dialogue, Cutscene, Exploration, Puzzle, Combat, Boss, Montage), tension (how taut it should be, one to five), target words, and writing status (To write / In progress / To revise / Final). Every field can stay empty and the scene still writes. Fill any in and the target word count sits beside the actual count; the character matrix and Story Check read the same fields.
 
@@ -159,7 +159,7 @@ Drafts are a separate matter. A new project is stored as a draft first, so closi
 
 ### 5.4 Story Check
 
-Once branches multiply, structural problems stop being visible by eye. Story › Story Check (⇧⌘A) scans the whole book against 21 rules at three levels: an error means the story is broken and has to change, a warning means readers will be confused and it should change, a note is a detail worth a look. Filter the list, click a finding to jump to its card. When a reminder does not apply, write a reason and ignore it, and restore it later. A red number in the toolbar counts the current errors and stays hidden at zero; the Story Check section of the sidebar breaks errors, warnings, and notes apart.
+Once branches multiply, structural problems stop being visible by eye. Story › Story Check (⇧⌘A) scans the whole book against 21 rules at three levels: an error means the story is broken and has to change, a warning means readers will be confused and should be fixed, a note is a detail worth a look. Filter the list, click a finding to jump to its card. When a reminder does not apply, write a reason and ignore it, and restore it later. A red number in the toolbar counts the current errors and stays hidden at zero; the Story Check section of the inspector breaks errors, warnings, and notes apart.
 
 The rules cover three kinds of trouble: routes that do not work (dead ends, endings nobody reaches), decisions that decide nothing (a fork with one exit, options that lead to the same scene), and setups that never pay off. N01–N21 are the rule numbers.
 
@@ -211,7 +211,7 @@ Switch the inspector to the AI assistant, or click the AI button in the toolbar.
 
 - **Discuss**: writes into the conversation only, touching no manuscript. Lines the discussion produces can be saved as an idea or recorded as a fact.
 - **Create Outline**: sorts what you have agreed into scenes, leaves open questions as pending items, and returns a proposal.
-- **Revise the selection / Insert a card here**: click the gap between two cards first, and the panel shows "Insert at: Chapter One · after “…”", at which point the main button becomes Insert a card here.
+- **Revise Selection / Insert a card here**: click the gap between two cards first, and the panel shows `Insert at: Chapter One · after “…”`, at which point the main button becomes **Insert a card here**.
 
 ```mermaid
 flowchart LR
@@ -235,8 +235,8 @@ Worldbuilding entries come at three levels: draft, confirmed, and locked. Drafts
 
 If you already have a script, a scene breakdown, or a settings document, the first card does not have to be blank. Use File › Import Markdown…, pick a `.md`, and the format decides between two routes:
 
-- The file holds a table headed "Beat and Timing" → **storyboard import**: each row becomes a card, placed in its chapter in table order, with all four columns written into the scene (what the player sees / does / leaves). The cards are joined causally in row order, and each edge takes the first sentence of the last column, so the chain is there from the start and you can redraw it on the story graph afterwards.
-- Plain Markdown → **prose import**: `#` names the book, `##` is a chapter, `###` (or `####`) is a scene, and paragraphs go into scenes; sections such as `## Characters`, `## Places`, and `## Settings` are read as lists of entities rather than chapters (the Chinese spellings `## 角色`, `## 场所`, and `## 世界观` work too).
+- The file holds a table headed "Beat and Timing" → **storyboard import**: each row becomes a card, placed in its chapter in table order, with the last three columns written into the scene (what the player sees / does / leaves). The cards are joined causally in row order, and each edge takes the first sentence of the last column, so the chain is there from the start and you can redraw it on the story graph afterwards.
+- Plain Markdown → **prose import**: `#` names the book, `##` is a chapter, `###` (or `####`) is a scene, and paragraphs go into scenes; sections such as `## Characters`, `## Places`, and `## Settings` are read as lists of entities rather than chapters; the Chinese headers `## 人物`, `## 地点`, and `## 设定` are recognised in any language, as are the aliases `## Roles`, `## Locations`, `## Facts`, and `## World`.
 
 An imported project behaves like a new one: stored as a draft first, with the permanent location chosen at the first save. Prose import reports how many chapters and scenes it found ("Imported as plain Markdown: N chapters, M scenes."), and parsing problems arrive as notes — fix the source and import again.
 
@@ -292,7 +292,7 @@ Saving writes the new content first and replaces the old file after, so quitting
 
 File › Export Markdown… exports by chapter, keeping scene titles, characters and places, causal text, options and conditions, and ending marks; images go alongside as relative paths. The Markdown follows the outline's arrangement, with the content unchanged.
 
-### 7.3 Story graph PNG
+### 7.3 Story Graph PNG
 
 ![Exported story graph](docs/images/06-export-canvas.png)
 
@@ -351,7 +351,7 @@ Further down the same page, clients are listed one per line, each ending in a ve
 
 Click **Install MCP** (一键安装 MCP) again for anything unconnected, or use **Check Again** (重新检查) on that line.
 
-Below that sit the **desktop clients**: Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode. Whichever you have installed appears by itself, since these clients have no command line and connect through a JSON config. "Installed" means the app bundle or the command exists; an empty config file alone does not count, so clients you never installed stay off the list. Click **Write and Check** (写入并检查) and the app edits that client's config directly, backing the original up as `…bak-mcp-<time>` first and reading it back to verify. Each line shows the exact path of that file, and **Show in Finder** (在访达中显示) opens its folder. When a config is not standard JSON, the app leaves it alone and writes the reason on that line.
+Below that sit the **desktop clients**: Claude Desktop, Cursor, Windsurf, Kiro, VS Code, OpenCode. Whichever you have installed appears by itself, since these clients have no command line and connect through a JSON config. Installed here means the app bundle or the command exists; an empty config file alone does not count, so clients you never installed stay off the list. Click **Write and Check** (写入并检查) and the app edits that client's config directly, backing the original up as `…bak-mcp-<time>` first and reading it back to verify. Each line shows the exact path of that file, and **Show in Finder** (在访达中显示) opens its folder. When a config is not standard JSON, the app leaves it alone and writes the reason on that line.
 
 Clients in neither list (DSH and the like, with no fixed location) need the manual route: click **Copy This Config** (复制这段配置) and paste it into the MCP section of that client's settings. **Do not select and copy the preview text by hand** — that drags escapes such as `\n` and `&#x20;` along and the paste arrives broken.
 
